@@ -6,7 +6,6 @@ var i = 0;
 var stores = [];
 var defaultStores = [];
 var prevText = "";
-var accumulator = "";
 
 
 function logIt() {
@@ -32,7 +31,7 @@ function execCommands(commands) {
 }
 			
 function evaluate(isd8) {
-	accumulator = document.getElementById("acc").innerText;
+	document.getElementById("acc").innerText = document.getElementById("acc").innerText;
 	for(var i = 0; i < curCommands.length; i++) {
 		var commandStr = curCommands[i];
 		switch(commandStr[0]) {
@@ -45,16 +44,66 @@ function evaluate(isd8) {
 			break;
 			case "1":
 				if(commandStr.slice(0, 3) != "101") {
-					if(stores[(parseInt(commandStr.slice(3, 5)))/9 - 10]) {
-						accumulator = stores[(parseInt(commandStr.slice(0, 3)) - 10) / 9] + stores[(parseInt(commandStr.slice(3, 5)) - 10) / 9];
+					var store1 = 0;
+					var store2 = 0;
+					if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
+						store2 = document.getElementById("#1").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 19 && parseInt(commandStr.slice(3, 5)) < 28) {
+						store2 = document.getElementById("#2").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 28 && parseInt(commandStr.slice(3, 5)) < 37) {
+						store2 = document.getElementById("#3").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 37 && parseInt(commandStr.slice(3, 5)) < 46) {
+						store2 = document.getElementById("#4").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 46 && parseInt(commandStr.slice(3, 5)) < 55) {
+						store2 = document.getElementById("#5").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 55 && parseInt(commandStr.slice(3, 5)) < 64) {
+						store2 = document.getElementById("#6").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 64 && parseInt(commandStr.slice(3, 5)) < 73) {
+						store2 = document.getElementById("#7").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 73 && parseInt(commandStr.slice(3, 5)) < 82) {
+						store2 = document.getElementById("#8").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 82 && parseInt(commandStr.slice(3, 5)) < 91) {
+						store2 = document.getElementById("#9").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 91 && parseInt(commandStr.slice(3, 5)) < 100) {
+						store2 = document.getElementById("#10").innerText;
+					}
+					
+					if(parseInt(commandStr.slice(1, 3)) > 9 && parseInt(commandStr.slice(1, 3)) < 19) {
+						store1 = document.getElementById("#1").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 19 && parseInt(commandStr.slice(1, 3)) < 28) {
+						store1 = document.getElementById("#2").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 28 && parseInt(commandStr.slice(1, 3)) < 37) {
+						store1 = document.getElementById("#3").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 37 && parseInt(commandStr.slice(1, 3)) < 46) {
+						store1 = document.getElementById("#4").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 46 && parseInt(commandStr.slice(1, 3)) < 55) {
+						store1 = document.getElementById("#5").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 55 && parseInt(commandStr.slice(1, 3)) < 64) {
+						store1 = document.getElementById("#6").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 64 && parseInt(commandStr.slice(1, 3)) < 73) {
+						store1 = document.getElementById("#7").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 73 && parseInt(commandStr.slice(1, 3)) < 82) {
+						store1 = document.getElementById("#8").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 82 && parseInt(commandStr.slice(1, 3)) < 91) {
+						store1 = document.getElementById("#9").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 91 && parseInt(commandStr.slice(1, 3)) < 100) {
+						store1 = document.getElementById("#10").innerText;
+					}
+					if(document.getElementById("acc").innerText == "Not assigned" && store1 != 0 && store2 != 0) {
+						
+						document.getElementById("acc").innerText = parseInt(store1) + parseInt(store2);
+						if(store1 - store2 < 0) {
+							
+							while(document.getElementById("acc").innerText.length < 8) {
+								document.getElementById("acc").innerText = "0" + document.getElementById("acc").innerText;
+							}
+							document.getElementById("acc").innerText = "+" + document.getElementById("acc").innerText;
+						}
 					} else {
-						 if (accumulator != "Not assigned") {
+						 if (document.getElementById("acc").innerText != "Not assigned") {
 							document.getElementById("log").innerText = prevText + "\rError: The accumulator must be cleared. Use the commands 409 or 209";	
 						 }
-						 if(!stores[(parseInt(commandStr.slice(3)) - 10)/9]) {
-							 document.getElementById("log").innerText = prevText + "\rError: The store " + commandStr.slice(3, 5) + " is empty. Please fill them by using the commands 101+ the store number + the 8 digit value you want to fill it with, starting with a + or a -, ex. 10110+10050000";
-						 }
-					} 
+					}
 				} else if((parseInt(commandStr.slice(3, 5)) - 10)/9 < 0 && commandStr.slice(3, 5) != "09") {
 					document.getElementById("log").innerText = prevText + "\rError: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"";
 				} else if(parseInt(commandStr.slice(3, 5)) == 9) {
@@ -117,14 +166,62 @@ function evaluate(isd8) {
 			
 			case "3":
 				if(commandStr.slice(0, 3) != "301") {
-					if(stores[(parseInt(commandStr.slice(3, 5)))/9 - 10]) {
-						accumulator = stores[(parseInt(commandStr.slice(0, 3)) - 10) / 9] + stores[(parseInt(commandStr.slice(3, 5)) - 10) / 9];
+					var store1 = 0;
+					var store2 = 0;
+					if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
+						store2 = document.getElementById("#1").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 19 && parseInt(commandStr.slice(3, 5)) < 28) {
+						store2 = document.getElementById("#2").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 28 && parseInt(commandStr.slice(3, 5)) < 37) {
+						store2 = document.getElementById("#3").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 37 && parseInt(commandStr.slice(3, 5)) < 46) {
+						store2 = document.getElementById("#4").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 46 && parseInt(commandStr.slice(3, 5)) < 55) {
+						store2 = document.getElementById("#5").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 55 && parseInt(commandStr.slice(3, 5)) < 64) {
+						store2 = document.getElementById("#6").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 64 && parseInt(commandStr.slice(3, 5)) < 73) {
+						store2 = document.getElementById("#7").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 73 && parseInt(commandStr.slice(3, 5)) < 82) {
+						store2 = document.getElementById("#8").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 82 && parseInt(commandStr.slice(3, 5)) < 91) {
+						store2 = document.getElementById("#9").innerText;
+					} else if(parseInt(commandStr.slice(3, 5)) >= 91 && parseInt(commandStr.slice(3, 5)) < 100) {
+						store2 = document.getElementById("#10").innerText;
+					}
+					
+					if(parseInt(commandStr.slice(1, 3)) > 9 && parseInt(commandStr.slice(1, 3)) < 19) {
+						store1 = document.getElementById("#1").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 19 && parseInt(commandStr.slice(1, 3)) < 28) {
+						store1 = document.getElementById("#2").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 28 && parseInt(commandStr.slice(1, 3)) < 37) {
+						store1 = document.getElementById("#3").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 37 && parseInt(commandStr.slice(1, 3)) < 46) {
+						store1 = document.getElementById("#4").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 46 && parseInt(commandStr.slice(1, 3)) < 55) {
+						store1 = document.getElementById("#5").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 55 && parseInt(commandStr.slice(1, 3)) < 64) {
+						store1 = document.getElementById("#6").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 64 && parseInt(commandStr.slice(1, 3)) < 73) {
+						store1 = document.getElementById("#7").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 73 && parseInt(commandStr.slice(1, 3)) < 82) {
+						store1 = document.getElementById("#8").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 82 && parseInt(commandStr.slice(1, 3)) < 91) {
+						store1 = document.getElementById("#9").innerText;
+					} else if(parseInt(commandStr.slice(1, 3)) >= 91 && parseInt(commandStr.slice(1, 3)) < 100) {
+						store1 = document.getElementById("#10").innerText;
+					}
+					if(document.getElementById("acc").innerText == "Not assigned" && store1 != 0 && store2 != 0) {
+						
+						document.getElementById("acc").innerText = store1 - store2;
+						if(store1 - store2 < 0) {
+							while(document.getElementById("acc").innerText.length < 9) {
+								document.getElementById("acc").innerText = "-0" + document.getElementById("acc").innerText.slice(1);
+							}
+						}
 					} else {
-						 if (accumulator != "Not assigned") {
+						 if (document.getElementById("acc").innerText != "Not assigned") {
 							document.getElementById("log").innerText = prevText + "\rError: The accumulator must be cleared. Use the commands 409 or 209";	
-						 }
-						 if(!stores[(parseInt(commandStr.slice(3)) - 10)/9]) {
-							 document.getElementById("log").innerText = prevText + "\rError: The store " + commandStr.slice(3, 5) + " is empty. Please fill them by using the commands 101+ the store number + the 8 digit value you want to fill it with, starting with a + or a -, ex. 10110+10050000";
 						 }
 					} 
 				} else if((parseInt(commandStr.slice(3, 5)) - 10)/9 < 0 && commandStr.slice(3, 5) != "09") {
