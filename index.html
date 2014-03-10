@@ -12,13 +12,13 @@
     <table width="100%" border="1">
  		<tr>
     		<td style="width:7%" width="55%">
-           	  <form name="form1" method="post" action="">
+           	  <form name="form1" onsubmit="logIt(); execCommands(document.getElementById('commands').value); return false;">
   				<label for="commands">
     			  <textarea name="log" cols="60" rows="10" readonly id="log">WITCH-E v1.0.0</textarea>
 	    			<br>
 	    			<br>
    				Enter Commands</label>
-	  				<input type="text" name="commands" id="commands">
+	  				<input type="text" name="commands" id="commands" onkeypress="handleEnter(this, event)">
       				<input type="button" name="sendCommands" id="sendCommands" onclick="logIt(); execCommands(document.getElementById('commands').value);" value="Feed Into Tape Reader"﻿>
 			  </form>
     		</td>

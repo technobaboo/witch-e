@@ -8,6 +8,22 @@ var defaultStores = [];
 var prevText = "";
 
 
+function handleEnter(inField, e) {
+    var charCode;
+    
+    if(e && e.which){
+        charCode = e.which;
+    }else if(window.event){
+        e = window.event;
+        charCode = e.keyCode;
+    }
+
+    if(charCode == 13) {
+		logIt();
+		execCommands(document.getElementById("commands").value);
+    }
+}
+
 function logIt() {
 	curCommands = document.getElementById("commands").value.split(" ");
 	for(i = 0; i < curCommands.length; i++) {
@@ -18,16 +34,20 @@ function logIt() {
 			document.getElementById("log").innerText = prevText + '\r' + curCommands[i];
 		}
 	}
+	return false;
 }
 			
 function execCommands(commands) {
 	prevText = document.getElementById("log").value;
 	
 	if(curCommands[curCommands.length -1].length != 5 && curCommands[curCommands.length -1].length != 3 && curCommands[curCommands.length -1].length != 14) {
+		document.getElementById("commands").value = "";
 		document.getElementById("log").innerText = prevText + "\rError: This Command must be 5 or 3 or 8 characters long";
 	} else {
+		document.getElementById("commands").value = "";
 		evaluate(false);
 	}
+	return false;
 }
 			
 function evaluate(isd8) {
@@ -44,8 +64,8 @@ function evaluate(isd8) {
 			break;
 			case "1":
 				if(commandStr.slice(0, 3) != "101") {
-					var store1 = 0;
-					var store2 = 0;
+					var store1 = NaN;
+					var store2 = NaN;
 					if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
 						store2 = document.getElementById("#1").innerText;
 					} else if(parseInt(commandStr.slice(3, 5)) >= 19 && parseInt(commandStr.slice(3, 5)) < 28) {
@@ -89,15 +109,18 @@ function evaluate(isd8) {
 					} else if(parseInt(commandStr.slice(1, 3)) >= 91 && parseInt(commandStr.slice(1, 3)) < 100) {
 						store1 = document.getElementById("#10").innerText;
 					}
-					if(document.getElementById("acc").innerText == "Not assigned" && store1 != 0 && store2 != 0) {
+					if(document.getElementById("acc").innerText == "Not assigned" && !isNaN(store1) && !isNaN(store2)) {
 						
 						document.getElementById("acc").innerText = parseInt(store1) + parseInt(store2);
-						if(store1 - store2 < 0) {
-							
-							while(document.getElementById("acc").innerText.length < 8) {
-								document.getElementById("acc").innerText = "0" + document.getElementById("acc").innerText;
+						if(parseInt(store1) + parseInt(store2) < 0) {
+							while(document.getElementById("acc").innerText.length < 9) {
+								document.getElementById("acc").innerText = "-0" + document.getElementById("acc").innerText.slice(1);
 							}
-							document.getElementById("acc").innerText = "+" + document.getElementById("acc").innerText;
+						} else {
+							document.getElementById("acc").innerText = "0" + document.getElementById("acc").innerText;
+							while(document.getElementById("acc").innerText.length < 9) {
+								document.getElementById("acc").innerText = "+0" + document.getElementById("acc").innerText.slice(1);
+							}
 						}
 					} else {
 						 if (document.getElementById("acc").innerText != "Not assigned") {
@@ -166,8 +189,8 @@ function evaluate(isd8) {
 			
 			case "3":
 				if(commandStr.slice(0, 3) != "301") {
-					var store1 = 0;
-					var store2 = 0;
+					var store1 = NaN;
+					var store2 = NaN;
 					if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
 						store2 = document.getElementById("#1").innerText;
 					} else if(parseInt(commandStr.slice(3, 5)) >= 19 && parseInt(commandStr.slice(3, 5)) < 28) {
@@ -211,12 +234,17 @@ function evaluate(isd8) {
 					} else if(parseInt(commandStr.slice(1, 3)) >= 91 && parseInt(commandStr.slice(1, 3)) < 100) {
 						store1 = document.getElementById("#10").innerText;
 					}
-					if(document.getElementById("acc").innerText == "Not assigned" && store1 != 0 && store2 != 0) {
+					if(document.getElementById("acc").innerText == "Not assigned" && !isNaN(store1) && !isNaN(store2)) {
 						
-						document.getElementById("acc").innerText = store1 - store2;
-						if(store1 - store2 < 0) {
+						document.getElementById("acc").innerText = parseInt(store1) - parseInt(store2);
+						if(parseInt(store1) - parseInt(store2) < 0) {
 							while(document.getElementById("acc").innerText.length < 9) {
 								document.getElementById("acc").innerText = "-0" + document.getElementById("acc").innerText.slice(1);
+							}
+						} else {
+							document.getElementById("acc").innerText = "+" + document.getElementById("acc").innerText;
+							while(document.getElementById("acc").innerText.length < 9) {
+								document.getElementById("acc").innerText = "+0" + document.getElementById("acc").innerText.slice(1);
 							}
 						}
 					} else {
@@ -283,4 +311,5 @@ function evaluate(isd8) {
 			break;
 		}
 	}
+	return false;
 }
