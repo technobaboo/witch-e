@@ -42,7 +42,7 @@ function execCommands(commands) {
 	
 	if(curCommands[curCommands.length -1].length != 5 && curCommands[curCommands.length -1].length != 3 && curCommands[curCommands.length -1].length != 14) {
 		document.getElementById("commands").value = "";
-		document.getElementById("log").innerText = prevText + "\rError: This Command must be 5 or 3 or 8 characters long";
+		document.getElementById("log").innerText = prevText + "\rError: This Command must be 5 or 3 or 14 characters long";
 	} else {
 		document.getElementById("commands").value = "";
 		evaluate(false);
