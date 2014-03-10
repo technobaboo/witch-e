@@ -112,14 +112,22 @@ function evaluate(isd8) {
 					if(document.getElementById("acc").innerHTML == "Not assigned" && !isNaN(store1) && !isNaN(store2)) {
 						
 						document.getElementById("acc").innerHTML = parseInt(store1) + parseInt(store2);
-						if(parseInt(store1) + parseInt(store2) < 0) {
-							while(document.getElementById("acc").innerHTML.length < 9) {
-								document.getElementById("acc").innerHTML = "-0" + document.getElementById("acc").innerHTML.slice(1);
+						if(document.getElementById("acc").innerHTML.length > 8) {
+							if(parseInt(store1) + parseInt(store2) < 0) {
+								while(document.getElementById("acc").innerHTML.length < 9) {
+									document.getElementById("acc").innerHTML = "-0" + document.getElementById("acc").innerHTML.slice(1);
+								}
+							} else {
+								document.getElementById("acc").innerHTML = "+" + document.getElementById("acc").innerHTML;
+								while(document.getElementById("acc").innerHTML.length < 9) {
+									document.getElementById("acc").innerHTML = "+0" + document.getElementById("acc").innerHTML.slice(1);
+								}
 							}
-						} else {
-							document.getElementById("acc").innerHTML = "0" + document.getElementById("acc").innerHTML;
-							while(document.getElementById("acc").innerHTML.length < 9) {
-								document.getElementById("acc").innerHTML = "+0" + document.getElementById("acc").innerHTML.slice(1);
+						} else { 
+							if(parseInt(store1) + parseInt(store2) < 0) {
+								document.getElementById("acc").innerHTML = "-" + document.getElementById("acc").innerHTML;
+							} else {
+								document.getElementById("acc").innerHTML = "+" + document.getElementById("acc").innerHTML;
 							}
 						}
 					} else {
@@ -237,14 +245,22 @@ function evaluate(isd8) {
 					if(document.getElementById("acc").innerHTML == "Not assigned" && !isNaN(store1) && !isNaN(store2)) {
 						
 						document.getElementById("acc").innerHTML = parseInt(store1) - parseInt(store2);
-						if(parseInt(store1) - parseInt(store2) < 0) {
-							while(document.getElementById("acc").innerHTML.length < 9) {
-								document.getElementById("acc").innerHTML = "-0" + document.getElementById("acc").innerHTML.slice(1);
+						if(document.getElementById("acc").innerHTML.length > 8) {
+							if(parseInt(store1) - parseInt(store2) < 0) {
+								while(document.getElementById("acc").innerHTML.length < 9) {
+									document.getElementById("acc").innerHTML = "-0" + document.getElementById("acc").innerHTML.slice(1);
+								}
+							} else {
+								document.getElementById("acc").innerHTML = "+" + document.getElementById("acc").innerHTML;
+								while(document.getElementById("acc").innerHTML.length < 9) {
+									document.getElementById("acc").innerHTML = "+0" + document.getElementById("acc").innerHTML.slice(1);
+								}
 							}
-						} else {
-							document.getElementById("acc").innerHTML = "+" + document.getElementById("acc").innerHTML;
-							while(document.getElementById("acc").innerHTML.length < 9) {
-								document.getElementById("acc").innerHTML = "+0" + document.getElementById("acc").innerHTML.slice(1);
+						} else { 
+							if(parseInt(store1) - parseInt(store2) < 0) {
+								document.getElementById("acc").innerHTML = "-" + document.getElementById("acc").innerHTML;
+							} else {
+								document.getElementById("acc").innerHTML = "+" + document.getElementById("acc").innerHTML;
 							}
 						}
 					} else {
