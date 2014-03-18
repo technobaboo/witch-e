@@ -10,7 +10,7 @@ var prevText = "";
 
 function handleEnter(inField, e) {
     var charCode;
-    
+
     if(e && e.which){
         charCode = e.which;
     }else if(window.event){
@@ -18,10 +18,10 @@ function handleEnter(inField, e) {
         charCode = e.keyCode;
     }
 
-    if(charCode == 13) {
-		logIt();
-		execCommands(document.getElementById("commands").value);
-    }
+//    if(charCode == 13) {
+//		logIt();
+//		execCommands(document.getElementById("commands").value);
+//    }
 }
 
 function logIt() {
@@ -188,7 +188,6 @@ function evaluate(isd8) {
 						store2 = document.getElementById("#10");
 					} else if(parseInt(commandStr.slice(3, 5)) == 0) {
 						store2 = document.getElementById("#0");
-						document.getElementById("log").innerHTML = prevText + "\rdummy zero address found!";
 					}
 					
 					if(parseInt(commandStr.slice(1, 3)) > 9 && parseInt(commandStr.slice(1, 3)) < 19) {
