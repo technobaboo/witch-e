@@ -211,8 +211,8 @@ function evaluate(isd8) {
 					} else if(parseInt(commandStr.slice(1, 3)) >= 91 && parseInt(commandStr.slice(1, 3)) < 100) {
 						store1 = document.getElementById("#10");
 					}
-					if(!isNaN(store1.innerHTML) && !isNaN(store2.innerHTML)) {
-						if(parseInt(store2.innerHTML) != 0 ) {
+					if(store2 != document.getElementById("#0")) {
+						if(!isNaN(store1.innerHTML) && !isNaN(store2.innerHTML)) {
 							store2.innerHTML = parseInt(store1.innerHTML) + parseInt(store2.innerHTML);
 							if(store2.innerHTML.length < 8) {
 								if(parseInt(store1.innerHTML) + parseInt(store2.innerHTML) < 0) {
@@ -230,10 +230,12 @@ function evaluate(isd8) {
 									store2.innerHTML = "+" + store2.innerHTML;
 								}
 							}
+							store1.innerHTML = "+00000000";
+						} else {
+							document.getElementById("log").innerHTML = prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.";
 						}
-						store1.innerHTML = "+00000000";
 					} else {
-						document.getElementById("log").innerHTML = prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.";
+						store1.innerHTML = "+00000000";
 					}
 				} else if((parseInt(commandStr.slice(3, 5)) - 10)/9 < 0 && commandStr.slice(3, 5) != "09") {
 					document.getElementById("log").innerHTML = prevText + "\rError: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"";
