@@ -40,7 +40,7 @@ function logIt() {
 function execCommands(commands) {
 	prevText = document.getElementById("log").value;
 	
-	if(curCommands[curCommands.length -1].length != 5 && curCommands[curCommands.length -1].length != 3 && curCommands[curCommands.length -1].length != 14) {
+	if(curCommands[curCommands.length -1].length != 5 && curCommands[curCommands.length -1].length != 14) {
 		document.getElementById("commands").value = "";
 		document.getElementById("log").innerHTML = prevText + "\rError: This Command must be 5 or 3 or 14 characters long";
 	} else {
@@ -163,7 +163,7 @@ function evaluate(isd8) {
 			
 	
 			case "2":
-				if(commandStr.slice(0, 3) != "101") {
+				if(commandStr.slice(0, 3) != "201") {
 					var store1 = NaN;
 					var store2 = NaN;
 					if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
@@ -186,6 +186,9 @@ function evaluate(isd8) {
 						store2 = document.getElementById("#9");
 					} else if(parseInt(commandStr.slice(3, 5)) >= 91 && parseInt(commandStr.slice(3, 5)) < 100) {
 						store2 = document.getElementById("#10");
+					} else if(parseInt(commandStr.slice(3, 5)) == 0) {
+						store2 = document.getElementById("#0");
+						document.getElementById("log").innerHTML = prevText + "\rdummy zero address found!";
 					}
 					
 					if(parseInt(commandStr.slice(1, 3)) > 9 && parseInt(commandStr.slice(1, 3)) < 19) {
@@ -210,25 +213,26 @@ function evaluate(isd8) {
 						store1 = document.getElementById("#10");
 					}
 					if(!isNaN(store1.innerHTML) && !isNaN(store2.innerHTML)) {
-						
-						store2.innerHTML = parseInt(store1.innerHTML) + parseInt(store2.innerHTML);
-						if(store2.innerHTML.length < 8) {
-							if(parseInt(store1.innerHTML) + parseInt(store2.innerHTML) < 0) {
-								while(store2.innerHTML.length < 9) {
-									store2.innerHTML = "-0" + store2.innerHTML.slice(1);
+						if(parseInt(store2.innerHTML) != 0 ) {
+							store2.innerHTML = parseInt(store1.innerHTML) + parseInt(store2.innerHTML);
+							if(store2.innerHTML.length < 8) {
+								if(parseInt(store1.innerHTML) + parseInt(store2.innerHTML) < 0) {
+									while(store2.innerHTML.length < 9) {
+										store2.innerHTML = "-0" + store2.innerHTML.slice(1);
+									}
+								} else {
+									store2.innerHTML = "+" + store2.innerHTML;
+									while(store2.innerHTML.length < 9) {
+										store2.innerHTML = "+0" + store2.innerHTML.slice(1);
+									}
 								}
-							} else {
-								store2.innerHTML = "+" + store2.innerHTML;
-								while(store2.innerHTML.length < 9) {
-									store2.innerHTML = "+0" + store2.innerHTML.slice(1);
+							} else { 
+								if(parseInt(store1.innerHTML) + parseInt(store2.innerHTML) > 0) {
+									store2.innerHTML = "+" + store2.innerHTML;
 								}
-							}
-						} else { 
-							if(parseInt(store1.innerHTML) + parseInt(store2.innerHTML) > 0) {
-								store2.innerHTML = "+" + store2.innerHTML;
 							}
 						}
-						store1.innerHTML = "Not assigned";
+						store1.innerHTML = "+00000000";
 					} else {
 						document.getElementById("log").innerHTML = prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.";
 					}
