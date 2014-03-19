@@ -6,6 +6,9 @@
 			
 		</script>
     <style type="text/css">
+    #sendCommands {
+		width: 100%;
+	}
     </style>
 	</head>
 	<body>
@@ -13,19 +16,29 @@
  		<tr>
     		<td style="width:7%" width="55%">
            	  <form name="form1" onsubmit="logIt(); execCommands(document.getElementById('commands').value); return false;">
-  				<label for="commands">
-    			  <textarea name="log" cols="60" rows="10" readonly id="log">WITCH-E v1.0.0</textarea>
+    				<textarea name="log" cols="60" rows="10" readonly id="log">WITCH-E v1.0.0</textarea>
 	    			<br>
+      				<input type="button" name="sendCommands" id="sendCommands" onclick="openWindow(1)" value="Make Tape for Tape Reader 1"﻿>
 	    			<br>
-   				Enter Commands</label>
-	  				<input type="text" name="commands" id="commands" onkeypress="handleEnter(this, event)">
-      				<input type="button" name="sendCommands" id="sendCommands" onclick="logIt(); execCommands(document.getElementById('commands').value);" value="Feed Into Tape Reader"﻿>
+                    <input type="button" name="sendCommands" id="sendCommands" onclick="openWindow(2)" value="Make Tape for Tape Reader 2"﻿>
+	    			<br>
+                    <input type="button" name="sendCommands" id="sendCommands" onclick="openWindow(3)" value="Make Tape for Tape Reader 3"﻿>
+	    			<br>
+                    <input type="button" name="sendCommands" id="sendCommands" onclick="openWindow(4)" value="Make Tape for Tape Reader 4"﻿>
+	    			<br>
+                    <input type="button" name="sendCommands" id="sendCommands" onclick="openWindow(5)" value="Make Tape for Tape Reader 5"﻿>
+	    			<br>
+                    <input type="button" name="sendCommands" id="sendCommands" onclick="openWindow(6)" value="Make Tape for Tape Reader 6"﻿>
+	    			<br>
+                    <input type="button" name="sendCommands" id="sendCommands" onclick="openWindow(7)" value="Make Tape for Tape Reader 7"﻿>
+                    <br>
+                    <input type="button" name="sendCommands" id="sendCommands" onclick="logIt(); execCommands(document.getElementById('commands').value);" value="Run Tape 1"﻿>
 			  </form>
     		</td>
     		<td style="width:7%" width="45%">
             	<form name="form2">
     				<label for="Printer">Printer</label>
-    				<textarea name="Printer" rows="12" readonly id="Printer" style="width:100%;"></textarea>
+    				<textarea name="Printer" rows="28" readonly id="Printer" style="width:100%;"></textarea>
   		  		</form>
           	</td>
   		</tr>
