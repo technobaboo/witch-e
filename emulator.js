@@ -432,7 +432,7 @@ function evaluate(isd8) {
 								store2.innerHTML = "+" + store2.innerHTML;
 							}
 						}
-						store1.innerHTML = "Not assigned";
+						store1.innerHTML = "+00000000";
 					} else {
 						document.getElementById("log").innerHTML = prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.";
 					}
