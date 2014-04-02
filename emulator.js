@@ -102,7 +102,8 @@ enyo.kind({
 					{tag:"br"},
 					{tag:"br"},
 					{tag:"br"},
-					{kind:"moon.Button", style:"align:center;", content:"Run Tape Reader 1", ontap:"execCommands"}
+					{kind:"moon.Button", style:"align:center;", content:"Run Tape Reader 1", ontap:"execCommands"},
+					{kind: "moon.Item", content:"Copyright Justin King, 2014 under the GPLv2 License"}
 				]}
 			]}
 		]}
