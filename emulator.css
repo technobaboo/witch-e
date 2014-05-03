@@ -1,0 +1,103 @@
+* {
+	box-sizing: border-box;
+}
+
+.panels-sample-wide {
+	width: 600px;
+}
+.max-h {
+	height:100%;
+}
+
+.samplebox {
+	padding:15px;
+	background:url(images/tapereader.png);
+	background-size:128px 356px;
+	font-size: 16px;
+	background-repeat:no-repeat;
+	border: 0px;
+	padding-left: 25px;
+	color: black;
+}
+
+.samplebox:hover {
+	padding:15px;
+	background:url(images/tapereaderhover.png);
+	background-size:128px 356px;
+	font-size: 16px;
+	background-repeat:no-repeat;
+	border: 0px;
+	padding-left: 25px;
+	color: black;
+}
+.samplebox:active {
+	padding:15px;
+	background:url(images/tapereader.png);
+	background-size:128px 356px;
+	font-size: 16px;
+	background-repeat:no-repeat;
+	border: 5px solid #cf0652;
+	padding-left: 25px;
+	color: black;
+}
+
+.mouseover {
+	background:none;
+	color: #a6a6a6;
+}
+
+.mouseover:hover {
+	background:#cf0652;
+	color: #ffffff;
+}
+
+.mouseover:active {
+	background:none;
+	color: #a6a6a6;
+	border: 5px solid #cf0652;
+}
+
+.fiftyp {
+	width:50%;
+}
+
+.ahundredp {
+	width:100%;
+}
+
+.tapereaderpanel {
+	width: 900px;
+}
+
+.tapereaderimage {
+	width: 128px;
+	height: 356px;
+}
+
+.closetohundred {
+	width: 97%;
+}
+
+.fontsize {
+	font-size: 16px;
+	align: center;
+	padding-left: 25px;
+}
+
+.tblcell {
+	font-size:36px;
+	height:10%;
+	width:100%;
+	border:1px solid white;
+	padding-top:10px;
+	background: #000;
+	text-align:center;
+}
+.dekcell {
+	font-size:36px;
+	height:10%;
+	border:1px solid white;
+	padding-top: 5px;
+	background: #000;
+	ver
+}

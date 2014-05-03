@@ -388,7 +388,7 @@
 /* Common classes applicable to multiple controls */
 .moon {
   font-family: "MuseoSans 700";
-  font-size: 30px;
+  font-size: 10px;
   letter-spacing: 0;
   padding: 20px;
   color: #a6a6a6;
@@ -435,7 +435,7 @@
 }
 .moon-header-text {
   font-family: "Moonstone Miso";
-  font-size: 126px;
+  font-size: 75px;
   font-weight: normal;
   font-style: normal;
   letter-spacing: normal;
@@ -444,7 +444,7 @@
 }
 .moon-sub-header-text {
   font-family: "MuseoSans 700";
-  font-size: 30px;
+  font-size: 25px;
   font-weight: normal;
   font-style: normal;
   letter-spacing: 0;
@@ -469,7 +469,7 @@
 }
 .moon-divider-text {
   font-family: "MuseoSans 700 Italic";
-  font-size: 22px;
+  font-size: 20px;
   font-weight: normal;
   font-style: normal;
   letter-spacing: 0;
@@ -1076,7 +1076,7 @@
 }
 .moon-divider {
   border-bottom: 2px solid #a6a6a6;
-  margin: 0px 10px 20px 10px;
+  margin: 0px 10px 0px 10px;
   text-transform: capitalize;
   padding-bottom: 3px;
 }
@@ -1242,7 +1242,7 @@
 /* Item.css */
 .moon-item {
   font-family: "MuseoSans 700";
-  font-size: 30px;
+  font-size: 25px;
   font-weight: normal;
   font-style: normal;
   letter-spacing: 0;
@@ -1743,7 +1743,7 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   color: #a6a6a6;
-  height: 255px;
+  height: 140px;
   border-top: 2px solid #a6a6a6;
   border-bottom: 6px solid #a6a6a6;
   position: relative;
@@ -1770,7 +1770,7 @@
 }
 .moon-header-title-above {
   margin-top: 5px;
-  height: 1.2em;
+  height: 0px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1781,18 +1781,18 @@
 }
 .moon-header-title {
   font-family: "Moonstone Miso";
-  font-size: 126px;
+  font-size: 75px;
   font-weight: normal;
   font-style: normal;
   letter-spacing: normal;
   text-transform: uppercase;
   -webkit-font-kerning: normal;
   line-height: normal;
-  height: 155px;
+  height: 85px;
 }
 .enyo-locale-non-latin .moon-header-title {
   font-family: "Moonstone LG Display";
-  font-size: 114px;
+  font-size: 75px;
   line-height: 1.5em;
 }
 /* Special override for Japanese font (LG Display_JP) which, as of 07-Feb-2014 
@@ -1809,7 +1809,7 @@
 .moon-header-title-below {
   position: relative;
   font-family: "MuseoSans 700";
-  font-size: 30px;
+  font-size: 25px;
   font-weight: normal;
   font-style: normal;
   letter-spacing: 0;
@@ -1831,7 +1831,7 @@
   letter-spacing: 0;
   color: #a6a6a6;
   line-height: 32px;
-  height: 44px;
+  height: 0px;
 }
 .moon-header-sub-title-below a:link {
   color: #cf0652;
@@ -3514,7 +3514,7 @@
   margin-bottom: 10px;
 }
 .moon-dialog-sub-title {
-  font-size: 24px;
+  font-size: 20px;
 }
 .moon-dialog-content {
   margin: 0px 0px 0px;
