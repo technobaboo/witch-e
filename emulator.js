@@ -1290,6 +1290,7 @@ enyo.kind({
 			
 	evaluate: function(isd8) {
 		for(z = 0; z < curCommands.length; z++) {
+			var overflow = 0;
 			var prevText = this.$.log.getValue();
 			if(isNaN(parseInt(curCommands[z]))) {
 				this.$.log.setValue(prevText + '\r' + curCommands[z] + "\rError: Command(s) need to include only numbers and maybe plus signs and dashes");
@@ -1308,8 +1309,7 @@ enyo.kind({
 					}
 				break;
 				case "1":
-					var overflow = 0;
-					if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
+					if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png" && commandStr.slice(1, 3) == "01") {
 						this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dekani.gif");
 						this.$[commandStr.slice(3, 5)+"1"].setSrc("images/dekani.gif");
 						this.$[commandStr.slice(3, 5)+"2"].setSrc("images/dekani.gif");
@@ -1322,46 +1322,123 @@ enyo.kind({
 					}
 					
 					for(var i = 0; i<9; i++) {
-						if(commandStr.slice(0, 3) != "101") {
-							var store1 = parseInt(this.$[commandStr.slice(0, 3)+(9-i)].getSrc().slice(10, 11));
-							var store2 = parseInt(this.$[commandStr.slice(3, 5)+(9-i)].getSrc().slice(10, 11));
+						var isEight = i == 8;
+						if(commandStr.slice(1, 3) != "01") {
+							var store1 = parseInt(this.$[commandStr.slice(1, 3)+(8-i).toString()].getSrc().slice(10, 11));
+							var store2 = parseInt(this.$[commandStr.slice(3, 5)+(8-i).toString()].getSrc().slice(10, 11));
+							console.log(this.$[commandStr.slice(3, 5)+"0"].getSrc());
 							
 							if(this.$[commandStr.slice(1, 3)+"0"].getSrc() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
 								if(parseInt(this.$[commandStr.slice(1, 3)+"0"].getSrc().slice(10, 11)) == 0) {
-									if(parseInt(this.$[commandStr.slice(3, 5)+"9"].getSrc().slice(10, 11)) == 0) {
-										var runningTotal = (parseInt(this.$[commandStr.slice(3, 5)+(9-i)].getSrc().slice(10, 11))+parseInt(this.$[commandStr.slice(3, 5)+(9-i)].getSrc().slice(10, 11)));
-										if(i == 8) {
-											this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.gif");
+									if(parseInt(this.$[commandStr.slice(3, 5)+"0"].getSrc().slice(10, 11)) == 0) {
+										var runningTotal = (parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
+										console.log(runningTotal+overflow);
+										if(!isEight) {
+											console.log("I'm not eight after all!");
+											this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
+											if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
+											else overflow = 0;
+											
 										} else {
-											this.$[commandStr.slice(3, 5)+(9-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
-											if(runningTotal+overflow > 9) {
-												overflow = 1;
-											} else {
-												overflow = 0;
-											}
+											this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
+											overflow = 0;
+											
+											console.log("Awwww... I'm eight");
 										}
 									} else {
-										if(i == 0) {
-											
-											if(abs(store1) < abs(store2)) {
-												this.$[commandStr.slice(3, 5)+"9"].setSrc("images/dek"+(9-parseInt(this.$[commandStr.slice(3, 5)+"9"].getSrc().slice(10, 11)))+".png");
-											}
-										} else if(i == 8) {
-											
-										} else {
-											if(abs(store1) < abs(store2)) {
+										if(parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)) < Math.abs(parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))) {
+											var runningTotal = ((9-parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
+											console.log(runningTotal+overflow);
+											if(i == 8) {
+												this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
+												overflow = 0;
+												
+												console.log("Awwww... I'm eight");
+											} else if(i == 0) {
+												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow+1).toString()[(runningTotal+overflow).toString().length-1]+".png");
+												if(runningTotal+overflow+1 > 9) overflow = parseInt((runningTotal+overflow+1).toString()[0]);
+												else overflow = 0;
+											} else {
+												console.log("I'm not eight after all!");
+												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow+1).toString()[(runningTotal+overflow).toString().length-1]+".png");
+												if(runningTotal+overflow+1 > 9) overflow = parseInt((runningTotal+overflow+1).toString()[0]);
+												else overflow = 0;
 												
 											}
+										} else {
+											var runningTotal = ((9-parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
+											console.log(runningTotal+overflow);
+											if(!isEight) {
+												console.log("I'm not eight after all!");
+												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
+												if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
+												else overflow = 0;
+												
+											} else {
+												this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
+												overflow = 0;
+												
+												console.log("Awwww... I'm eight");
+											}
 										}
+										
 									}
 									
 								} else {
-									if(store2 == 0) {
-										
+									
+									
+									
+									
+									if(parseInt(this.$[commandStr.slice(3, 5)+"0"].getSrc().slice(10, 11)) == 0) {
+										var runningTotal = (parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
+										console.log(runningTotal+overflow);
+										if(!isEight) {
+											console.log("I'm not eight after all!");
+											this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
+											if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
+											else overflow = 0;
+											
+										} else {
+											this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
+											overflow = 0;
+											
+											console.log("Awwww... I'm eight");
+										}
 									} else {
-										
+										if(parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)) < Math.abs(parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))) {
+											var runningTotal = ((9-parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
+											console.log(runningTotal+overflow);
+											if(!isEight) {
+												console.log("I'm not eight after all!");
+												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
+												if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
+												else overflow = 0;
+												
+											} else {
+												this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
+												overflow = 0;
+												
+												console.log("Awwww... I'm eight");
+											}
+										} else {
+											var runningTotal = ((9-parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
+											console.log(runningTotal+overflow);
+											if(!isEight) {
+												console.log("I'm not eight after all!");
+												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
+												if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
+												else overflow = 0;
+												
+											} else {
+												this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
+												overflow = 0;
+												
+												console.log("Awwww... I'm eight");
+											}
+										}
 									}
 								}
+							
 								
 								//if(overflow
 								
@@ -1393,12 +1470,11 @@ enyo.kind({
 									}
 								}
 								
-								console.log(curStr);
 								if(i == 0) {
 									if (commandStr.slice(5, 6) == "-") this.$[commandStr.slice(3, 5)+i].setSrc("images/dek9.png");
 									else this.$[commandStr.slice(3, 5)+i].setSrc("images/dek0.png");
 								} else {
-									if(curStr.length < 9 && 9-i-1 > curStr.length) {
+									if(curStr.length < 9 && 8-i-1 > curStr.length) {
 										this.$[commandStr.slice(3, 5)+i].setSrc("images/dek0.png");
 									} else {
 										this.$[commandStr.slice(3, 5)+i].setSrc("images/dek"+curStr[i]+".png");
@@ -1413,16 +1489,16 @@ enyo.kind({
 		
 				case "2":
 					if(commandStr.slice(0, 1) != "2" && commandStr.slice(3, 5) != "00") {
-						var store1 = this.$[commandStr.slice(0, 3)];
+						var store1 = this.$[commandStr.slice(1, 3)];
 						var store2 = this.$[commandStr.slice(3, 5)];
 						
 						if(store2 == null) {
-							this.$[commandStr.slice(0, 3)+i].setSrc("images/dek0.png")
+							this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png")
 						} else {
-							if(!isNaN(this.$[commandStr.slice(0, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
-								store2.setContent(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) + parseInt(store2.getContent()));
+							if(!isNaN(this.$[commandStr.slice(1, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
+								store2.setContent(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + parseInt(store2.getContent()));
 								if(store2.getContent().toString().length < 8) {
-									if(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) + store2.getContent() < 0) {
+									if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + store2.getContent() < 0) {
 										while(store2.getContent().toString().length < 9) {
 											store2.setContent("-0" + store2.getContent().toString().slice(1));
 										}
@@ -1433,7 +1509,7 @@ enyo.kind({
 										}
 									}
 								} else { 
-									if(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) + store2.getContent() > 0) {
+									if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + store2.getContent() > 0) {
 										store2.setContent("+" + store2.getContent().toString());
 									}
 								}
@@ -1461,7 +1537,7 @@ enyo.kind({
 				
 				
 				case "3":
-					if(commandStr.slice(0, 3) != "301") {
+					if(commandStr.slice(1, 3) != "301") {
 						var store1 = NaN;
 						var store2 = NaN;
 						if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
@@ -1507,11 +1583,11 @@ enyo.kind({
 						} else if(parseInt(commandStr.slice(1, 3)) >= 91 && parseInt(commandStr.slice(1, 3)) < 100) {
 							store1 = this.$.number10;
 						}
-						if(!isNaN(this.$[commandStr.slice(0, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
+						if(!isNaN(this.$[commandStr.slice(1, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
 							
-							store2.setContent(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) - parseInt(store2.getContent()));
+							store2.setContent(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) - parseInt(store2.getContent()));
 							if(store2.getContent().toString().length < 8) {
-								if(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) - store2.getContent() < 0) {
+								if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) - store2.getContent() < 0) {
 									while(store2.getContent().toString().length < 9) {
 										store2.setContent("-0" + store2.getContent().toString().slice(1));
 									}
@@ -1522,7 +1598,7 @@ enyo.kind({
 									}
 								}
 							} else { 
-								if(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) + store2.getContent() > 0) {
+								if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + store2.getContent() > 0) {
 									store2.setContent("+" + store2.getContent().toString());
 								}
 							}
@@ -1560,7 +1636,7 @@ enyo.kind({
 				break;
 				
 				case "4":
-					if(commandStr.slice(0, 3) != "301") {
+					if(commandStr.slice(1, 3) != "301") {
 						var store1 = NaN;
 						var store2 = NaN;
 						if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
@@ -1611,13 +1687,13 @@ enyo.kind({
 							store1 = this.$.acc;
 						}
 						if(store2 == null) {
-							this.$[commandStr.slice(0, 3)+i].setSrc("images/dek0.png")
+							this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png")
 						} else {
-							if(!isNaN(this.$[commandStr.slice(0, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
+							if(!isNaN(this.$[commandStr.slice(1, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
 								
-							store2.setContent(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) - parseInt(store2.getContent()));
+							store2.setContent(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) - parseInt(store2.getContent()));
 								if(store2.getContent().toString().length < 8) {
-									if(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) - store2.getContent() < 0) {
+									if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) - store2.getContent() < 0) {
 										while(store2.getContent().toString().length < 9) {
 											store2.setContent("-0" + store2.getContent().toString().slice(1));
 										}
@@ -1628,11 +1704,11 @@ enyo.kind({
 										}
 									}
 								} else { 
-									if(parseInt(this.$[commandStr.slice(0, 3)].getSrc()) + store2.getContent() > 0) {
+									if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + store2.getContent() > 0) {
 										store2.setContent("+" + store2.getContent().toString());
 									}
 								}
-								this.$[commandStr.slice(0, 3)+i].setSrc("images/dek0.png")
+								this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png")
 							} else {
 								this.$.log.setValue(this.$.log.getValue() + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 							}
