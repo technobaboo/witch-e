@@ -55,15 +55,11 @@
 				if(!urlPath){
 					return "url()";
 				}
-
-				// skip data urls
-				if (/^data:/.test(urlPath)) {
+				// skip an external url (one that starts with <protocol>: or just //, includes data:)
+				if (/^([\w-]*:)|(\/\/)/.test(urlPath)) {
 					return "url('" + urlPath + "')";
 				}
-				// skip an external link
-				if (/^http(:?s)?:/.test(urlPath)) {
-					return "url('" + urlPath + "'')";
-				}
+
 				// Make relative asset path from 'top-of-the-tree/build'
 				var relPath = path.join("..", opt.relsrcdir, path.dirname(sheet), urlPath);
 				if (process.platform == "win32") {
@@ -91,7 +87,7 @@
 				}
 				var code = fs.readFileSync(sheet, "utf8");
 				if (isLess) {
-					var parser = new(less.Parser)({filename:sheet, paths:[path.dirname(sheet)]});
+					var parser = new(less.Parser)({filename:sheet, paths:[path.dirname(sheet)], relativeUrls:true});
 					parser.parse(code, function (err, tree) {
 						if (err) {
 							console.error(err);

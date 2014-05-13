@@ -1,3 +1,63 @@
+## 2.4.0-pre.3
+
+Added support for `mozAnon` and `mozSystem` properties to enyo.xhr. The mozSystem boolean enables cross-origin requests
+ and the mozAnon boolean enables anonymous xhr by not sending cookies or authentication headers. Both these
+settings are currently only working on Firefox OS.
+
+Added triggerHandler method to Component that invokes the handler for a given event type.
+
+## 2.4.0-pre.2
+
+_controller_ is no longer a special property. This affects _DataRepeater_,
+_DataList_ and _DataGridList_, _UiComponent_ (and child-kinds) and
+_Application_. For _DataRepeater_, _DataList_ and _DataGridList_ use
+_collection_ instead. For all other kinds there is no direct replacement for
+the previous functionality. Instead use a binding from the path to the local
+property desired.
+
+_Application.controllers_ has been removed. Declare controllers as normal
+_components_.
+
+_DataRepeater.length_ is no longer a bound property. In its place, you should
+check for the existence of _collection_ then the length. This value was not
+very useful as it was and became a performance hog. This change affects
+_DataRepeater_, _DataList_ and _DataGridList_.
+
+_Collection_ no longer has _filtered_, _filters_, _filterProps_, and
+_activeFilter_ properties and the _filter_ method no longer can be used to
+clear the active filter.  This whole filtering feature is being rewritten to
+be more flexible and performant.
+
+
+## 2.4.0-pre.1
+
+Added isFetching property to enyo.Collection, for common use case of showing loader spnner via binding.
+
+Add sizing property to enyo.Image, which renders image as <div> with background-image, and allows use
+of contain or cover background-size properties.  Also added `position` property for use with sizing property,
+for setting background-position
+
+Updated lessc.js and minify.js to use relative URL's when compiling less files, to be compatible with the
+bootplate `Theme.less` scheme for importing and then overriding library variables in application less file.S
+
+_enyo.asyncMethod()_ now accepts an anonymous function as a single parameter.
+Previous asnyncMethod signature remains supported as well.
+
+_enyo.Collection.destroyAll()_ now accepts a boolean parameter to signify it
+will call the record's _destroyLocal()_ method as opposed to the default of
+_destroy()_.
+
+Added _enyo.Collection.destroyAllLocal()_ as a convenience method.
+
+Added _enyo.Collection.fetchAndDestroyLocal()_ method to do the same as
+_fetchAndDestroy()_ except it will call _destroyLocal()_ on the records
+instead of _destroy()_. This also means you could call _fetch()_ with the
+options property _destroyLocal_ set to _true_ to have the same effect.
+
+Added support for the Page Visibility API by normalizing  visibilitychange
+events, the document.hidden and the document.visibilityState properties. Uses
+fallbacks to support older browsers.
+
 ## 2.3.0-rc.6
 
 A new method, `enyo.dom.getAbsoluteBounds`, has been added. This method is more sophisticated than
@@ -5,11 +65,11 @@ previous methods for getting a node's absolute bounds, taking into account trans
 and matrix3d transforms. The existing `enyo.Control.getAbsoluteBounds` API remains unchanged, but its
 implementation has been changed to utilize the new `enyo.dom.getAbsoluteBounds` method.
 
-Added _configureHoldPulse_ method to "down" event for configuring subsequent "holdpulse" events. Pass in a 
+Added _configureHoldPulse_ method to "down" event for configuring subsequent "holdpulse" events. Pass in a
 hash of options that can include "delay" (ms delay between "holdpulse" events), "moveTolerance" (threshold
 for determining cursor has left original location), "endHold" (values include "onMove" and "onLeave",
 determines whether "holdpulse" should be cancelled when cursor leaves tolerant target area or the control
-itself, respectively), and "resume" (whether or not "holdpulse" should resume when re-entering either the 
+itself, respectively), and "resume" (whether or not "holdpulse" should resume when re-entering either the
 control ["onLeave" endHold value] or the thresholded original coordinates ["onMove" endHold value]).
 
 Add _enyo.toUpperCase()_ and _enyo.toLowerCase()_ methods. Use these to replace calls to

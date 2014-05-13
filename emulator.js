@@ -29,6 +29,7 @@ var prevText = "";
 var tpr = ["", "", "", "", "", "", ""];
 var mainWindow;
 var curPopupWindow = 0;
+var stores = [];
 
 enyo.kind({
 	name: "emulatorMain",
@@ -140,1090 +141,1090 @@ enyo.kind({
 							{name:"column2", kind:"FittableRows", components: [
 									{content:"0", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"100", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"101", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"102", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"103", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"104", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"105", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"106", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"107", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"108", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"100", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"101", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"102", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"103", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"104", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"105", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"106", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"107", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"108", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"200", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"201", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"202", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"203", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"204", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"205", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"206", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"207", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"208", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"200", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"201", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"202", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"203", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"204", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"205", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"206", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"207", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"208", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"300", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"301", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"302", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"303", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"304", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"305", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"306", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"307", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"308", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"300", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"301", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"302", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"303", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"304", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"305", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"306", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"307", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"308", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"400", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"401", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"402", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"403", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"404", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"405", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"406", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"407", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"408", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"400", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"401", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"402", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"403", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"404", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"405", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"406", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"407", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"408", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"500", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"501", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"502", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"503", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"504", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"505", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"506", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"507", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"508", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"500", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"501", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"502", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"503", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"504", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"505", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"506", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"507", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"508", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"600", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"601", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"602", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"603", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"604", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"605", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"606", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"607", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"608", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"600", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"601", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"602", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"603", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"604", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"605", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"606", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"607", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"608", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"700", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"701", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"702", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"703", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"704", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"705", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"706", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"707", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"708", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"700", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"701", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"702", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"703", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"704", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"705", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"706", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"707", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"708", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"800", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"801", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"802", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"803", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"804", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"805", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"806", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"807", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"808", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"800", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"801", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"802", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"803", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"804", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"805", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"806", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"807", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"808", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"900", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"901", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"902", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"903", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"904", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"905", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"906", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"907", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"908", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"900", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"901", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"902", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"903", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"904", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"905", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"906", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"907", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"908", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column3", kind:"FittableRows", components: [
 									{content:"1", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"110", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"111", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"112", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"113", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"114", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"115", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"116", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"117", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"118", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"110", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"111", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"112", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"113", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"114", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"115", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"116", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"117", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"118", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"210", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"211", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"212", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"213", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"214", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"215", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"216", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"217", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"218", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"210", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"211", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"212", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"213", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"214", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"215", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"216", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"217", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"218", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"310", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"311", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"312", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"313", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"314", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"315", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"316", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"317", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"318", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"310", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"311", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"312", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"313", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"314", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"315", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"316", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"317", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"318", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"410", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"411", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"412", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"413", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"414", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"415", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"416", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"417", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"418", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"410", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"411", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"412", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"413", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"414", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"415", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"416", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"417", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"418", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"510", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"511", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"512", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"513", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"514", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"515", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"516", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"517", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"518", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"510", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"511", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"512", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"513", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"514", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"515", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"516", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"517", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"518", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"610", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"611", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"612", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"613", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"614", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"615", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"616", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"617", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"618", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"610", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"611", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"612", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"613", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"614", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"615", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"616", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"617", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"618", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"710", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"711", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"712", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"713", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"714", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"715", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"716", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"717", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"718", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"710", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"711", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"712", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"713", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"714", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"715", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"716", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"717", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"718", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"810", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"811", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"812", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"813", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"814", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"815", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"816", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"817", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"818", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"810", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"811", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"812", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"813", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"814", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"815", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"816", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"817", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"818", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"910", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"911", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"912", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"913", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"914", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"915", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"916", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"917", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"918", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"910", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"911", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"912", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"913", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"914", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"915", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"916", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"917", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"918", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column4", kind:"FittableRows", components: [
 									{content:"2", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"120", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"121", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"122", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"123", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"124", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"125", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"126", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"127", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"128", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"120", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"121", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"122", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"123", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"124", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"125", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"126", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"127", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"128", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"220", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"221", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"222", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"223", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"224", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"225", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"226", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"227", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"228", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"220", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"221", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"222", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"223", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"224", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"225", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"226", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"227", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"228", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"320", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"321", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"322", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"323", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"324", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"325", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"326", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"327", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"328", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"320", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"321", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"322", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"323", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"324", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"325", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"326", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"327", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"328", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"420", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"421", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"422", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"423", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"424", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"425", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"426", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"427", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"428", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"420", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"421", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"422", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"423", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"424", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"425", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"426", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"427", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"428", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"520", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"521", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"522", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"523", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"524", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"525", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"526", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"527", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"528", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"520", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"521", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"522", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"523", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"524", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"525", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"526", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"527", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"528", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"620", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"621", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"622", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"623", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"624", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"625", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"626", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"627", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"628", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"620", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"621", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"622", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"623", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"624", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"625", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"626", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"627", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"628", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"720", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"721", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"722", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"723", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"724", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"725", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"726", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"727", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"728", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"720", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"721", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"722", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"723", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"724", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"725", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"726", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"727", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"728", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"820", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"821", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"822", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"823", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"824", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"825", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"826", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"827", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"828", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"820", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"821", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"822", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"823", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"824", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"825", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"826", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"827", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"828", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"920", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"921", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"922", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"923", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"924", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"925", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"926", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"927", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"928", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"920", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"921", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"922", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"923", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"924", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"925", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"926", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"927", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"928", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column5", kind:"FittableRows", components: [
 									{content:"3", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"130", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"131", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"132", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"133", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"134", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"135", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"136", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"137", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"138", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"130", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"131", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"132", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"133", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"134", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"135", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"136", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"137", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"138", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"230", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"231", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"232", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"233", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"234", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"235", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"236", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"237", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"238", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"230", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"231", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"232", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"233", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"234", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"235", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"236", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"237", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"238", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"330", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"331", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"332", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"333", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"334", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"335", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"336", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"337", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"338", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"330", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"331", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"332", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"333", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"334", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"335", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"336", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"337", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"338", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"430", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"431", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"432", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"433", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"434", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"435", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"436", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"437", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"438", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"430", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"431", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"432", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"433", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"434", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"435", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"436", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"437", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"438", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"530", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"531", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"532", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"533", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"534", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"535", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"536", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"537", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"538", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"530", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"531", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"532", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"533", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"534", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"535", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"536", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"537", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"538", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"630", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"631", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"632", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"633", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"634", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"635", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"636", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"637", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"638", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"630", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"631", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"632", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"633", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"634", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"635", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"636", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"637", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"638", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"730", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"731", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"732", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"733", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"734", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"735", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"736", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"737", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"738", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"730", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"731", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"732", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"733", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"734", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"735", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"736", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"737", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"738", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"830", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"831", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"832", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"833", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"834", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"835", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"836", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"837", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"838", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"830", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"831", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"832", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"833", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"834", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"835", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"836", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"837", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"838", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"930", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"931", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"932", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"933", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"934", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"935", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"936", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"937", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"938", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"930", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"931", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"932", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"933", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"934", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"935", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"936", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"937", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"938", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column6", kind:"FittableRows", components: [
 									{content:"4", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"140", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"141", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"142", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"143", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"144", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"145", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"146", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"147", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"148", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"140", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"141", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"142", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"143", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"144", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"145", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"146", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"147", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"148", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"240", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"241", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"242", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"243", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"244", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"245", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"246", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"247", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"248", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"240", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"241", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"242", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"243", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"244", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"245", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"246", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"247", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"248", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"340", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"341", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"342", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"343", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"344", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"345", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"346", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"347", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"348", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"340", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"341", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"342", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"343", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"344", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"345", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"346", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"347", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"348", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"440", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"441", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"442", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"443", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"444", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"445", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"446", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"447", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"448", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"440", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"441", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"442", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"443", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"444", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"445", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"446", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"447", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"448", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"540", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"541", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"542", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"543", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"544", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"545", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"546", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"547", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"548", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"540", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"541", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"542", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"543", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"544", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"545", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"546", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"547", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"548", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"640", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"641", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"642", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"643", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"644", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"645", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"646", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"647", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"648", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"640", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"641", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"642", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"643", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"644", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"645", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"646", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"647", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"648", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"740", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"741", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"742", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"743", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"744", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"745", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"746", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"747", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"748", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"740", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"741", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"742", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"743", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"744", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"745", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"746", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"747", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"748", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"840", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"841", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"842", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"843", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"844", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"845", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"846", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"847", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"848", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"840", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"841", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"842", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"843", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"844", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"845", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"846", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"847", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"848", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"940", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"941", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"942", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"943", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"944", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"945", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"946", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"947", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"948", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"940", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"941", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"942", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"943", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"944", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"945", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"946", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"947", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"948", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column7", kind:"FittableRows", components: [
 									{content:"5", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"150", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"151", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"152", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"153", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"154", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"155", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"156", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"157", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"158", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"150", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"151", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"152", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"153", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"154", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"155", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"156", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"157", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"158", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"250", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"251", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"252", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"253", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"254", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"255", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"256", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"257", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"258", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"250", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"251", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"252", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"253", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"254", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"255", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"256", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"257", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"258", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"350", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"351", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"352", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"353", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"354", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"355", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"356", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"357", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"358", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"350", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"351", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"352", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"353", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"354", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"355", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"356", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"357", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"358", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"450", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"451", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"452", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"453", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"454", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"455", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"456", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"457", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"458", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"450", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"451", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"452", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"453", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"454", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"455", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"456", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"457", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"458", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"550", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"551", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"552", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"553", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"554", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"555", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"556", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"557", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"558", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"550", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"551", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"552", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"553", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"554", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"555", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"556", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"557", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"558", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"650", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"651", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"652", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"653", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"654", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"655", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"656", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"657", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"658", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"650", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"651", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"652", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"653", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"654", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"655", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"656", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"657", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"658", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"750", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"751", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"752", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"753", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"754", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"755", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"756", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"757", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"758", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"750", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"751", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"752", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"753", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"754", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"755", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"756", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"757", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"758", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"850", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"851", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"852", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"853", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"854", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"855", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"856", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"857", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"858", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"850", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"851", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"852", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"853", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"854", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"855", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"856", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"857", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"858", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"950", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"951", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"952", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"953", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"954", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"955", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"956", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"957", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"958", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"950", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"951", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"952", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"953", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"954", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"955", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"956", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"957", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"958", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column8", kind:"FittableRows", components: [
 									{content:"6", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"160", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"161", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"162", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"163", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"164", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"165", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"166", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"167", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"168", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"160", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"161", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"162", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"163", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"164", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"165", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"166", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"167", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"168", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"260", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"261", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"262", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"263", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"264", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"265", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"266", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"267", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"268", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"260", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"261", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"262", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"263", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"264", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"265", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"266", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"267", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"268", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"360", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"361", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"362", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"363", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"364", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"365", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"366", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"367", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"368", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"360", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"361", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"362", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"363", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"364", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"365", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"366", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"367", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"368", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"460", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"461", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"462", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"463", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"464", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"465", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"466", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"467", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"468", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"460", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"461", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"462", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"463", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"464", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"465", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"466", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"467", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"468", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"560", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"561", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"562", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"563", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"564", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"565", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"566", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"567", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"568", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"560", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"561", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"562", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"563", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"564", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"565", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"566", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"567", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"568", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"660", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"661", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"662", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"663", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"664", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"665", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"666", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"667", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"668", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"660", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"661", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"662", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"663", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"664", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"665", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"666", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"667", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"668", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"760", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"761", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"762", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"763", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"764", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"765", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"766", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"767", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"768", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"760", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"761", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"762", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"763", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"764", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"765", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"766", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"767", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"768", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"860", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"861", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"862", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"863", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"864", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"865", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"866", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"867", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"868", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"860", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"861", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"862", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"863", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"864", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"865", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"866", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"867", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"868", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"960", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"961", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"962", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"963", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"964", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"965", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"966", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"967", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"968", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"960", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"961", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"962", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"963", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"964", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"965", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"966", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"967", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"968", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column9", kind:"FittableRows", components: [
 									{content:"7", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"170", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"171", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"172", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"173", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"174", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"175", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"176", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"177", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"178", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"170", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"171", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"172", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"173", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"174", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"175", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"176", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"177", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"178", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"270", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"271", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"272", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"273", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"274", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"275", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"276", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"277", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"278", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"270", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"271", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"272", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"273", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"274", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"275", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"276", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"277", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"278", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"370", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"371", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"372", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"373", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"374", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"375", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"376", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"377", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"378", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"370", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"371", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"372", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"373", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"374", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"375", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"376", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"377", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"378", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"470", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"471", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"472", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"473", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"474", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"475", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"476", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"477", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"478", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"470", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"471", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"472", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"473", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"474", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"475", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"476", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"477", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"478", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"570", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"571", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"572", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"573", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"574", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"575", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"576", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"577", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"578", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"570", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"571", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"572", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"573", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"574", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"575", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"576", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"577", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"578", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"670", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"671", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"672", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"673", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"674", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"675", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"676", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"677", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"678", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"670", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"671", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"672", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"673", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"674", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"675", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"676", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"677", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"678", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"770", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"771", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"772", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"773", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"774", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"775", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"776", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"777", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"778", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"770", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"771", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"772", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"773", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"774", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"775", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"776", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"777", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"778", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"870", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"871", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"872", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"873", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"874", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"875", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"876", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"877", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"878", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"870", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"871", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"872", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"873", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"874", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"875", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"876", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"877", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"878", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"970", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"971", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"972", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"973", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"974", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"975", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"976", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"977", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"978", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"970", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"971", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"972", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"973", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"974", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"975", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"976", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"977", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"978", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column10", kind:"FittableRows", components: [
 									{content:"8", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"180", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"181", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"182", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"183", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"184", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"185", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"186", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"187", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"188", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"180", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"181", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"182", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"183", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"184", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"185", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"186", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"187", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"188", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"280", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"281", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"282", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"283", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"284", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"285", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"286", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"287", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"288", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"280", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"281", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"282", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"283", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"284", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"285", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"286", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"287", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"288", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"380", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"381", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"382", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"383", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"384", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"385", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"386", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"387", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"388", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"380", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"381", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"382", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"383", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"384", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"385", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"386", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"387", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"388", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"480", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"481", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"482", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"483", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"484", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"485", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"486", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"487", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"488", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"480", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"481", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"482", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"483", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"484", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"485", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"486", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"487", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"488", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"580", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"581", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"582", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"583", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"584", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"585", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"586", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"587", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"588", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"580", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"581", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"582", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"583", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"584", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"585", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"586", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"587", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"588", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"680", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"681", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"682", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"683", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"684", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"685", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"686", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"687", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"688", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"680", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"681", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"682", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"683", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"684", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"685", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"686", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"687", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"688", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"780", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"781", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"782", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"783", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"784", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"785", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"786", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"787", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"788", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"780", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"781", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"782", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"783", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"784", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"785", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"786", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"787", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"788", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"880", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"881", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"882", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"883", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"884", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"885", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"886", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"887", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"888", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"880", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"881", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"882", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"883", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"884", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"885", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"886", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"887", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"888", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"980", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"981", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"982", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"983", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"984", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"985", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"986", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"987", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"988", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"980", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"981", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"982", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"983", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"984", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"985", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"986", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"987", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"988", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]},
 								{name:"column11", kind:"FittableRows", components: [
 									{content:"9", classes:"tblcell"},
 									{classes:"dekcell", components:[
-										{name:"190", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"191", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"192", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"193", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"194", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"195", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"196", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"197", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"198", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"190", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"191", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"192", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"193", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"194", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"195", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"196", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"197", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"198", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"290", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"291", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"292", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"293", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"294", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"295", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"296", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"297", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"298", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"290", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"291", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"292", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"293", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"294", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"295", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"296", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"297", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"298", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									]},
 									{classes:"dekcell", components:[
-										{name:"390", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"391", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"392", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"393", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"394", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"395", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"396", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"397", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"398", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"390", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"391", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"392", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"393", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"394", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"395", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"396", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"397", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"398", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"490", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"491", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"492", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"493", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"494", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"495", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"496", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"497", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"498", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"490", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"491", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"492", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"493", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"494", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"495", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"496", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"497", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"498", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"590", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"591", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"592", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"593", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"594", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"595", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"596", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"597", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"598", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"590", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"591", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"592", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"593", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"594", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"595", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"596", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"597", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"598", kind:"Image", src:"images/dummy.png", classes:"dek"}
 										
 									]},
 									{classes:"dekcell", components:[
-										{name:"690", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"691", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"692", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"693", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"694", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"695", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"696", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"697", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"698", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"690", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"691", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"692", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"693", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"694", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"695", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"696", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"697", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"698", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"790", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"791", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"792", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"793", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"794", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"795", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"796", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"797", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"798", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"790", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"791", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"792", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"793", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"794", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"795", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"796", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"797", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"798", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"890", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"891", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"892", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"893", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"894", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"895", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"896", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"897", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"898", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"890", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"891", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"892", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"893", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"894", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"895", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"896", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"897", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"898", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]},
 									{classes:"dekcell", components:[
-										{name:"990", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"991", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"992", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"993", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"994", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"995", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"996", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"997", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"},
-										{name:"998", kind:"Image", src:"images/dummy.png", style:"height:50%; vertical-align:middle;"}
+										{name:"990", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"991", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"992", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"993", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"994", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"995", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"996", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"997", kind:"Image", src:"images/dummy.png", classes:"dek"},
+										{name:"998", kind:"Image", src:"images/dummy.png", classes:"dek"}
 									
 									]}
 								]}
@@ -1277,6 +1278,7 @@ enyo.kind({
 	
 	execCommands: function() {
 		curCommands = tpr[0].split(" ");
+		console.log(curCommands);
 		prevText = this.$.log.getValue();
 		if(curCommands[curCommands.length -1].length != 5 && curCommands[curCommands.length -1].length != 14) {
 			curTapeReader = "";
@@ -1289,6 +1291,8 @@ enyo.kind({
 	},
 			
 	evaluate: function(isd8) {
+		this.$.storesPopup.show();
+		//this.$.storesPopup.show();
 		for(z = 0; z < curCommands.length; z++) {
 			var overflow = 0;
 			var prevText = this.$.log.getValue();
@@ -1309,147 +1313,55 @@ enyo.kind({
 					}
 				break;
 				case "1":
-					if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png" && commandStr.slice(1, 3) == "01") {
-						this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dekani.gif");
-						this.$[commandStr.slice(3, 5)+"1"].setSrc("images/dekani.gif");
-						this.$[commandStr.slice(3, 5)+"2"].setSrc("images/dekani.gif");
-						this.$[commandStr.slice(3, 5)+"3"].setSrc("images/dekani.gif");
-						this.$[commandStr.slice(3, 5)+"4"].setSrc("images/dekani.gif");
-						this.$[commandStr.slice(3, 5)+"5"].setSrc("images/dekani.gif");
-						this.$[commandStr.slice(3, 5)+"6"].setSrc("images/dekani.gif");
-						this.$[commandStr.slice(3, 5)+"7"].setSrc("images/dekani.gif");
-						this.$[commandStr.slice(3, 5)+"8"].setSrc("images/dekani.gif");
-					}
 					
-					for(var i = 0; i<9; i++) {
-						var isEight = i == 8;
-						if(commandStr.slice(1, 3) != "01") {
-							var store1 = parseInt(this.$[commandStr.slice(1, 3)+(8-i).toString()].getSrc().slice(10, 11));
-							var store2 = parseInt(this.$[commandStr.slice(3, 5)+(8-i).toString()].getSrc().slice(10, 11));
-							console.log(this.$[commandStr.slice(3, 5)+"0"].getSrc());
-							
-							if(this.$[commandStr.slice(1, 3)+"0"].getSrc() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
-								if(parseInt(this.$[commandStr.slice(1, 3)+"0"].getSrc().slice(10, 11)) == 0) {
-									if(parseInt(this.$[commandStr.slice(3, 5)+"0"].getSrc().slice(10, 11)) == 0) {
-										var runningTotal = (parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
-										console.log(runningTotal+overflow);
-										if(!isEight) {
-											console.log("I'm not eight after all!");
-											this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
-											if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
-											else overflow = 0;
-											
-										} else {
-											this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
-											overflow = 0;
-											
-											console.log("Awwww... I'm eight");
-										}
-									} else {
-										if(parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)) < Math.abs(parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))) {
-											var runningTotal = ((9-parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
-											console.log(runningTotal+overflow);
-											if(i == 8) {
-												this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
-												overflow = 0;
-												
-												console.log("Awwww... I'm eight");
-											} else if(i == 0) {
-												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow+1).toString()[(runningTotal+overflow).toString().length-1]+".png");
-												if(runningTotal+overflow+1 > 9) overflow = parseInt((runningTotal+overflow+1).toString()[0]);
-												else overflow = 0;
-											} else {
-												console.log("I'm not eight after all!");
-												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow+1).toString()[(runningTotal+overflow).toString().length-1]+".png");
-												if(runningTotal+overflow+1 > 9) overflow = parseInt((runningTotal+overflow+1).toString()[0]);
-												else overflow = 0;
-												
-											}
-										} else {
-											var runningTotal = ((9-parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
-											console.log(runningTotal+overflow);
-											if(!isEight) {
-												console.log("I'm not eight after all!");
-												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
-												if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
-												else overflow = 0;
-												
-											} else {
-												this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
-												overflow = 0;
-												
-												console.log("Awwww... I'm eight");
-											}
-										}
-										
-									}
-									
-								} else {
-									
-									
-									
-									
-									if(parseInt(this.$[commandStr.slice(3, 5)+"0"].getSrc().slice(10, 11)) == 0) {
-										var runningTotal = (parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
-										console.log(runningTotal+overflow);
-										if(!isEight) {
-											console.log("I'm not eight after all!");
-											this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
-											if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
-											else overflow = 0;
-											
-										} else {
-											this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
-											overflow = 0;
-											
-											console.log("Awwww... I'm eight");
-										}
-									} else {
-										if(parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)) < Math.abs(parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))) {
-											var runningTotal = ((9-parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
-											console.log(runningTotal+overflow);
-											if(!isEight) {
-												console.log("I'm not eight after all!");
-												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
-												if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
-												else overflow = 0;
-												
-											} else {
-												this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
-												overflow = 0;
-												
-												console.log("Awwww... I'm eight");
-											}
-										} else {
-											var runningTotal = ((9-parseInt(this.$[commandStr.slice(1, 3)+(8-i)].getSrc().slice(10, 11)))+parseInt(this.$[commandStr.slice(3, 5)+(8-i)].getSrc().slice(10, 11)));
-											console.log(runningTotal+overflow);
-											if(!isEight) {
-												console.log("I'm not eight after all!");
-												this.$[commandStr.slice(3, 5)+(8-i)].setSrc("images/dek"+(runningTotal+overflow).toString()[(runningTotal+overflow).toString().length-1]+".png");
-												if(runningTotal+overflow > 9) overflow = parseInt((runningTotal+overflow).toString()[0]);
-												else overflow = 0;
-												
-											} else {
-												this.$[commandStr.slice(3, 5)+"0"].setSrc("images/dek0.png");
-												overflow = 0;
-												
-												console.log("Awwww... I'm eight");
-											}
-										}
-									}
-								}
-							
-								
-								//if(overflow
-								
-							} else {
-								this.$.log.setValue(prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+					if(commandStr.slice(1, 3) != "01") {
+						console.log(this.$[commandStr.slice(1, 3)+"0"].getSrc());
+						
+						if(this.$[commandStr.slice(1, 3)+"0"].getSrc() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getSrc() == "images/dek0.png")
+								var s1 = parseInt("+"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+							else
+								var s1 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+							if(this.$[commandStr.slice(1, 3)+"0"].getSrc() == "images/dek0.png")
+								var s2 = parseInt("+"+this.$[commandStr.slice(1, 3)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"8"].getSrc().slice(10, 11));
+							else
+								var s2 = parseInt("-"+this.$[commandStr.slice(1, 3)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"8"].getSrc().slice(10, 11));
+							finStr = (s1+s2).toString();
+							console.log(finStr);
+							if(parseInt(finStr) > 0) {
+								finStr = "0"+finStr;
 							}
-						} else if((parseInt(commandStr.slice(3, 5)) - 10)/9 < 0 && commandStr.slice(3, 5) != "09") {
-							this.$.log.setValue(prevText + "\rError: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
-						} else if(parseInt(commandStr.slice(3, 5)) == 9) {
-							this.$.acc.setContent(commandStr.slice(5));
+							if(parseInt(finStr) < 0) {
+								while(finStr.length < 9) {
+									finStr = "90"+finStr.slice(1);
+									console.log(finStr);
+								
+								}
+							} else {
+								while(finStr.length < 9) {
+									finStr = "00"+finStr.slice(1);
+								}
+								
+							}
+							stores[parseInt(commandStr.slice(3, 5)+0)] = finStr[0];
+							stores[parseInt(commandStr.slice(3, 5)+1)] = finStr[1];
+							stores[parseInt(commandStr.slice(3, 5)+2)] = finStr[2];
+							stores[parseInt(commandStr.slice(3, 5)+3)] = finStr[3];
+							stores[parseInt(commandStr.slice(3, 5)+4)] = finStr[4];
+							stores[parseInt(commandStr.slice(3, 5)+5)] = finStr[5];
+							stores[parseInt(commandStr.slice(3, 5)+6)] = finStr[6];
+							stores[parseInt(commandStr.slice(3, 5)+7)] = finStr[7];
+							stores[parseInt(commandStr.slice(3, 5)+8)] = finStr[8];
 						} else {
+							this.$.log.setValue(prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+						}
+					} else if((parseInt(commandStr.slice(3, 5)) - 10)/9 < 0 && commandStr.slice(3, 5) != "09") {
+						this.$.log.setValue(prevText + "\rError: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
+					} else if(parseInt(commandStr.slice(3, 5)) == 9) {
+						this.$.acc.setContent(commandStr.slice(5));
+					} else {
+						for(var i = 0; i<9; i++) {
+							var isEight = i == 8;
 							if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
 								if(this.$[commandStr.slice(3, 5)+"0"].getSrc().slice(10, 11) == "0") {
 									var s1 = parseInt(this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
@@ -1462,8 +1374,7 @@ enyo.kind({
 									while(curStr.length < 9) {
 										curStr = "0"+curStr;
 									}
-								}
-								else {
+								} else {
 									var curStr = "9"+curNum.toString().slice(1);
 									while(curStr.length < 9) {
 										curStr = "90"+curStr.slice(1);
@@ -1471,137 +1382,154 @@ enyo.kind({
 								}
 								
 								if(i == 0) {
-									if (commandStr.slice(5, 6) == "-") this.$[commandStr.slice(3, 5)+i].setSrc("images/dek9.png");
-									else this.$[commandStr.slice(3, 5)+i].setSrc("images/dek0.png");
+									if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek9.png";
+									else stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek0.png";
 								} else {
 									if(curStr.length < 9 && 8-i-1 > curStr.length) {
-										this.$[commandStr.slice(3, 5)+i].setSrc("images/dek0.png");
+										stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek0.png";
 									} else {
-										this.$[commandStr.slice(3, 5)+i].setSrc("images/dek"+curStr[i]+".png");
+										stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek"+curStr[i]+".png";
 									}
 								}
 							}
 						}
 					}
-				
+					if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png" && commandStr.slice(1, 3) == "01") {
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(3, 5)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(3, 5)+i].setSrc(stores[parseInt(commandStr.slice(3, 5)+i)]);
+						}
+					} else if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png" && this.$[commandStr.slice(1, 3)+"0"].getSrc() != "images/dummy.png") {
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(3, 5)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(3, 5)+i].setSrc("images/dek"+stores[parseInt(commandStr.slice(3, 5)+i)]+".png");
+						}
+						
+					}
+					console.log(stores);
+			
 				break;
 				
 		
 				case "2":
-					if(commandStr.slice(0, 1) != "2" && commandStr.slice(3, 5) != "00") {
-						var store1 = this.$[commandStr.slice(1, 3)];
-						var store2 = this.$[commandStr.slice(3, 5)];
+					
+					
+					if(commandStr.slice(3, 5) != "00") {
+						console.log(this.$[commandStr.slice(1, 3)+"0"].getSrc());
 						
-						if(store2 == null) {
-							this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png")
-						} else {
-							if(!isNaN(this.$[commandStr.slice(1, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
-								store2.setContent(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + parseInt(store2.getContent()));
-								if(store2.getContent().toString().length < 8) {
-									if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + store2.getContent() < 0) {
-										while(store2.getContent().toString().length < 9) {
-											store2.setContent("-0" + store2.getContent().toString().slice(1));
-										}
-									} else {
-										store2.setContent("+" + store2.getContent().toString());
-										while(store2.getContent().toString().length < 9) {
-											store2.setContent("+0" + store2.getContent().toString().slice(1));
-										}
-									}
-								} else { 
-									if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + store2.getContent() > 0) {
-										store2.setContent("+" + store2.getContent().toString());
-									}
-								}
-								this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png")
-							} else {
-								this.$.log.setValue(prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+						if(this.$[commandStr.slice(1, 3)+"0"].getSrc() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getSrc() == "images/dek0.png")
+								var s1 = parseInt("+"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+							else
+								var s1 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+							if(this.$[commandStr.slice(1, 3)+"0"].getSrc() == "images/dek0.png")
+								var s2 = parseInt("+"+this.$[commandStr.slice(1, 3)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"8"].getSrc().slice(10, 11));
+							else
+								var s2 = parseInt("-"+this.$[commandStr.slice(1, 3)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"8"].getSrc().slice(10, 11));
+							finStr = (s1+s2).toString();
+							console.log(finStr);
+							if(parseInt(finStr) > 0) {
+								finStr = "0"+finStr;
 							}
+							if(parseInt(finStr) < 0) {
+								while(finStr.length < 9) {
+									finStr = "90"+finStr.slice(1);
+									console.log(finStr);
+								
+								}
+							} else {
+								while(finStr.length < 9) {
+									finStr = "00"+finStr.slice(1);
+								}
+								
+							}
+							stores[parseInt(commandStr.slice(3, 5)+0)] = finStr[0];
+							stores[parseInt(commandStr.slice(3, 5)+1)] = finStr[1];
+							stores[parseInt(commandStr.slice(3, 5)+2)] = finStr[2];
+							stores[parseInt(commandStr.slice(3, 5)+3)] = finStr[3];
+							stores[parseInt(commandStr.slice(3, 5)+4)] = finStr[4];
+							stores[parseInt(commandStr.slice(3, 5)+5)] = finStr[5];
+							stores[parseInt(commandStr.slice(3, 5)+6)] = finStr[6];
+							stores[parseInt(commandStr.slice(3, 5)+7)] = finStr[7];
+							stores[parseInt(commandStr.slice(3, 5)+8)] = finStr[8];
+						} else {
+							this.$.log.setValue(prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
 					} else if((parseInt(commandStr.slice(1, 3)) - 10)/9 < 0 && commandStr.slice(1, 3) != "09") {
 						this.$.log.setValue(prevText + "\rError: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
 					} else if(parseInt(commandStr.slice(1, 3)) == 9) {
 						this.$.acc.setContent(commandStr.slice(5));
-					} else {
-						this.$[commandStr.slice(1, 3)+"0"].setSrc("images/dek0.png");
-						this.$[commandStr.slice(1, 3)+"1"].setSrc("images/dek0.png");
-						this.$[commandStr.slice(1, 3)+"2"].setSrc("images/dek0.png");
-						this.$[commandStr.slice(1, 3)+"3"].setSrc("images/dek0.png");
-						this.$[commandStr.slice(1, 3)+"4"].setSrc("images/dek0.png");
-						this.$[commandStr.slice(1, 3)+"5"].setSrc("images/dek0.png");
-						this.$[commandStr.slice(1, 3)+"6"].setSrc("images/dek0.png");
-						this.$[commandStr.slice(1, 3)+"7"].setSrc("images/dek0.png");
-						this.$[commandStr.slice(1, 3)+"8"].setSrc("images/dek0.png");
 					}
+					if(commandStr.slice(3, 5) == "00") {
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(1, 3)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png");
+						}
+					} else if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png" && commandStr.slice(3, 5) != "00") {
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(3, 5)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(1, 3)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(3, 5)+i].setSrc("images/dek"+stores[parseInt(commandStr.slice(3, 5)+i)]+".png");
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png");
+						}
+						
+					}
+					console.log(stores);
+					
 				break;
 				
 				
 				case "3":
-					if(commandStr.slice(1, 3) != "301") {
-						var store1 = NaN;
-						var store2 = NaN;
-						if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
-							store2 = this.$.number1;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 19 && parseInt(commandStr.slice(3, 5)) < 28) {
-							store2 = this.$.number2;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 28 && parseInt(commandStr.slice(3, 5)) < 37) {
-							store2 = this.$.number3;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 37 && parseInt(commandStr.slice(3, 5)) < 46) {
-							store2 = this.$.number4;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 46 && parseInt(commandStr.slice(3, 5)) < 55) {
-							store2 = this.$.number5;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 55 && parseInt(commandStr.slice(3, 5)) < 64) {
-							store2 = this.$.number6;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 64 && parseInt(commandStr.slice(3, 5)) < 73) {
-							store2 = this.$.number7;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 73 && parseInt(commandStr.slice(3, 5)) < 82) {
-							store2 = this.$.number8;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 82 && parseInt(commandStr.slice(3, 5)) < 91) {
-							store2 = this.$.number9;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 91 && parseInt(commandStr.slice(3, 5)) < 100) {
-							store2 = this.$.number10;
-						}
+					if(commandStr.slice(1, 3) != "01") {
+						console.log(this.$[commandStr.slice(1, 3)+"0"].getSrc());
 						
-						if(parseInt(commandStr.slice(1, 3)) > 9 && parseInt(commandStr.slice(1, 3)) < 19) {
-							store1 = this.$.number1;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 19 && parseInt(commandStr.slice(1, 3)) < 28) {
-							store1 = this.$.number2;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 28 && parseInt(commandStr.slice(1, 3)) < 37) {
-							store1 = this.$.number3;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 37 && parseInt(commandStr.slice(1, 3)) < 46) {
-							store1 = this.$.number4;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 46 && parseInt(commandStr.slice(1, 3)) < 55) {
-							store1 = this.$.number5;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 55 && parseInt(commandStr.slice(1, 3)) < 64) {
-							store1 = this.$.number6;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 64 && parseInt(commandStr.slice(1, 3)) < 73) {
-							store1 = this.$.number7;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 73 && parseInt(commandStr.slice(1, 3)) < 82) {
-							store1 = this.$.number8;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 82 && parseInt(commandStr.slice(1, 3)) < 91) {
-							store1 = this.$.number9;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 91 && parseInt(commandStr.slice(1, 3)) < 100) {
-							store1 = this.$.number10;
-						}
-						if(!isNaN(this.$[commandStr.slice(1, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
-							
-							store2.setContent(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) - parseInt(store2.getContent()));
-							if(store2.getContent().toString().length < 8) {
-								if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) - store2.getContent() < 0) {
-									while(store2.getContent().toString().length < 9) {
-										store2.setContent("-0" + store2.getContent().toString().slice(1));
-									}
-								} else {
-									store2.setContent("+" + store2.getContent().toString());
-									while(store2.getContent().toString().length < 9) {
-										store2.setContent("+0" + store2.getContent().toString().slice(1));
-									}
-								}
-							} else { 
-								if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + store2.getContent() > 0) {
-									store2.setContent("+" + store2.getContent().toString());
-								}
+						if(this.$[commandStr.slice(1, 3)+"0"].getSrc() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getSrc() == "images/dek0.png")
+								var s2 = parseInt("+"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+							else
+								var s2 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+							if(this.$[commandStr.slice(1, 3)+"0"].getSrc() == "images/dek0.png")
+								var s1 = parseInt("+"+this.$[commandStr.slice(1, 3)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"8"].getSrc().slice(10, 11));
+							else
+								var s1 = parseInt("-"+this.$[commandStr.slice(1, 3)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"8"].getSrc().slice(10, 11));
+							finStr = (s1-s2).toString();
+							console.log(finStr);
+							if(parseInt(finStr) > 0) {
+								finStr = "0"+finStr;
 							}
+							if(parseInt(finStr) < 0) {
+								while(finStr.length < 9) {
+									finStr = "90"+finStr.slice(1);
+									console.log(finStr);
+								
+								}
+							} else {
+								while(finStr.length < 9) {
+									finStr = "00"+finStr.slice(1);
+								}
+								
+							}
+							stores[parseInt(commandStr.slice(3, 5)+0)] = finStr[0];
+							stores[parseInt(commandStr.slice(3, 5)+1)] = finStr[1];
+							stores[parseInt(commandStr.slice(3, 5)+2)] = finStr[2];
+							stores[parseInt(commandStr.slice(3, 5)+3)] = finStr[3];
+							stores[parseInt(commandStr.slice(3, 5)+4)] = finStr[4];
+							stores[parseInt(commandStr.slice(3, 5)+5)] = finStr[5];
+							stores[parseInt(commandStr.slice(3, 5)+6)] = finStr[6];
+							stores[parseInt(commandStr.slice(3, 5)+7)] = finStr[7];
+							stores[parseInt(commandStr.slice(3, 5)+8)] = finStr[8];
 						} else {
 							this.$.log.setValue(prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
@@ -1610,136 +1538,131 @@ enyo.kind({
 					} else if(parseInt(commandStr.slice(3, 5)) == 9) {
 						this.$.acc.setContent(commandStr.slice(5));
 					} else {
-						if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
-							this.$.number1.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 19 && parseInt(commandStr.slice(3, 5)) < 28) {
-							this.$.number2.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 28 && parseInt(commandStr.slice(3, 5)) < 37) {
-							this.$.number3.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 37 && parseInt(commandStr.slice(3, 5)) < 46) {
-							this.$.number4.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 46 && parseInt(commandStr.slice(3, 5)) < 55) {
-							this.$.number5.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 55 && parseInt(commandStr.slice(3, 5)) < 64) {
-							this.$.number6.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 64 && parseInt(commandStr.slice(3, 5)) < 73) {
-							this.$.number7.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 73 && parseInt(commandStr.slice(3, 5)) < 82) {
-							this.$.number8.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 82 && parseInt(commandStr.slice(3, 5)) < 91) {
-							this.$.number9.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 91 && parseInt(commandStr.slice(3, 5)) < 100) {
-							this.$.number10.setContent(commandStr.slice(5));
+						for(var i = 0; i<9; i++) {
+							var isEight = i == 8;
+							if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
+								if(this.$[commandStr.slice(3, 5)+"0"].getSrc().slice(10, 11) == "0") {
+									var s1 = parseInt(this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+								} else {
+									var s1 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11) + this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+								}
+								var curNum = parseInt(commandStr.slice(5));
+								if(curNum >= 0) {
+									var curStr = "0"+curNum.toString();
+									while(curStr.length < 9) {
+										curStr = "0"+curStr;
+									}
+								} else {
+									var curStr = "9"+curNum.toString().slice(1);
+									while(curStr.length < 9) {
+										curStr = "90"+curStr.slice(1);
+									}
+								}
+								
+								if(i == 0) {
+									if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek9.png";
+									else stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek0.png";
+								} else {
+									if(curStr.length < 9 && 8-i-1 > curStr.length) {
+										stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek0.png";
+									} else {
+										stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek"+curStr[i]+".png";
+									}
+								}
+							}
 						}
 					}
-				
+					if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png" && commandStr.slice(1, 3) == "01") {
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(3, 5)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(3, 5)+i].setSrc(stores[parseInt(commandStr.slice(3, 5)+i)]);
+						}
+					} else if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png" && this.$[commandStr.slice(1, 3)+"0"].getSrc() != "images/dummy.png") {
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(3, 5)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(3, 5)+i].setSrc("images/dek"+stores[parseInt(commandStr.slice(3, 5)+i)]+".png");
+						}
+						
+					}
+					console.log(stores);
+			
 				break;
 				
 				case "4":
-					if(commandStr.slice(1, 3) != "301") {
-						var store1 = NaN;
-						var store2 = NaN;
-						if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
-							store2 = this.$.number1;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 19 && parseInt(commandStr.slice(3, 5)) < 28) {
-							store2 = this.$.number2;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 28 && parseInt(commandStr.slice(3, 5)) < 37) {
-							store2 = this.$.number3;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 37 && parseInt(commandStr.slice(3, 5)) < 46) {
-							store2 = this.$.number4;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 46 && parseInt(commandStr.slice(3, 5)) < 55) {
-							store2 = this.$.number5;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 55 && parseInt(commandStr.slice(3, 5)) < 64) {
-							store2 = this.$.number6;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 64 && parseInt(commandStr.slice(3, 5)) < 73) {
-							store2 = this.$.number7;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 73 && parseInt(commandStr.slice(3, 5)) < 82) {
-							store2 = this.$.number8;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 82 && parseInt(commandStr.slice(3, 5)) < 91) {
-							store2 = this.$.number9;
-						} else if(parseInt(commandStr.slice(3, 5)) >= 91 && parseInt(commandStr.slice(3, 5)) < 100) {
-							store2 = this.$.number10;
-						} else if(parseInt(commandStr.slice(3, 5)) == 0) {
-							store2 = null;
+					if(commandStr.slice(3, 5) != "00") {
+						console.log(this.$[commandStr.slice(1, 3)+"0"].getSrc());
+						
+						if(this.$[commandStr.slice(1, 3)+"0"].getSrc() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getSrc() == "images/dek0.png")
+								var s2 = parseInt("+"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+							else
+								var s2 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(3, 5)+"8"].getSrc().slice(10, 11));
+							if(this.$[commandStr.slice(1, 3)+"0"].getSrc() == "images/dek0.png")
+								var s1 = parseInt("+"+this.$[commandStr.slice(1, 3)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"8"].getSrc().slice(10, 11));
+							else
+								var s1 = parseInt("-"+this.$[commandStr.slice(1, 3)+"1"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"2"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"3"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"4"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"5"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"6"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"7"].getSrc().slice(10, 11)+this.$[commandStr.slice(1, 3)+"8"].getSrc().slice(10, 11));
+							finStr = (s1-s2).toString();
+							console.log(finStr);
+							if(parseInt(finStr) > 0) {
+								finStr = "0"+finStr;
+							}
+							if(parseInt(finStr) < 0) {
+								while(finStr.length < 9) {
+									finStr = "90"+finStr.slice(1);
+									console.log(finStr);
+								
+								}
+							} else {
+								while(finStr.length < 9) {
+									finStr = "00"+finStr.slice(1);
+								}
+								
+							}
+							stores[parseInt(commandStr.slice(3, 5)+0)] = finStr[0];
+							stores[parseInt(commandStr.slice(3, 5)+1)] = finStr[1];
+							stores[parseInt(commandStr.slice(3, 5)+2)] = finStr[2];
+							stores[parseInt(commandStr.slice(3, 5)+3)] = finStr[3];
+							stores[parseInt(commandStr.slice(3, 5)+4)] = finStr[4];
+							stores[parseInt(commandStr.slice(3, 5)+5)] = finStr[5];
+							stores[parseInt(commandStr.slice(3, 5)+6)] = finStr[6];
+							stores[parseInt(commandStr.slice(3, 5)+7)] = finStr[7];
+							stores[parseInt(commandStr.slice(3, 5)+8)] = finStr[8];
+						} else {
+							this.$.log.setValue(prevText + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+						}
+					} else if((parseInt(commandStr.slice(1, 3)) - 10)/9 < 0 && commandStr.slice(1, 3) != "09") {
+						this.$.log.setValue(prevText + "\rError: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
+					} else if(parseInt(commandStr.slice(1, 3)) == 9) {
+						this.$.acc.setContent(commandStr.slice(5));
+					}
+					if(commandStr.slice(3, 5) == "00") {
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(1, 3)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png");
+						}
+					} else if(this.$[commandStr.slice(3, 5)+"0"].getSrc() != "images/dummy.png" && commandStr.slice(3, 5) != "00") {
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(3, 5)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							eval("this.$["+commandStr.slice(1, 3)+i+'].setSrc("images/dekani.gif");');
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(3, 5)+i].setSrc("images/dek"+stores[parseInt(commandStr.slice(3, 5)+i)]+".png");
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png");
 						}
 						
-						if(parseInt(commandStr.slice(1, 3)) > 9 && parseInt(commandStr.slice(1, 3)) < 19) {
-							store1 = this.$.number1;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 19 && parseInt(commandStr.slice(1, 3)) < 28) {
-							store1 = this.$.number2;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 28 && parseInt(commandStr.slice(1, 3)) < 37) {
-							store1 = this.$.number3;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 37 && parseInt(commandStr.slice(1, 3)) < 46) {
-							store1 = this.$.number4;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 46 && parseInt(commandStr.slice(1, 3)) < 55) {
-							store1 = this.$.number5;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 55 && parseInt(commandStr.slice(1, 3)) < 64) {
-							store1 = this.$.number6;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 64 && parseInt(commandStr.slice(1, 3)) < 73) {
-							store1 = this.$.number7;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 73 && parseInt(commandStr.slice(1, 3)) < 82) {
-							store1 = this.$.number8;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 82 && parseInt(commandStr.slice(1, 3)) < 91) {
-							store1 = this.$.number9;
-						} else if(parseInt(commandStr.slice(1, 3)) >= 91 && parseInt(commandStr.slice(1, 3)) < 100) {
-							store1 = this.$.number10;
-						} else if(parseInt(commandStr.slice(1, 3)) == 9) {
-							store1 = this.$.acc;
-						}
-						if(store2 == null) {
-							this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png")
-						} else {
-							if(!isNaN(this.$[commandStr.slice(1, 3)].getSrc()) && !isNaN(store2.getContent().toString())) {
-								
-							store2.setContent(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) - parseInt(store2.getContent()));
-								if(store2.getContent().toString().length < 8) {
-									if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) - store2.getContent() < 0) {
-										while(store2.getContent().toString().length < 9) {
-											store2.setContent("-0" + store2.getContent().toString().slice(1));
-										}
-									} else {
-										store2.setContent("+" + store2.getContent().toString());
-										while(store2.getContent().toString().length < 9) {
-											store2.setContent("+0" + store2.getContent().toString().slice(1));
-										}
-									}
-								} else { 
-									if(parseInt(this.$[commandStr.slice(1, 3)].getSrc()) + store2.getContent() > 0) {
-										store2.setContent("+" + store2.getContent().toString());
-									}
-								}
-								this.$[commandStr.slice(1, 3)+i].setSrc("images/dek0.png")
-							} else {
-								this.$.log.setValue(this.$.log.getValue() + "\rError: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
-							}
-						}
-					} else if((parseInt(commandStr.slice(3, 5)) - 10)/9 < 0 && commandStr.slice(3, 5) != "09") {
-						this.$.log.setValue(prevText + "\rError: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
-					} else if(parseInt(commandStr.slice(3, 5)) == 9) {
-						this.$.acc.setContent(commandStr.slice(5));
-					} else {
-						if(parseInt(commandStr.slice(3, 5)) > 9 && parseInt(commandStr.slice(3, 5)) < 19) {
-							this.$.number1.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 19 && parseInt(commandStr.slice(3, 5)) < 28) {
-							this.$.number2.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 28 && parseInt(commandStr.slice(3, 5)) < 37) {
-							this.$.number3.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 37 && parseInt(commandStr.slice(3, 5)) < 46) {
-							this.$.number4.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 46 && parseInt(commandStr.slice(3, 5)) < 55) {
-							this.$.number5.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 55 && parseInt(commandStr.slice(3, 5)) < 64) {
-							this.$.number6.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 64 && parseInt(commandStr.slice(3, 5)) < 73) {
-							this.$.number7.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 73 && parseInt(commandStr.slice(3, 5)) < 82) {
-							this.$.number8.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 82 && parseInt(commandStr.slice(3, 5)) < 91) {
-							this.$.number9.setContent(commandStr.slice(5));
-						} else if(parseInt(commandStr.slice(3, 5)) >= 91 && parseInt(commandStr.slice(3, 5)) < 100) {
-							this.$.number10.setContent(commandStr.slice(5));
-						}
 					}
+					console.log(stores);
+					
 				break;
 			}
 		}

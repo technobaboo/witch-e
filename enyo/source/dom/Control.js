@@ -201,7 +201,7 @@ enyo.kind({
 	//* @public
 	/**
 		Returns the DOM node representing the control.
-		If the control is not currently rendered, returns null.
+		If the control is not currently rendered, returns a falsy value (null or false).
 
 		If _hasNode()_ returns a value, the _node_ property will be valid and
 		can be checked directly.
@@ -401,12 +401,21 @@ enyo.kind({
 	/**
 		Adds CSS styles to the set of styles assigned to this object.
 
-		_inCssText_ is a string containing CSS styles in text format.
+		_inCss_ is either a string containing CSS styles in text format,
+		or an object containing style names as keys and style values as property values
 
-			this.$.box.addStyles("background-color: red; padding: 4px;");
+		A. this.$.box.addStyles("background-color: red; padding: 4px;");
+		is same as
+		B. this.$.box.addStyles({"background-color": "red", "padding": "4px"});
 	*/
-	addStyles: function(inCssText) {
-		enyo.Control.cssTextToDomStyles(inCssText, this.domStyles);
+	addStyles: function(inCss) {
+		if (enyo.isObject(inCss)) {
+			for (var key in inCss) {
+				this.domStyles[key] = inCss[key];
+			}
+		} else {
+			enyo.Control.cssTextToDomStyles(inCss, this.domStyles);
+		}
 		this.domStylesChanged();
 	},
 	/**
@@ -637,8 +646,8 @@ enyo.kind({
 		this.domStylesChanged();
 	},
 	/**
-		Returns an object describing the control's absolute position within the viewport,
-		relative to the top left corner. This function takes into account account absolute/relative 
+		Returns an object describing the absolute position on the screen, relative to the top
+		left point on the screen.  This function takes into account account absolute/relative 
 		offsetParent positioning, scroll position, and CSS transforms (currently translateX, 
 		translateY, and matrix3d). 
 
@@ -922,7 +931,12 @@ enyo.kind({
 	},
 	showingChanged: function(was) {
 		this.syncDisplayToShowing();
-		
+		this.sendShowingChangedEvent(was);
+	},
+	/**
+		Waterfalls the "onShowingChanged" event of the current control
+	*/
+	sendShowingChangedEvent: function(was) {
 		var waterfall = (was === true || was === false)
 			, parent = this.parent;
 		// make sure that we don't trigger the waterfall when this method
@@ -931,6 +945,7 @@ enyo.kind({
 		if (waterfall && (parent? parent.getAbsoluteShowing(true): true)) {
 			this.waterfall("onShowingChanged", {originator: this, showing: this.getShowing()});
 		}
+
 	},
 	getShowing: function() {
 		return this.showing;
@@ -963,7 +978,7 @@ enyo.kind({
 		itself already it will not continue the waterfall. Overload this method
 		for additional handling of this event.
 	*/
-	showingChangedHandler: function (inSender, inEvent) {		
+	showingChangedHandler: function (inSender, inEvent) {
 		return inSender === this? false: !this.getShowing();
 	},
 	//
@@ -996,11 +1011,20 @@ enyo.kind({
 
 		return false;
 	},
-	
+
 	//* Removes control from enyo.roots
 	removeFromRoots: function() {
 		if (this._isRoot) {
 			enyo.remove(this, enyo.roots);
+		}
+	},
+	/**
+		Sets the control's directionality based on its content.
+	*/
+	detectTextDirectionality: function() {
+		if (this.content && this.content.length) {
+			this.rtl = enyo.isRtl(this.content);
+			this.applyStyle("direction", this.rtl ? "rtl" : "ltr");
 		}
 	},
 
