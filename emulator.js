@@ -75,16 +75,15 @@ enyo.kind({
 	]}
 				]},*/
 				{name:"panel2", style: "height: 572px;", components: [
-	{kind: "moon.Header", title: "Log", titleBelow:"Commands", fit:true},
+	{kind: "moon.Header", title: "Log", fit:true},
 	{kind: 'moon.Scroller', fit:true, horizontal:"hidden", classes: "enyo-fill", spotlight: false, components: [
 		{kind: "moon.InputDecorator", fit:true, classes:"closetohundred", style:"height:410px;", fit:true, components: [
 			{kind: "enyo.TextArea", classes:"dek", name:"log", classes:"enyo-fill", disabled: true, value:"WITCH-E v1.0.0", fit:true, spotlight: false}
 		]}
 	]},
 	{tag:"br"},
-	{tag:"br"},
 	{tag:"br"}
-				]},/*
+	]},/*
 				{name:"panel3", components: [
 	{kind: "moon.Header", title: "Printer", titleBelow:"Out it goes!", fit:true},
 	{kind: "moon.InputDecorator", fit:true, classes:"enyo-fill", style:"height:500px;", fit:true, components: [
@@ -93,7 +92,7 @@ enyo.kind({
 	
 				]}*/
 				{name:"panel4", kind:"FittableRows", classes:"tapereaderpanel", components: [
-	{kind: "moon.Header", title: "Tape Readers", titleBelow:"Write on them!", fit:true},
+	{kind: "moon.Header", title: "Tape Readers", fit:true},
 	{kind:"FittableColumns", style:"height:356px;", components:[
 	{name:"num1", kind:"enyo.TextArea", classes:"dek", classes:"tapereaderimage samplebox", source: "images/tapereader.png", oninput:"handleChange", onchange:"handleChange", content:"Edit Tape Reader #1"},
 	{name:"num2", classes:"tapereaderimage samplebox", source: "images/tapereader.png", onclick:"showPopup", content:"Edit Tape Reader #2"},
@@ -115,8 +114,8 @@ enyo.kind({
 	]}
 				]}
 			]},
-			{content:"Stores:", style:"text-align:center;"},
-		{kind:"FittableColumns", style:"height:200px; width:100%; text-align: center;", components:[
+			{content:"Stores:", style:"padding-left: 460px;"},
+		{kind:"FittableColumns", style:"height:200px; width:100%;", components:[
 			{name:"column2", kind:"FittableRows", components: [
 				{classes:"tblcell"},
 				{content:"10", classes:"tblcell"},
@@ -1220,7 +1219,7 @@ enyo.kind({
 					]}
 				]}
 			]},
-			{kind:"moon.Item", content:"Copyright Justin King, 2014 under the GPLv2 License", classes:"center", spotlight: false}
+			{kind:"moon.Item", content:"Copyright Justin King, 2014 under the GPLv2 License", classes:"center", style:"font-size: 20px;", spotlight: false}
 		]}
 	],
 	
@@ -1268,7 +1267,6 @@ enyo.kind({
 	},
 			
 	evaluate: function(isd8) {
-		this.$.storesPopup.show();
 		//this.$.storesPopup.show();
 		for(z = 0; z < curCommands.length; z++) {
 			var overflow = 0;
