@@ -125,7 +125,7 @@ enyo.kind({
 				{kind: "moon.Divider", name:"thedivider", content: "Stores"},
 				{classes: "moon-hspacing", components: [
 					{kind: 'moon.Scroller', fit:true, vertical:"hidden", classes: "enyo-fill", components: [
-						{kind:"FittableColumns", style:"height:700px; width:100%", components:[
+						{kind:"FittableColumns", style:"height:200px; width:100%; text-align: center;", components:[
 							{name:"column2", kind:"FittableRows", components: [
 								{classes:"tblcell"},
 								{content:"10", classes:"tblcell"},
