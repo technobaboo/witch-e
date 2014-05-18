@@ -86,7 +86,7 @@
 }
 
 .tblcell {
-	font-size:20px;
+	font-size:22px;
 	height:25px;
 	width:100%;
 	border:1px solid white;
@@ -95,9 +95,9 @@
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 .dekcell {
-	font-size:20px;
+	font-size:22px;
 	height:25px;
-	width:105px;
+	width:115px;
 	border:1px solid white;
 	background: #000;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
