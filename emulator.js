@@ -37,7 +37,7 @@ enyo.kind({
 	kind:"Control",
 	components:[
 		{kind: 'moon.Scroller', fit:true, classes: "enyo-fill", components: [
-			{name: "panels", kind: "FittableColumns", pattern: "none", fit: true, style: "height:90%", components: [
+			{name: "panels", kind: "FittableColumns", pattern: "none", fit: true, style: "height:475px", components: [
 		    /*{name:"panel", classes:"panels-sample-wide max-h", components: [
 	{kind: 'moon.Scroller', fit:true, classes: "enyo-fill", components: [
 		{kind: "moon.Header", title: "Stores", titleBelow:"Where the stuff goes"},
@@ -92,7 +92,7 @@ enyo.kind({
 	
 				]}*/
 				{name:"panel4", kind:"FittableRows", classes:"tapereaderpanel", components: [
-	{kind: "moon.Header", title: "Tape Readers", fit:true},
+	{kind: "moon.Header", title: "Tape Readers"},
 	{kind:"FittableColumns", style:"height:356px;", components:[
 	{name:"num1", kind:"enyo.TextArea", classes:"dek", classes:"tapereaderimage samplebox", source: "images/tapereader.png", oninput:"handleChange", onchange:"handleChange", content:"Edit Tape Reader #1"},
 	{name:"num2", classes:"tapereaderimage samplebox", source: "images/tapereader.png", onclick:"showPopup", content:"Edit Tape Reader #2"},
@@ -102,7 +102,7 @@ enyo.kind({
 	{name:"num6", classes:"tapereaderimage samplebox", source: "images/tapereader.png", onclick:"showPopup", content:"Edit Tape Reader #6"},
 	{name:"num7", classes:"tapereaderimage samplebox", source: "images/tapereader.png", onclick:"showPopup", content:"Edit Tape Reader #7"}*/
 	]},
-	{tag:"br"},
+	{style:"height:8px;"},
 	{kind:"FittableColumns", style:"height:50px; width:128px", components:[
 		{name:"button1", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"execCommands", content:"Run Tape Reader #1"},
 		{name:"button2", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"", content:"Run Tape Reader #2"},
@@ -114,8 +114,8 @@ enyo.kind({
 	]}
 				]}
 			]},
-			{content:"Stores:", style:"padding-left: 460px;"},
-		{kind:"FittableColumns", style:"height:200px; width:100%;", components:[
+			{content:"STORES", style:"padding-left: 460px; font-family: 'Moonstone Miso'; font-size: 37.5px;"},
+		{kind:"FittableColumns", style:"height:250px; width:100%;", components:[
 			{name:"column2", kind:"FittableRows", components: [
 				{classes:"tblcell"},
 				{content:"10", classes:"tblcell"},
