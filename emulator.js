@@ -26,7 +26,7 @@ var curCommands = [];
 var x = 0;
 var i = 0;
 var prevText = "";
-var tpr = ["", "", "", "", "", "", ""];
+var tpr = [, , , , , , ];
 var mainWindow;
 var curPopupWindow = 0;
 var stores = [];
@@ -78,7 +78,7 @@ enyo.kind({
 					{kind: "moon.Header", title: "Log", titleBelow:"Commands", fit:true},
 					{kind: 'moon.Scroller', fit:true, horizontal:"hidden", classes: "enyo-fill", spotlight: false, components: [
 						{kind: "moon.InputDecorator", fit:true, classes:"closetohundred", style:"height:410px;", fit:true, components: [
-							{kind: "moon.TextArea", classes:"dek", name:"log", classes:"enyo-fill", disabled: true, value:"WITCH-E v1.0.0", fit:true, spotlight: false}
+							{kind: "enyo.TextArea", classes:"dek", name:"log", classes:"enyo-fill", disabled: true, value:"WITCH-E v1.0.0", fit:true, spotlight: false}
 						]}
 					]},
 					{tag:"br"},
@@ -108,10 +108,10 @@ enyo.kind({
 						{name:"button1", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"execCommands", content:"Run Tape Reader #1"},
 						{name:"button2", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"", content:"Run Tape Reader #2"},
 						{name:"button3", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"", content:"Run Tape Reader #3"}/*,
-						{name:"button4", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"", content:"Run Tape Reader #4"},
-						{name:"button5", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"", content:"Run Tape Reader #5"},
-						{name:"button6", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"", content:"Run Tape Reader #6"},
-						{name:"button7", classes:"fontsize mouseover enyo-fill", fit: true, onclick:"", content:"Run Tape Reader #7"}*/
+						{name:"button4", classes:"fontsize mouseover enyo-fill", fit: true, onclick:, content:"Run Tape Reader #4"},
+						{name:"button5", classes:"fontsize mouseover enyo-fill", fit: true, onclick:, content:"Run Tape Reader #5"},
+						{name:"button6", classes:"fontsize mouseover enyo-fill", fit: true, onclick:, content:"Run Tape Reader #6"},
+						{name:"button7", classes:"fontsize mouseover enyo-fill", fit: true, onclick:, content:"Run Tape Reader #7"}*/
 					]}
 				]}
 			]},
@@ -127,7 +127,7 @@ enyo.kind({
 					{kind: 'moon.Scroller', fit:true, vertical:"hidden", classes: "enyo-fill", components: [
 						{kind:"FittableColumns", style:"height:700px; width:100%", components:[
 							{name:"column2", kind:"FittableRows", components: [
-								{content:"", classes:"tblcell"},
+								{classes:"tblcell"},
 								{content:"10", classes:"tblcell"},
 								{content:"20", classes:"tblcell"},
 								{content:"30", classes:"tblcell"},
@@ -1279,7 +1279,7 @@ enyo.kind({
 	},
 	
 	execCommands: function() {
-		curCommands = tpr[0].split(" ");
+		curCommands = tpr[0].split(/\r\n|\r|\n/g);
 		console.log(curCommands);
 		prevText = this.$.log.getValue();
 		if(curCommands[curCommands.length -1].length != 5 && curCommands[curCommands.length -1].length != 14) {
@@ -1317,21 +1317,21 @@ enyo.kind({
 				case "1":
 					
 					if(commandStr.slice(1, 3) != "01") {
-						console.log(this.$[commandStr.slice(1, 3)+" "].getContent());
+						console.log(this.$[commandStr.slice(1, 3)+"0"].getContent());
 						
-						if(this.$[commandStr.slice(1, 3)+" "].getContent() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy") {
-							if(this.$[commandStr.slice(3, 5)+" "].getContent() == "images/dek0")
+						if(this.$[commandStr.slice(1, 3)+"0"].getContent() != " " && this.$[commandStr.slice(3, 5)+"0"].getContent() != " ") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getContent() == "0")
 								var s1 = parseInt("+"+this.$[commandStr.slice(3, 5)+"1"].getContent()+this.$[commandStr.slice(3, 5)+"2"].getContent()+this.$[commandStr.slice(3, 5)+"3"].getContent()+this.$[commandStr.slice(3, 5)+"4"].getContent()+this.$[commandStr.slice(3, 5)+"5"].getContent()+this.$[commandStr.slice(3, 5)+"6"].getContent()+this.$[commandStr.slice(3, 5)+"7"].getContent()+this.$[commandStr.slice(3, 5)+"8"].getContent());
 							else
 								var s1 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getContent()+this.$[commandStr.slice(3, 5)+"2"].getContent()+this.$[commandStr.slice(3, 5)+"3"].getContent()+this.$[commandStr.slice(3, 5)+"4"].getContent()+this.$[commandStr.slice(3, 5)+"5"].getContent()+this.$[commandStr.slice(3, 5)+"6"].getContent()+this.$[commandStr.slice(3, 5)+"7"].getContent()+this.$[commandStr.slice(3, 5)+"8"].getContent());
-							if(this.$[commandStr.slice(1, 3)+" "].getContent() == "images/dek0")
+							if(this.$[commandStr.slice(1, 3)+"0"].getContent() == "0")
 								var s2 = parseInt("+"+this.$[commandStr.slice(1, 3)+"1"].getContent()+this.$[commandStr.slice(1, 3)+"2"].getContent()+this.$[commandStr.slice(1, 3)+"3"].getContent()+this.$[commandStr.slice(1, 3)+"4"].getContent()+this.$[commandStr.slice(1, 3)+"5"].getContent()+this.$[commandStr.slice(1, 3)+"6"].getContent()+this.$[commandStr.slice(1, 3)+"7"].getContent()+this.$[commandStr.slice(1, 3)+"8"].getContent());
 							else
 								var s2 = parseInt("-"+this.$[commandStr.slice(1, 3)+"1"].getContent()+this.$[commandStr.slice(1, 3)+"2"].getContent()+this.$[commandStr.slice(1, 3)+"3"].getContent()+this.$[commandStr.slice(1, 3)+"4"].getContent()+this.$[commandStr.slice(1, 3)+"5"].getContent()+this.$[commandStr.slice(1, 3)+"6"].getContent()+this.$[commandStr.slice(1, 3)+"7"].getContent()+this.$[commandStr.slice(1, 3)+"8"].getContent());
 							finStr = (s1+s2).toString();
 							console.log(finStr);
 							if(parseInt(finStr) > 0) {
-								finStr = " "+finStr;
+								finStr = "0"+finStr;
 							}
 							if(parseInt(finStr) < 0) {
 								while(finStr.length < 9) {
@@ -1364,17 +1364,17 @@ enyo.kind({
 					} else {
 						for(var i = 0; i<9; i++) {
 							var isEight = i == 8;
-							if(this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy") {
-								if(this.$[commandStr.slice(3, 5)+" "].getContent() == " ") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getContent() != " ") {
+								if(this.$[commandStr.slice(3, 5)+"0"].getContent() == " ") {
 									var s1 = parseInt(this.$[commandStr.slice(3, 5)+"1"].getContent() + this.$[commandStr.slice(3, 5)+"2"].getContent() + this.$[commandStr.slice(3, 5)+"3"].getContent() + this.$[commandStr.slice(3, 5)+"4"].getContent() + this.$[commandStr.slice(3, 5)+"5"].getContent() + this.$[commandStr.slice(3, 5)+"6"].getContent() + this.$[commandStr.slice(3, 5)+"7"].getContent() + this.$[commandStr.slice(3, 5)+"8"].getContent());
 								} else {
 									var s1 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getContent() + this.$[commandStr.slice(3, 5)+"2"].getContent() + this.$[commandStr.slice(3, 5)+"3"].getContent() + this.$[commandStr.slice(3, 5)+"4"].getContent() + this.$[commandStr.slice(3, 5)+"5"].getContent() + this.$[commandStr.slice(3, 5)+"6"].getContent() + this.$[commandStr.slice(3, 5)+"7"].getContent() + this.$[commandStr.slice(3, 5)+"8"].getContent());
 								}
 								var curNum = parseInt(commandStr.slice(5));
 								if(curNum >= 0) {
-									var curStr = " "+curNum.toString();
+									var curStr = "0"+curNum.toString();
 									while(curStr.length < 9) {
-										curStr = " "+curStr;
+										curStr = "0"+curStr;
 									}
 								} else {
 									var curStr = "9"+curNum.toString().slice(1);
@@ -1384,31 +1384,31 @@ enyo.kind({
 								}
 								
 								if(i == 0) {
-									if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek9.png";
-									else stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek0.png";
+									if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5)+i)] = "9";
+									else stores[parseInt(commandStr.slice(3, 5)+i)] = "0";
 								} else {
 									if(curStr.length < 9 && 8-i-1 > curStr.length) {
-										stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek0.png";
+										stores[parseInt(commandStr.slice(3, 5)+i)] = "0";
 									} else {
-										stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek"+curStr[i]+".png";
+										stores[parseInt(commandStr.slice(3, 5)+i)] = curStr[i];
 									}
 								}
 							}
 						}
 					}
-					if(this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy.png" && commandStr.slice(1, 3) == "01") {
+					if(this.$[commandStr.slice(3, 5)+"0"].getContent() != " " && commandStr.slice(1, 3) == "01") {
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
+							//eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(3, 5)+i].setSrc(stores[parseInt(commandStr.slice(3, 5)+i)]);
+							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]);
 						}
-					} else if(this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy.png" && this.$[commandStr.slice(1, 3)+" "].getContent() != "images/dummy") {
+					} else if(this.$[commandStr.slice(3, 5)+"0"].getContent() != " " && this.$[commandStr.slice(1, 3)+"0"].getContent() != " ") {
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
+							//eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]+"");
+							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]);
 						}
 						
 					}
@@ -1421,21 +1421,21 @@ enyo.kind({
 					
 					
 					if(commandStr.slice(3, 5) != "00") {
-						console.log(this.$[commandStr.slice(1, 3)+" "].getContent());
+						console.log(this.$[commandStr.slice(1, 3)+"0"].getContent());
 						
-						if(this.$[commandStr.slice(1, 3)+" "].getContent() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy") {
-							if(this.$[commandStr.slice(3, 5)+" "].getContent() == "images/dek0")
+						if(this.$[commandStr.slice(1, 3)+"0"].getContent() != " " && this.$[commandStr.slice(3, 5)+"0"].getContent() != " ") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getContent() == "0")
 								var s1 = parseInt("+"+this.$[commandStr.slice(3, 5)+"1"].getContent()+this.$[commandStr.slice(3, 5)+"2"].getContent()+this.$[commandStr.slice(3, 5)+"3"].getContent()+this.$[commandStr.slice(3, 5)+"4"].getContent()+this.$[commandStr.slice(3, 5)+"5"].getContent()+this.$[commandStr.slice(3, 5)+"6"].getContent()+this.$[commandStr.slice(3, 5)+"7"].getContent()+this.$[commandStr.slice(3, 5)+"8"].getContent());
 							else
 								var s1 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getContent()+this.$[commandStr.slice(3, 5)+"2"].getContent()+this.$[commandStr.slice(3, 5)+"3"].getContent()+this.$[commandStr.slice(3, 5)+"4"].getContent()+this.$[commandStr.slice(3, 5)+"5"].getContent()+this.$[commandStr.slice(3, 5)+"6"].getContent()+this.$[commandStr.slice(3, 5)+"7"].getContent()+this.$[commandStr.slice(3, 5)+"8"].getContent());
-							if(this.$[commandStr.slice(1, 3)+" "].getContent() == "images/dek0")
+							if(this.$[commandStr.slice(1, 3)+"0"].getContent() == "0")
 								var s2 = parseInt("+"+this.$[commandStr.slice(1, 3)+"1"].getContent()+this.$[commandStr.slice(1, 3)+"2"].getContent()+this.$[commandStr.slice(1, 3)+"3"].getContent()+this.$[commandStr.slice(1, 3)+"4"].getContent()+this.$[commandStr.slice(1, 3)+"5"].getContent()+this.$[commandStr.slice(1, 3)+"6"].getContent()+this.$[commandStr.slice(1, 3)+"7"].getContent()+this.$[commandStr.slice(1, 3)+"8"].getContent());
 							else
 								var s2 = parseInt("-"+this.$[commandStr.slice(1, 3)+"1"].getContent()+this.$[commandStr.slice(1, 3)+"2"].getContent()+this.$[commandStr.slice(1, 3)+"3"].getContent()+this.$[commandStr.slice(1, 3)+"4"].getContent()+this.$[commandStr.slice(1, 3)+"5"].getContent()+this.$[commandStr.slice(1, 3)+"6"].getContent()+this.$[commandStr.slice(1, 3)+"7"].getContent()+this.$[commandStr.slice(1, 3)+"8"].getContent());
 							finStr = (s1+s2).toString();
 							console.log(finStr);
 							if(parseInt(finStr) > 0) {
-								finStr = " "+finStr;
+								finStr = "0"+finStr;
 							}
 							if(parseInt(finStr) < 0) {
 								while(finStr.length < 9) {
@@ -1468,23 +1468,23 @@ enyo.kind({
 					}
 					if(commandStr.slice(3, 5) == "00") {
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(1, 3)+i+'].setContent("ani.gif");');
+							////eval("this.$["+commandStr.slice(1, 3)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
 							this.$[commandStr.slice(1, 3)+i].setContent("0");
 						}
-					} else if(this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy.png" && commandStr.slice(3, 5) != "00") {
+					} else if(this.$[commandStr.slice(3, 5)+"0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
+							//eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(1, 3)+i+'].setContent("ani.gif");');
+							//eval("this.$["+commandStr.slice(1, 3)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]+"");
+							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]);
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(1, 3)+i].setContent(" ");
+							this.$[commandStr.slice(1, 3)+i].setContent("0");
 						}
 						
 					}
@@ -1495,21 +1495,21 @@ enyo.kind({
 				
 				case "3":
 					if(commandStr.slice(1, 3) != "01") {
-						console.log(this.$[commandStr.slice(1, 3)+" "].getContent());
+						console.log(this.$[commandStr.slice(1, 3)+"0"].getContent());
 						
-						if(this.$[commandStr.slice(1, 3)+" "].getContent() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy") {
-							if(this.$[commandStr.slice(3, 5)+" "].getContent() == "images/dek0")
+						if(this.$[commandStr.slice(1, 3)+"0"].getContent() != " " && this.$[commandStr.slice(3, 5)+"0"].getContent() != " ") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getContent() == "0")
 								var s2 = parseInt("+"+this.$[commandStr.slice(3, 5)+"1"].getContent()+this.$[commandStr.slice(3, 5)+"2"].getContent()+this.$[commandStr.slice(3, 5)+"3"].getContent()+this.$[commandStr.slice(3, 5)+"4"].getContent()+this.$[commandStr.slice(3, 5)+"5"].getContent()+this.$[commandStr.slice(3, 5)+"6"].getContent()+this.$[commandStr.slice(3, 5)+"7"].getContent()+this.$[commandStr.slice(3, 5)+"8"].getContent());
 							else
 								var s2 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getContent()+this.$[commandStr.slice(3, 5)+"2"].getContent()+this.$[commandStr.slice(3, 5)+"3"].getContent()+this.$[commandStr.slice(3, 5)+"4"].getContent()+this.$[commandStr.slice(3, 5)+"5"].getContent()+this.$[commandStr.slice(3, 5)+"6"].getContent()+this.$[commandStr.slice(3, 5)+"7"].getContent()+this.$[commandStr.slice(3, 5)+"8"].getContent());
-							if(this.$[commandStr.slice(1, 3)+" "].getContent() == "images/dek0")
+							if(this.$[commandStr.slice(1, 3)+"0"].getContent() == "0")
 								var s1 = parseInt("+"+this.$[commandStr.slice(1, 3)+"1"].getContent()+this.$[commandStr.slice(1, 3)+"2"].getContent()+this.$[commandStr.slice(1, 3)+"3"].getContent()+this.$[commandStr.slice(1, 3)+"4"].getContent()+this.$[commandStr.slice(1, 3)+"5"].getContent()+this.$[commandStr.slice(1, 3)+"6"].getContent()+this.$[commandStr.slice(1, 3)+"7"].getContent()+this.$[commandStr.slice(1, 3)+"8"].getContent());
 							else
 								var s1 = parseInt("-"+this.$[commandStr.slice(1, 3)+"1"].getContent()+this.$[commandStr.slice(1, 3)+"2"].getContent()+this.$[commandStr.slice(1, 3)+"3"].getContent()+this.$[commandStr.slice(1, 3)+"4"].getContent()+this.$[commandStr.slice(1, 3)+"5"].getContent()+this.$[commandStr.slice(1, 3)+"6"].getContent()+this.$[commandStr.slice(1, 3)+"7"].getContent()+this.$[commandStr.slice(1, 3)+"8"].getContent());
 							finStr = (s1-s2).toString();
 							console.log(finStr);
 							if(parseInt(finStr) > 0) {
-								finStr = " "+finStr;
+								finStr = "0"+finStr;
 							}
 							if(parseInt(finStr) < 0) {
 								while(finStr.length < 9) {
@@ -1542,17 +1542,17 @@ enyo.kind({
 					} else {
 						for(var i = 0; i<9; i++) {
 							var isEight = i == 8;
-							if(this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy") {
-								if(this.$[commandStr.slice(3, 5)+" "].getContent() == " ") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getContent() != " ") {
+								if(this.$[commandStr.slice(3, 5)+"0"].getContent() == " ") {
 									var s1 = parseInt(this.$[commandStr.slice(3, 5)+"1"].getContent() + this.$[commandStr.slice(3, 5)+"2"].getContent() + this.$[commandStr.slice(3, 5)+"3"].getContent() + this.$[commandStr.slice(3, 5)+"4"].getContent() + this.$[commandStr.slice(3, 5)+"5"].getContent() + this.$[commandStr.slice(3, 5)+"6"].getContent() + this.$[commandStr.slice(3, 5)+"7"].getContent() + this.$[commandStr.slice(3, 5)+"8"].getContent());
 								} else {
 									var s1 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getContent() + this.$[commandStr.slice(3, 5)+"2"].getContent() + this.$[commandStr.slice(3, 5)+"3"].getContent() + this.$[commandStr.slice(3, 5)+"4"].getContent() + this.$[commandStr.slice(3, 5)+"5"].getContent() + this.$[commandStr.slice(3, 5)+"6"].getContent() + this.$[commandStr.slice(3, 5)+"7"].getContent() + this.$[commandStr.slice(3, 5)+"8"].getContent());
 								}
 								var curNum = parseInt(commandStr.slice(5));
 								if(curNum >= 0) {
-									var curStr = " "+curNum.toString();
+									var curStr = "0"+curNum.toString();
 									while(curStr.length < 9) {
-										curStr = " "+curStr;
+										curStr = "0"+curStr;
 									}
 								} else {
 									var curStr = "9"+curNum.toString().slice(1);
@@ -1562,31 +1562,31 @@ enyo.kind({
 								}
 								
 								if(i == 0) {
-									if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek9.png";
-									else stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek0.png";
+									if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5)+i)] = "9";
+									else stores[parseInt(commandStr.slice(3, 5)+i)] = "0";
 								} else {
 									if(curStr.length < 9 && 8-i-1 > curStr.length) {
-										stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek0.png";
+										stores[parseInt(commandStr.slice(3, 5)+i)] = "0";
 									} else {
-										stores[parseInt(commandStr.slice(3, 5)+i)] = "images/dek"+curStr[i]+".png";
+										stores[parseInt(commandStr.slice(3, 5)+i)] = +curStr[i];
 									}
 								}
 							}
 						}
 					}
-					if(this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy.png" && commandStr.slice(1, 3) == "01") {
+					if(this.$[commandStr.slice(3, 5)+"0"].getContent() != " " && commandStr.slice(1, 3) == "01") {
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
+							//eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(3, 5)+i].setSrc(stores[parseInt(commandStr.slice(3, 5)+i)]);
+							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]);
 						}
-					} else if(this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy.png" && this.$[commandStr.slice(1, 3)+" "].getContent() != "images/dummy") {
+					} else if(this.$[commandStr.slice(3, 5)+"0"].getContent() != " " && this.$[commandStr.slice(1, 3)+"0"].getContent() != " ") {
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
+							//eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]+"");
+							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]);
 						}
 						
 					}
@@ -1596,21 +1596,21 @@ enyo.kind({
 				
 				case "4":
 					if(commandStr.slice(3, 5) != "00") {
-						console.log(this.$[commandStr.slice(1, 3)+" "].getContent());
+						console.log(this.$[commandStr.slice(1, 3)+"0"].getContent());
 						
-						if(this.$[commandStr.slice(1, 3)+" "].getContent() != "images/dummy.png" && this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy") {
-							if(this.$[commandStr.slice(3, 5)+" "].getContent() == "images/dek0")
+						if(this.$[commandStr.slice(1, 3)+"0"].getContent() != " " && this.$[commandStr.slice(3, 5)+"0"].getContent() != " ") {
+							if(this.$[commandStr.slice(3, 5)+"0"].getContent() == "0")
 								var s2 = parseInt("+"+this.$[commandStr.slice(3, 5)+"1"].getContent()+this.$[commandStr.slice(3, 5)+"2"].getContent()+this.$[commandStr.slice(3, 5)+"3"].getContent()+this.$[commandStr.slice(3, 5)+"4"].getContent()+this.$[commandStr.slice(3, 5)+"5"].getContent()+this.$[commandStr.slice(3, 5)+"6"].getContent()+this.$[commandStr.slice(3, 5)+"7"].getContent()+this.$[commandStr.slice(3, 5)+"8"].getContent());
 							else
 								var s2 = parseInt("-"+this.$[commandStr.slice(3, 5)+"1"].getContent()+this.$[commandStr.slice(3, 5)+"2"].getContent()+this.$[commandStr.slice(3, 5)+"3"].getContent()+this.$[commandStr.slice(3, 5)+"4"].getContent()+this.$[commandStr.slice(3, 5)+"5"].getContent()+this.$[commandStr.slice(3, 5)+"6"].getContent()+this.$[commandStr.slice(3, 5)+"7"].getContent()+this.$[commandStr.slice(3, 5)+"8"].getContent());
-							if(this.$[commandStr.slice(1, 3)+" "].getContent() == "images/dek0")
+							if(this.$[commandStr.slice(1, 3)+"0"].getContent() == "0")
 								var s1 = parseInt("+"+this.$[commandStr.slice(1, 3)+"1"].getContent()+this.$[commandStr.slice(1, 3)+"2"].getContent()+this.$[commandStr.slice(1, 3)+"3"].getContent()+this.$[commandStr.slice(1, 3)+"4"].getContent()+this.$[commandStr.slice(1, 3)+"5"].getContent()+this.$[commandStr.slice(1, 3)+"6"].getContent()+this.$[commandStr.slice(1, 3)+"7"].getContent()+this.$[commandStr.slice(1, 3)+"8"].getContent());
 							else
 								var s1 = parseInt("-"+this.$[commandStr.slice(1, 3)+"1"].getContent()+this.$[commandStr.slice(1, 3)+"2"].getContent()+this.$[commandStr.slice(1, 3)+"3"].getContent()+this.$[commandStr.slice(1, 3)+"4"].getContent()+this.$[commandStr.slice(1, 3)+"5"].getContent()+this.$[commandStr.slice(1, 3)+"6"].getContent()+this.$[commandStr.slice(1, 3)+"7"].getContent()+this.$[commandStr.slice(1, 3)+"8"].getContent());
 							finStr = (s1-s2).toString();
 							console.log(finStr);
 							if(parseInt(finStr) > 0) {
-								finStr = " "+finStr;
+								finStr = "0"+finStr;
 							}
 							if(parseInt(finStr) < 0) {
 								while(finStr.length < 9) {
@@ -1643,23 +1643,23 @@ enyo.kind({
 					}
 					if(commandStr.slice(3, 5) == "00") {
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(1, 3)+i+'].setContent("ani.gif");');
+							//eval("this.$["+commandStr.slice(1, 3)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(1, 3)+i].setContent(" ");
+							this.$[commandStr.slice(1, 3)+i].setContent("0");
 						}
-					} else if(this.$[commandStr.slice(3, 5)+" "].getContent() != "images/dummy.png" && commandStr.slice(3, 5) != "00") {
+					} else if(this.$[commandStr.slice(3, 5)+"0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
 						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
-						}
-						for(var i = 0; i<9; i++) {
-							eval("this.$["+commandStr.slice(1, 3)+i+'].setContent("ani.gif");');
+							//eval("this.$["+commandStr.slice(3, 5)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]+"");
+							//eval("this.$["+commandStr.slice(1, 3)+i+'].setContent("ani.gif");');
 						}
 						for(var i = 0; i<9; i++) {
-							this.$[commandStr.slice(1, 3)+i].setContent(" ");
+							this.$[commandStr.slice(3, 5)+i].setContent(stores[parseInt(commandStr.slice(3, 5)+i)]);
+						}
+						for(var i = 0; i<9; i++) {
+							this.$[commandStr.slice(1, 3)+i].setContent("0");
 						}
 						
 					}
