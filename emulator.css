@@ -57,8 +57,8 @@
 	border: 5px solid #cf0652;
 }
 
-.fiftyp {
-	width:50%;
+.center {
+	display:table-cell;
 }
 
 .ahundredp {
@@ -85,25 +85,27 @@
 }
 
 .tblcell {
-	font-size:36px;
-	height:10%;
+	font-size:14px;
+	height:20px;
 	width:100%;
 	border:1px solid white;
-	padding-top:10px;
 	background: #000;
 	text-align:center;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 .dekcell {
-	font-size:36px;
-	height:10%;
+	font-size:14px;
+	height:20px;
+	width:105px;
 	border:1px solid white;
-	padding-top: 5px;
 	background: #000;
-	ver
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .dek {
-	height:32px;
-	width:32px;
-	vertical-align:middle;"
+	height:20px;
+	width:14px;
+	display:table-cell;
+	vertical-align:middle;
+	text-align: center;
 }
