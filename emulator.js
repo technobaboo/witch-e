@@ -4089,12 +4089,15 @@ enyo.kind({
     },
     handleChange: function (inSender, inEvent) {
         if (inSender.name == "num1") {
-            curCommands = inSender.getValue().replace(/<br>\+/g, "+").replace(/<br>-/g, "-").split(/<br>/g);
-			if(curCommands[curCommands.length - 1] == "") {
-				curCommands.splice(curCommands.length - 1, 1);
+            curCommands = inSender.getValue().replace(/<.{2,3}>(\+|-)/g, "$1").split(/<.{2,3}>+/g);
+			for(i=0; i<curCommands.length; i++) {
+				curCommands[i].replace(/<.{2,3}>/ig, "");
+				/*if(curCommands[i].indexOf(/.{2,3}/ig) != -1) {
+					curCommands.splice(i, 1);
+				}*/
 			}
         }
-		enyo.log(inSender.getValue().replace(/<br>(\+|-)/g, "$1").split(/<br>/g));
+		enyo.log(curCommands);
         tpr[parseInt(inSender.name.substring(3)) - 1] = inSender.getValue();
         console.log(tpr + " : " + curCommands);
     },
@@ -4115,9 +4118,9 @@ enyo.kind({
             var overflow = 0;
             var prevText = this.$.log.getValue();
             if (isNaN(parseInt(curCommands[z]))) {
-                this.$.log.setValue(prevText + "" + curCommands[z] + "Error: Command(s) need to include only numbers and maybe plus signs and dashes");
+                this.$.log.setValue(prevText + "\n" + curCommands[z] + "Error: Command(s) need to include only numbers and maybe plus signs and dashes");
             } else {
-                this.$.log.setValue(prevText + "" + curCommands[z]);
+                this.$.log.setValue(prevText + "\n" + curCommands[z]);
             }
             var commandStr = curCommands[z];
 		switch(commandStr[0]) {
