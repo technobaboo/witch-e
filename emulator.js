@@ -145,52 +145,46 @@ enyo.kind({
                                     components: [
                                         {
                                             name: "num1",
-                                            kind: "enyo.TextArea",
+                                            kind: "enyo.RichText",
                                             classes: "tapereaderimage samplebox",
                                             source: "images/tapereader.png",
                                             oninput: "handleChange",
-                                            onchange: "handleChange",
-                                            content: "Edit Tape Reader #1"},
+                                            onchange: "handleChange"},
                                         {
                                             name: "num2",
-                                            kind: "enyo.TextArea",
+                                            kind: "enyo.RichText",
                                             classes: "tapereaderimage samplebox",
                                             source: "images/tapereader.png",
                                             oninput: "handleChange",
-                                            onchange: "handleChange",
-                                            content: "Edit Tape Reader #1"},
+                                            onchange: "handleChange"},
                                         {
                                             name: "num3",
-                                            kind: "enyo.TextArea",
+                                            kind: "enyo.RichText",
                                             classes: "tapereaderimage samplebox",
                                             source: "images/tapereader.png",
                                             oninput: "handleChange",
-                                            onchange: "handleChange",
-                                            content: "Edit Tape Reader #1"},
+                                            onchange: "handleChange"},
                                         {
                                             name: "num4",
-                                            kind: "enyo.TextArea",
+                                            kind: "enyo.RichText",
                                             classes: "tapereaderimage samplebox",
                                             source: "images/tapereader.png",
                                             oninput: "handleChange",
-                                            onchange: "handleChange",
-                                            content: "Edit Tape Reader #1"},
+                                            onchange: "handleChange"},
                                         {
                                             name: "num5",
-                                            kind: "enyo.TextArea",
+                                            kind: "enyo.RichText",
                                             classes: "tapereaderimage samplebox",
                                             source: "images/tapereader.png",
                                             oninput: "handleChange",
-                                            onchange: "handleChange",
-                                            content: "Edit Tape Reader #1"},
+                                            onchange: "handleChange"},
                                         {
                                             name: "num6",
-                                            kind: "enyo.TextArea",
+                                            kind: "enyo.RichText",
                                             classes: "tapereaderimage samplebox",
                                             source: "images/tapereader.png",
                                             oninput: "handleChange",
-                                            onchange: "handleChange",
-                                            content: "Edit Tape Reader #1"}
+                                            onchange: "handleChange"}
 
                                     ]
                                 },
@@ -4079,7 +4073,7 @@ enyo.kind({
     ],
     showPopup: function (inSender, inEvent) {
         curPopupWindow = parseInt(inSender.getName() .substring(3));
-        this.$.thedivider.setContent("Tape Reader #" + inSender.getName() .substring(3));
+        this.$.thedivider.setContent("Tape Reader #" + inSender.getName().substring(3));
         this.$.code.setValue(tpr[curPopupWindow - 1]);
         this.$.buttonPopup.show();
     },
@@ -4095,18 +4089,19 @@ enyo.kind({
     },
     handleChange: function (inSender, inEvent) {
         if (inSender.name == "num1") {
-            curCommands = inSender.getValue() .split(/\r\n|\r|\n/g);
+            curCommands = inSender.getValue().replace(/<br>\+/g, "+").replace(/<br>-/g, "-").split(/<br>/g);
         }
+		enyo.log(inSender.getValue().replace(/<br>(\+|-)/g, "$1").split(/<br>/g));
         tpr[parseInt(inSender.name.substring(3)) - 1] = inSender.getValue();
         console.log(tpr + " : " + curCommands);
     },
     execCommands: function () {
-        curCommands = tpr[0].split(/\r\n|\r|\n/g);
+        curCommands = tpr[0].replace(/<br>\+/g, "+").replace(/<br>-/g, "-").split(/<br>/g);
         console.log(curCommands);
         prevText = this.$.log.getValue();
         if (curCommands[curCommands.length - 1].length != 5 && curCommands[curCommands.length - 1].length != 14) {
             curTapeReader = "";
-            this.$.log.setValue(prevText + "Error: This Command must be 5 or 14 characters long");
+            this.$.log.setValue(prevText + "Error: This Command must be 5 or 9 characters long with a plus/minus included, ex. 21000 or 10110\n+12345678");
         } else {
             curTapeReader = "";
             this.evaluate(false);
@@ -4124,8 +4119,8 @@ enyo.kind({
                 this.$.log.setValue(prevText + "" + curCommands[z]);
             }
             var commandStr = curCommands[z];
-            switch (commandStr[0]) {
-            case " ":
+		switch(commandStr[0]) {
+            case "0":
                 switch (commandStr[1]) {
                 case "2":
                     if (commandStr.substring(0, 4) == "0210" && parseInt(commandStr.substring(4, 5)) < 8) {
