@@ -4090,14 +4090,15 @@ enyo.kind({
     handleChange: function (inSender, inEvent) {
         if (inSender.name == "num1") {
             curCommands = inSender.getValue().replace(/<br>\+/g, "+").replace(/<br>-/g, "-").split(/<br>/g);
+			if(curCommands[curCommands.length - 1] == "") {
+				curCommands.splice(curCommands.length - 1, 1);
+			}
         }
 		enyo.log(inSender.getValue().replace(/<br>(\+|-)/g, "$1").split(/<br>/g));
         tpr[parseInt(inSender.name.substring(3)) - 1] = inSender.getValue();
         console.log(tpr + " : " + curCommands);
     },
     execCommands: function () {
-        curCommands = tpr[0].replace(/<br>\+/g, "+").replace(/<br>-/g, "-").split(/<br>/g);
-        console.log(curCommands);
         prevText = this.$.log.getValue();
         if (curCommands[curCommands.length - 1].length != 5 && curCommands[curCommands.length - 1].length != 14) {
             curTapeReader = "";
