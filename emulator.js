@@ -4089,12 +4089,12 @@ enyo.kind({
     },
     handleChange: function (inSender, inEvent) {
         if (inSender.name == "num1") {
-            curCommands = inSender.getValue().replace(/<.{2,3}>(\+|-)/g, "$1").split(/<.{2,3}>+/g);
+            curCommands = inSender.getValue().replace(/(<[^>]*>)+/ig, "test").replace(/test(\+|-)/ig, "$1").split("test");
 			for(i=0; i<curCommands.length; i++) {
-				curCommands[i].replace(/<.{2,3}>/ig, "");
-				/*if(curCommands[i].indexOf(/.{2,3}/ig) != -1) {
+				//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
+				if(curCommands[i] == "") {
 					curCommands.splice(i, 1);
-				}*/
+				}
 			}
         }
 		enyo.log(curCommands);
