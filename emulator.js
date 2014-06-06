@@ -20,32 +20,39 @@
  */
 var curCommands = [
 ];
+var z = 0;
 var x = 0;
 var i = 0;
+var s = 0;
+var ss = false, sss = false;
+var cmdString, cmdString2;
 var prevText = "";
 var tpr = [];
 var mainWindow;
-var curPopupWindow = 0;
+var curTpr = 0;
 var stores = [
 ];
+String.prototype.replaceAt=function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}
 enyo.kind({
-    name: "emulatorMain",
-    classes: "moon enyo-unselectable enyo-fit",
-    kind: "Control",
-    components: [
-        {
-            kind: "moon.Scroller",
-            fit: true,
-            classes: "enyo-fill",
-            components: [
-                {
-                    name: "panels",
-                    kind: "FittableColumns",
-                    pattern: "none",
-                    fit: true,
-                    style: "height:475px",
-                    components: [
-                        /*{name:"panel", classes:"panels-sample-wide max-h", components: [
+	name: "emulatorMain",
+	classes: "moon enyo-unselectable enyo-fit",
+	kind: "Control",
+	components: [
+		{
+			kind: "moon.Scroller",
+			fit: true,
+			classes: "enyo-fill",
+			components: [
+				{
+					name: "panels",
+					kind: "FittableColumns",
+					pattern: "none",
+					fit: true,
+					style: "height:475px",
+					components: [
+						/*{name:"panel", classes:"panels-sample-wide max-h", components: [
 	{kind: "moon.Scroller", fit:true, classes: "enyo-fill", components: [
 		{kind: "moon.Header", title: "Stores", titleBelow:"Where the stuff goes"},
 		{tag:"br"},
@@ -81,32 +88,32 @@ enyo.kind({
 		{kind:"moon.Button", style:"text-align:center; width:100%", content:"Run Tape Reader 1", classes:"center", ontap:"execCommands"}
 	]}
 				]},*/
-                        {
-                            name: "panel2",
-                            style: "height: 572px;",
-                            components: [
-                                {
-                                    kind: "moon.Header",
-                                    title: "Log",
-                                    fit: true
-                                },
-                                {
-                                    kind: "moon.Scroller",
-                                    fit: true,
-                                    horizontal: "hidden",
-                                    classes: "enyo-fill",
-                                    spotlight: false,
-                                    components: [
-                                        {
-                                            kind: "moon.InputDecorator",
-                                            classes: "closetohundred",
-                                            style: "height:410px;",
-                                            fit: true,
-                                            components: [
-                                                {
-                                                    kind: "enyo.TextArea",
-                                                    classes: "dek",
-                                                    name: "log",
+						{
+							name: "panel2",
+							style: "height: 572px;",
+							components: [
+								{
+									kind: "moon.Header",
+									title: "Log",
+									fit: true
+								},
+								{
+									kind: "moon.Scroller",
+									fit: true,
+									horizontal: "hidden",
+									classes: "enyo-fill",
+									spotlight: false,
+									components: [
+										{
+											kind: "moon.InputDecorator",
+											classes: "closetohundred",
+											style: "height:410px;",
+											fit: true,
+											components: [
+												{
+													kind: "enyo.TextArea",
+													classes: "dek",
+							                        name: "log",
                                                     classes: "enyo-fill",
                                                     disabled: true,
                                                     value: "WITCH-E v1.0.0",
@@ -177,13 +184,6 @@ enyo.kind({
                                             classes: "tapereaderimage samplebox",
                                             source: "images/tapereader.png",
                                             oninput: "handleChange",
-                                            onchange: "handleChange"},
-                                        {
-                                            name: "num6",
-                                            kind: "enyo.RichText",
-                                            classes: "tapereaderimage samplebox",
-                                            source: "images/tapereader.png",
-                                            oninput: "handleChange",
                                             onchange: "handleChange"}
 
                                     ]
@@ -192,44 +192,14 @@ enyo.kind({
                                     style: "height:8px;"},
                                 {
                                     kind: "FittableColumns",
-                                    style: "height:50px; width:128px",
                                     components: [
                                         {
                                             name: "button1",
                                             classes: "fontsize mouseover enyo-fill",
                                             fit: true,
+											style: "height:50px; width:128px",
                                             onclick: "execCommands",
-                                            content: "Run Tape Reader #1"},
-                                        {
-                                            name: "button2",
-                                            classes: "fontsize mouseover enyo-fill",
-                                            fit: true,
-                                            onclick: "",
-                                            content: "Run Tape Reader #2"},
-                                        {
-                                            name: "button3",
-                                            classes: "fontsize mouseover enyo-fill",
-                                            fit: true,
-                                            onclick: "",
-                                            content: "Run Tape Reader #3"},
-                                        {
-                                            name: "button4",
-                                            classes: "fontsize mouseover enyo-fill",
-                                            fit: true,
-                                            onclick: "",
-                                            content: "Run Tape Reader #4"},
-                                        {
-                                            name: "button5",
-                                            classes: "fontsize mouseover enyo-fill",
-                                            fit: true,
-                                            onclick: "",
-                                            content: "Run Tape Reader #5"},
-                                        {
-                                            name: "button6",
-                                            classes: "fontsize mouseover enyo-fill",
-                                            fit: true,
-                                            onclick: "",
-                                            content: "Run Tape Reader #6"}
+                                            content: "Start"}
 
                                     ]
                                 }
@@ -4065,7 +4035,7 @@ enyo.kind({
                     kind: "moon.Item",
                     content: "Copyright Justin King, 2014 under the GPLv2 License",
                     classes: "center",
-                    style: "font-size: 20px;",
+                    style: "font-size: 10px;",
                     spotlight: false
                 }
             ]
@@ -4103,18 +4073,18 @@ enyo.kind({
     },
     execCommands: function () {
         prevText = this.$.log.getValue();
-        if (curCommands[curCommands.length - 1].length != 5 && curCommands[curCommands.length - 1].length != 14) {
+        if (curCommands[curCommands.length - 1].length != 1 && curCommands[curCommands.length - 1].length != 5 && curCommands[curCommands.length - 1].length != 14) {
             curTapeReader = "";
-            this.$.log.setValue(prevText + "Error: This Command must be 5 or 9 characters long with a plus/minus included, ex. 21000 or 10110\n+12345678");
+            this.$.log.setValue(prevText + "Error: This Command/Block Marker must be 1 or 5 or 9 characters long with a plus/minus included, ex. 1, 2, 21000 or 10110\n+12345678");
         } else {
             curTapeReader = "";
-            this.evaluate(false);
+            this.evaluate();
         }
         return false;
     },
-    evaluate: function (isd8) {
+    evaluate: function () {
         //this.$.storesPopup.show();
-        for (z = 0; z < curCommands.length; z++) {
+        if(z < curCommands.length) {
             var overflow = 0;
             var prevText = this.$.log.getValue();
             if (isNaN(parseInt(curCommands[z]))) {
@@ -4126,25 +4096,25 @@ enyo.kind({
 		switch(commandStr[0]) {
             case "0":
                 switch (commandStr[1]) {
-                case "2":
-                    if (commandStr.substring(0, 4) == "0210" && parseInt(commandStr.substring(4, 5)) < 8) {
-                    }
-                    break;
+                	case "3":
+                    	//if () {
+                    	//}
+					break;
                 }
-                break;
+            break;
             case "1":
                 if (commandStr.slice(1, 3) != "01") {
                     console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
                     if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
                         if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                        var s1 = parseInt("+" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
                          else
-                        var s1 = parseInt("-" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
                         if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                        var s2 = parseInt("+" + this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
                          else
-                        var s2 = parseInt("-" + this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                        finStr = (s1 + s2) .toString();
+                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                        finStr = (s2 + s1).toString();
                         console.log(finStr);
                         if (parseInt(finStr) > 0) {
                             finStr = "0" + finStr;
@@ -4176,53 +4146,32 @@ enyo.kind({
                 } else if (parseInt(commandStr.slice(3, 5)) == 9) {
                     this.$.acc.setContent(commandStr.slice(5));
                 } else {
+					var finStr;
                     for (var i = 0; i < 9; i++) {
                         var isEight = i == 8;
                         if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                            if (this.$[commandStr.slice(3, 5) + "0"].getContent() == " ") {
-                                var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                            if (commandStr.slice(5, 6) == "+") {
+                                var s1 = "0" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent();
                             } else {
-                                var s1 = parseInt("-" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                                var s1 = "9" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent();
                             }
-                            var curNum = parseInt(commandStr.slice(5));
-                            if (curNum >= 0) {
-                                var curStr = "0" + curNum.toString();
-                                while (curStr.length < 9) {
-                                    curStr = "0" + curStr;
-                                }
+							finStr = s1;
+                            if (finStr[0] == "9")
+								finStr.replaceAt(1, (9 - parseInt(finStr[i])).toString());
+							console.log((9 - parseInt(finStr[i])).toString());
+                            if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
+                                stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
                             } else {
-                                var curStr = "9" + curNum.toString() .slice(1);
-                                while (curStr.length < 9) {
-                                    curStr = "90" + curStr.slice(1);
-                                }
+                                stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
                             }
-                            if (i == 0) {
-                                if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5) + i)] = "9";
-                                 else stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
-                            } else {
-                                if (curStr.length < 9 && 8 - i - 1 > curStr.length) {
-                                    stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
-                                } else {
-                                    stores[parseInt(commandStr.slice(3, 5) + i)] = curStr[i];
-                                }
-                            }
+                            
                         }
                     }
                 }
                 if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01") {
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(3, 5)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(3, 5) + i].setContent(stores[parseInt(commandStr.slice(3, 5) + i)]);
-                    }
+                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
                 } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(3, 5)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(3, 5) + i].setContent(stores[parseInt(commandStr.slice(3, 5) + i)]);
-                    }
+                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
                 }
                 console.log(stores);
                 break;
@@ -4231,14 +4180,14 @@ enyo.kind({
                     console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
                     if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
                         if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                        var s1 = parseInt("+" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
                          else
-                        var s1 = parseInt("-" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
                         if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                        var s2 = parseInt("+" + this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
                          else
-                        var s2 = parseInt("-" + this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                        finStr = (s1 + s2) .toString();
+                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                        finStr = (s2 - s1) .toString();
                         console.log(finStr);
                         if (parseInt(finStr) > 0) {
                             finStr = "0" + finStr;
@@ -4248,6 +4197,9 @@ enyo.kind({
                                 finStr = "90" + finStr.slice(1);
                                 console.log(finStr);
                             }
+							for(var d=0; d < 9; d++) {
+								finStr[d] = (9 - parseInt(finStr[d])).toString();
+							}
                         } else {
                             while (finStr.length < 9) {
                                 finStr = "00" + finStr.slice(1);
@@ -4271,25 +4223,10 @@ enyo.kind({
                     this.$.acc.setContent(commandStr.slice(5));
                 }
                 if (commandStr.slice(3, 5) == "00") {
-                    for (var i = 0; i < 9; i++) {
-                        ////eval("this.$["+commandStr.slice(1, 3)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(1, 3) + i].setContent("0");
-                    }
+                     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
                 } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(3, 5)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(1, 3)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(3, 5) + i].setContent(stores[parseInt(commandStr.slice(3, 5) + i)]);
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(1, 3) + i].setContent("0");
-                    }
+                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+                     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
                 }
                 console.log(stores);
                 break;
@@ -4298,14 +4235,14 @@ enyo.kind({
                     console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
                     if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
                         if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                        var s2 = parseInt("+" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
                          else
-                        var s2 = parseInt("-" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
                         if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                        var s1 = parseInt("+" + this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
                          else
-                        var s1 = parseInt("-" + this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                        finStr = (s1 - s2) .toString();
+                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                        finStr = (s2 - s1).toString();
                         console.log(finStr);
                         if (parseInt(finStr) > 0) {
                             finStr = "0" + finStr;
@@ -4337,53 +4274,35 @@ enyo.kind({
                 } else if (parseInt(commandStr.slice(3, 5)) == 9) {
                     this.$.acc.setContent(commandStr.slice(5));
                 } else {
+					var finStr;
                     for (var i = 0; i < 9; i++) {
                         var isEight = i == 8;
                         if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                            if (this.$[commandStr.slice(3, 5) + "0"].getContent() == " ") {
-                                var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                            if (commandStr.slice(5, 6) == "+") {
+                                var s1 = "0" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent();
                             } else {
-                                var s1 = parseInt("-" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                                var s1 = "9" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent();
                             }
-                            var curNum = parseInt(commandStr.slice(5));
-                            if (curNum >= 0) {
-                                var curStr = "0" + curNum.toString();
-                                while (curStr.length < 9) {
-                                    curStr = "0" + curStr;
-                                }
-                            } else {
-                                var curStr = "9" + curNum.toString() .slice(1);
-                                while (curStr.length < 9) {
-                                    curStr = "90" + curStr.slice(1);
-                                }
-                            }
+							finStr = s1;
+                            if (commandStr.slice(5, 6) == "9")
+								finStr[i] = (9 - parseInt(finStr[i])).toString;
                             if (i == 0) {
                                 if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5) + i)] = "9";
                                  else stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
                             } else {
-                                if (curStr.length < 9 && 8 - i - 1 > curStr.length) {
+                                if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
                                     stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
                                 } else {
-                                    stores[parseInt(commandStr.slice(3, 5) + i)] = + curStr[i];
+                                    stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
                                 }
                             }
                         }
                     }
                 }
                 if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01") {
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(3, 5)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(3, 5) + i].setContent(stores[parseInt(commandStr.slice(3, 5) + i)]);
-                    }
+                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
                 } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(3, 5)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(3, 5) + i].setContent(stores[parseInt(commandStr.slice(3, 5) + i)]);
-                    }
+                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
                 }
                 console.log(stores);
                 break;
@@ -4392,14 +4311,14 @@ enyo.kind({
                     console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
                     if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
                         if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                        var s2 = parseInt("+" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
                          else
-                        var s2 = parseInt("-" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
                         if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                        var s1 = parseInt("+" + this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
                          else
-                        var s1 = parseInt("-" + this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                        finStr = (s1 - s2) .toString();
+                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                        finStr = (s2 - s1) .toString();
                         console.log(finStr);
                         if (parseInt(finStr) > 0) {
                             finStr = "0" + finStr;
@@ -4409,6 +4328,9 @@ enyo.kind({
                                 finStr = "90" + finStr.slice(1);
                                 console.log(finStr);
                             }
+							for(var d=0; d < 9; d++) {
+								finStr[d] = (9 - parseInt(finStr[d])).toString();
+							}
                         } else {
                             while (finStr.length < 9) {
                                 finStr = "00" + finStr.slice(1);
@@ -4432,36 +4354,54 @@ enyo.kind({
                     this.$.acc.setContent(commandStr.slice(5));
                 }
                 if (commandStr.slice(3, 5) == "00") {
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(1, 3)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(1, 3) + i].setContent("0");
-                    }
+                     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
                 } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(3, 5)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        //eval("this.$["+commandStr.slice(1, 3)+i+"].setContent("ani.gif");");
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(3, 5) + i].setContent(stores[parseInt(commandStr.slice(3, 5) + i)]);
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        this.$[commandStr.slice(1, 3) + i].setContent("0");
-                    }
+                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+                     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
                 }
                 console.log(stores);
                 break;
             }
-        }
-        return false;
+			enyo.job("j1", enyo.bind(this, "switchback"), 3000);
+    	} else {
+			z=0;
+		}
     },
+	switchback: function (){
+		z++;
+		this.evaluate();
+	},
+	updateStores: function() {
+        if(s < 9) {
+			this.$[cmdString + s].setContent(stores[parseInt(cmdString + s)]);
+			console.log(s);
+			this.switchbackv2();
+    	} else {
+			s=0;
+			ss = false;
+		}
+	},
+	updateSecStores: function() {
+        if(s < 9) {
+			this.$[cmdString2 + s].setContent("000000000"[s]);
+			this.switchbackv2();
+    	} else {
+			s=0;
+			sss = false;
+		}
+	},
+	switchbackv2: function (){
+		s++;
+		if(ss) {
+			enyo.job("j2", enyo.bind(this, "updateStores"), 332);
+		}
+		if(sss) {
+			enyo.job("j3", enyo.bind(this, "updateSecStores"), 332);
+		}
+	},
     SaveStores: function () {
         var a = window.document.createElement("a");
-        a.href = window.URL.createObjectURL(new Blob([this.$.acc.getValue() + "," + this.$.number1.getValue() + "," + this.$.number2.getValue() + "," + this.$.number3.getValue() + "," + this.$.number4.getValue() + "," + this.$.number5.getValue() + "," + this.$.number6.getValue() + "," + this.$.number7.getValue() + "," + this.$.number8.getValue() + "," + this.$.number9.getValue() + "," + this.$.number10.getValue()], {
-            type: "text/csv"        }));
+        a.href = window.URL.createObjectURL(new Blob([this.$.acc.getValue() + "," + this.$.number1.getValue() + "," + this.$.number2.getValue() + "," + this.$.number3.getValue() + "," + this.$.number4.getValue() + "," + this.$.number5.getValue() + "," + this.$.number6.getValue() + "," + this.$.number7.getValue() + "," + this.$.number8.getValue() + "," + this.$.number9.getValue() + "," + this.$.number10.getValue()], {type: "text/csv"}));
         a.download = "test.csv";
         // Append anchor to body.
         document.body.appendChild(a)
