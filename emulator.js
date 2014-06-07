@@ -4151,9 +4151,9 @@ enyo.kind({
                         var isEight = i == 8;
                         if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
                             if (commandStr.slice(5, 6) == "+") {
-                                var s1 = "0" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent();
+                                var s1 = "0" + commandStr.slice(6);
                             } else {
-                                var s1 = "9" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent();
+                                var s1 = "9" + commandStr.slice(6);
                             }
 							finStr = s1;
                             if (finStr[0] == "9")
@@ -4279,9 +4279,9 @@ enyo.kind({
                         var isEight = i == 8;
                         if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
                             if (commandStr.slice(5, 6) == "+") {
-                                var s1 = "0" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent();
+                                var s1 = "0" + commandStr.slice(6);
                             } else {
-                                var s1 = "9" + this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent();
+                                var s1 = "9" + commandStr.slice(6);
                             }
 							finStr = s1;
                             if (commandStr.slice(5, 6) == "9")
