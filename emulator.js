@@ -4362,7 +4362,7 @@ enyo.kind({
                 console.log(stores);
                 break;
             }
-			enyo.job("j1", enyo.bind(this, "switchback"), 3000);
+			enyo.job("j1", enyo.bind(this, "switchback"), 1503);
     	} else {
 			z=0;
 		}
@@ -4393,10 +4393,10 @@ enyo.kind({
 	switchbackv2: function (){
 		s++;
 		if(ss) {
-			enyo.job("j2", enyo.bind(this, "updateStores"), 332);
+			enyo.job("j2", enyo.bind(this, "updateStores"), 166);
 		}
 		if(sss) {
-			enyo.job("j3", enyo.bind(this, "updateSecStores"), 332);
+			enyo.job("j3", enyo.bind(this, "updateSecStores"), 166);
 		}
 	},
     SaveStores: function () {
