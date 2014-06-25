@@ -4306,10 +4306,10 @@ enyo.kind({
 	switchbackv2: function (){
 		s++;
 		if(ss) {
-			enyo.job("j2", enyo.bind(this, "updateStores"), 166);
+			enyo.job("j2", enyo.bind(this, "updateStores"), 165);
 		}
 		if(sss) {
-			enyo.job("j3", enyo.bind(this, "updateSecStores"), 166);
+			enyo.job("j3", enyo.bind(this, "updateSecStores"), 165);
 		}
 	},
     SaveStores: function () {
