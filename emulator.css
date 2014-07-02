@@ -105,6 +105,20 @@
 	background: #000;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
+.acc {
+	height:25px;
+	width:200px;
+	top: 841;
+	left: 563;
+	border:1px solid white;
+	background: #000;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size:22px;
+}
+.space {
+	width: 463px;
+	height: 25px;
+}
 
 .dek {
 	height:20px;
