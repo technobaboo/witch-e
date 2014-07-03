@@ -211,7 +211,86 @@ enyo.kind({
                 {
                     content: "STORES",
                     style: "padding-left: 460px; font-family: 'Moonstone Miso'; font-size: 37.5px;"                },
+				{
+                    content: "ACCUMULATOR",
+                    style: "padding-left: 1076px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
+				},
+				{kind: "FittableColumns",
+					components: [
+					{
+						classes: "space"
+					},
+					{
+                		classes: "acc",
+                		components: [
+               			{
+               			    name: "000",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "001",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "002",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "003",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "004",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "005",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "006",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "007",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "008",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "009",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "0010",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "0011",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "0012",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "0013",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "0014",
+               			    content: " ",
+               			    classes: "dek"},
+               			{
+               			    name: "0015",
+               			    content: " ",
+               			    classes: "dek"}
+					]}
+				]},
                 {
+					
                     kind: "FittableColumns",
                     style: "height:250px; width:100%;",
                     components: [
@@ -3948,84 +4027,6 @@ enyo.kind({
                         },
 					]
                 },
-				{
-                    content: "ACCUMULATOR",
-                    style: "padding-left: 460px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
-				},
-				{kind: "FittableColumns",
-					components: [
-					{
-						classes: "space"
-					},
-					{
-                		classes: "acc",
-                		components: [
-               			{
-               			    name: "000",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "001",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "002",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "003",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "004",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "005",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "006",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "007",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "008",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "009",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "0010",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "0011",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "0012",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "0013",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "0014",
-               			    content: " ",
-               			    classes: "dek"},
-               			{
-               			    name: "0015",
-               			    content: " ",
-               			    classes: "dek"}
-					]}
-				]},
                 {
                     kind: "moon.Item",
                     content: "Copyright Justin King, 2014 under the GPLv2 License",
