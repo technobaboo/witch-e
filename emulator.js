@@ -4394,6 +4394,11 @@ enyo.kind({
                 	        finStr = "0" + finStr;
                 	    }
                 	    if (parseInt(finStr) < 0) {
+							if(finStr.length >= 16) {
+								prevText = this.$.log.getValue();
+								this.$.log.setValue(prevText + "\nThe accumulator has been overfilled!");
+								finStr = finStr.slice(0,1) + finStr.slice(2);
+							}
                 	        while (finStr.length < 16) {
                 	            finStr = "90" + finStr.slice(1);
                 	            console.log(finStr);
@@ -4402,10 +4407,16 @@ enyo.kind({
 								finStr[d] = (9 - parseInt(finStr[d])).toString();
 							}
                 	    } else {
+							if(finStr.length >= 16) {
+								prevText = this.$.log.getValue();
+								this.$.log.setValue(prevText + "\nThe accumulator has been overfilled!");
+								finStr = finStr.slice(0,1) + finStr.slice(2);
+							}
                 	        while (finStr.length < 16) {
                 	            finStr = "00" + finStr.slice(1);
                 	        }
                 	    }
+						
                 	    stores[parseInt("00" + 0)] = (parseInt(finStr[0])+parseInt("00")).toString();
                 	    stores[parseInt("00" + 1)] = (parseInt(finStr[1])+parseInt("00")).toString();
                 	    stores[parseInt("00" + 2)] = (parseInt(finStr[2])+parseInt("00")).toString();
