@@ -4395,7 +4395,7 @@ enyo.kind({
                 	        finStr = "0" + finStr;
                 	    }
                 	    if (parseInt(finStr) < 0) {
-							if(finStr.length >= 16) {
+							if(finStr.length > 16) {
 								prevText = this.$.log.getValue();
 								this.$.log.setValue(prevText + "\nThe accumulator has been overfilled!");
 								finStr = finStr.slice(0,1) + finStr.slice(2);
@@ -4408,7 +4408,7 @@ enyo.kind({
 								finStr[d] = (9 - parseInt(finStr[d])).toString();
 							}
                 	    } else {
-							if(finStr.length >= 16) {
+							if(finStr.length > 16) {
 								prevText = this.$.log.getValue();
 								this.$.log.setValue(prevText + "\nThe accumulator has been overfilled!");
 								finStr = finStr.slice(0,1) + finStr.slice(2);
