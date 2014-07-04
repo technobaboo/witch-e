@@ -224,67 +224,67 @@ enyo.kind({
                 		classes: "acc",
                 		components: [
                			{
-               			    name: "000",
+               			    name: "090",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "001",
+               			    name: "091",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "002",
+               			    name: "092",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "003",
+               			    name: "093",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "004",
+               			    name: "094",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "005",
+               			    name: "095",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "006",
+               			    name: "096",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "007",
+               			    name: "097",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "008",
+               			    name: "098",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "009",
+               			    name: "099",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "0010",
+               			    name: "0910",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "0011",
+               			    name: "0911",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "0012",
+               			    name: "0912",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "0013",
+               			    name: "0913",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "0014",
+               			    name: "0914",
                			    content: " ",
                			    classes: "dek"},
                			{
-               			    name: "0015",
+               			    name: "0915",
                			    content: " ",
                			    classes: "dek"}
 					]}
@@ -4158,10 +4158,37 @@ enyo.kind({
                     } else {
                         this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
                     }
-                } else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09") {
+                } else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
                     this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
+                } else if (parseInt(commandStr.slice(3, 5)) == 8) {
+					finStr = commandStr.slice(5);
+					if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
+					else finStr = finStr.replaceAt(0, "9");
+					console.log(finStr);
+                        stores[0] = finStr[0];
+                        stores[9] = finStr[1];
+                        stores[10] = finStr[2];
+                        stores[11] = finStr[3];
+                        stores[12] = finStr[4];
+                        stores[13] = finStr[5];
+                        stores[14] = finStr[6];
+                        stores[15] = finStr[7];
+					console.log(stores);
                 } else if (parseInt(commandStr.slice(3, 5)) == 9) {
-                    this.$.acc.setContent(commandStr.slice(5));
+					finStr = commandStr.slice(5);
+					if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
+					else finStr = finStr.replaceAt(0, "9");
+					console.log(finStr);
+                        stores[0] = finStr[0];
+                        stores[1] = finStr[1];
+                        stores[2] = finStr[2];
+                        stores[3] = finStr[3];
+                        stores[4] = finStr[4];
+                        stores[5] = finStr[5];
+                        stores[6] = finStr[6];
+                        stores[7] = finStr[7];
+                        stores[8] = finStr[8];
+					console.log(stores);
                 } else {
 					var finStr;
                     for (var i = 0; i < 9; i++) {
@@ -4185,8 +4212,15 @@ enyo.kind({
                         }
                     }
                 }
-                if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01") {
+                
+                if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01" && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
                      ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+				} else if (commandStr.slice(1, 5) == "0109") {
+					
+					this.updateQudStores();
+                } else if (commandStr.slice(1, 5) == "0108") {
+					
+					this.updateQudStores();
                 } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
                      ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
                 }
@@ -4286,10 +4320,37 @@ enyo.kind({
                     } else {
                         this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
                     }
-                } else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09") {
+                } else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
                     this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
+				} else if (parseInt(commandStr.slice(3, 5)) == 8) {
+					finStr = commandStr.slice(5);
+					if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
+					else finStr = finStr.replaceAt(0, "9");
+					console.log(finStr);
+                        stores[0] = finStr[0];
+                        stores[9] = finStr[1];
+                        stores[10] = finStr[2];
+                        stores[11] = finStr[3];
+                        stores[12] = finStr[4];
+                        stores[13] = finStr[5];
+                        stores[14] = finStr[6];
+                        stores[15] = finStr[7];
+					console.log(stores);
                 } else if (parseInt(commandStr.slice(3, 5)) == 9) {
-                    this.$.acc.setContent(commandStr.slice(5));
+					finStr = commandStr.slice(5);
+					if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
+					else finStr = finStr.replaceAt(0, "9");
+					console.log(finStr);
+                        stores[0] = finStr[0];
+                        stores[1] = finStr[1];
+                        stores[2] = finStr[2];
+                        stores[3] = finStr[3];
+                        stores[4] = finStr[4];
+                        stores[5] = finStr[5];
+                        stores[6] = finStr[6];
+                        stores[7] = finStr[7];
+                        stores[8] = finStr[8];
+					console.log(stores);
                 } else {
 					var finStr;
                     for (var i = 0; i < 9; i++) {
@@ -4316,8 +4377,14 @@ enyo.kind({
                         }
                     }
                 }
-                if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01") {
+                if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01" && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
                      ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+				} else if (commandStr.slice(1, 5) == "0109") {
+					
+					this.updateQudStores();
+                } else if (commandStr.slice(1, 5) == "0108") {
+					
+					this.updateQudStores();
                 } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
                      ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
                 }
@@ -4444,6 +4511,87 @@ enyo.kind({
                 	}
                 	console.log(stores);
                 break;
+				case "6":
+                	console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
+                	if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+                	    if (this.$["090"].getContent() == "0")
+                	    var s1 = parseInt(this.$["091"].getContent() + this.$["092"].getContent() + this.$["093"].getContent() + this.$["094"].getContent() + this.$["095"].getContent() + this.$["096"].getContent() + this.$["097"].getContent() + this.$["098"].getContent() + this.$["099"].getContent() + this.$["0910"].getContent() + this.$["0911"].getContent() + this.$["0912"].getContent() + this.$["0913"].getContent() + this.$["0914"].getContent() + this.$["0915"].getContent());
+                	     else
+                	    var s1 = parseInt(this.$["091"].getContent() + this.$["092"].getContent() + this.$["093"].getContent() + this.$["094"].getContent() + this.$["095"].getContent() + this.$["096"].getContent() + this.$["097"].getContent() + this.$["098"].getContent() + this.$["099"].getContent() + this.$["0910"].getContent() + this.$["0911"].getContent() + this.$["0912"].getContent() + this.$["0913"].getContent() + this.$["0914"].getContent() + this.$["0915"].getContent());
+                	    if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
+                	    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	     else
+                	    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	    var finStr3 = Math.floor(s1 / s2).toString();
+                	    console.log(finStr3);
+                	    if (parseInt(finStr3) > 0) {
+                	        finStr3 = "0" + finStr3;
+                	    }
+                	    if (parseInt(finStr3) < 0) {
+                	        while (finStr3.length < 9) {
+                	            finStr3 = "90" + finStr3.slice(1);
+                	            console.log(finStr3);
+                	        }
+							for(var d=0; d < 16; d++) {
+								finStr3[d] = (9 - parseInt(finStr3[d])).toString();
+							}
+                	    } else {
+                	        while (finStr3.length < 9) {
+                	            finStr3 = "00" + finStr3.slice(1);
+                	        }
+                	    }
+						
+                	    stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr3[0];
+                	    stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr3[1];
+                	    stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr3[2];
+                	    stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr3[3];
+                	    stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr3[4];
+                	    stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr3[5];
+                	    stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr3[6];
+                	    stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr3[7];
+                	    stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr3[8];
+                	} else {3
+                	    this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+                	}
+					ss = true;
+					cmdString = commandStr.slice(3, 5);
+                	this.updateStores();
+					finStr = (s1 % s2).toString();
+					console.log(finStr + " is the initial string");
+					if (parseInt(finStr) < 0) {
+                        while (finStr.length < 16) {
+                            finStr = "90" + finStr.slice(1);
+                            console.log(finStr);
+                        }
+						for(var d=0; d < 16; d++) {
+							finStr[d] = (9 - parseInt(finStr[d])).toString();
+						}
+                    } else {
+						finStr = "0" + finStr;
+                        while (finStr.length < 16) {
+                            finStr = "00" + finStr.slice(1);
+                        }
+                    }
+				
+                	    stores[parseInt("00" + 0)] = finStr[0];
+                	    stores[parseInt("00" + 1)] = finStr[1];
+                	    stores[parseInt("00" + 2)] = finStr[2];
+                	    stores[parseInt("00" + 3)] = finStr[3];
+                	    stores[parseInt("00" + 4)] = finStr[4];
+                	    stores[parseInt("00" + 5)] = finStr[5];
+                	    stores[parseInt("00" + 6)] = finStr[6];
+                	    stores[parseInt("00" + 7)] = finStr[7];
+                	    stores[parseInt("00" + 8)] = finStr[8];
+                	    stores[parseInt("00" + 9)] = finStr[9];
+                	    stores[parseInt("00" + 10)] = finStr[10];
+                	    stores[parseInt("00" + 11)] = finStr[11];
+                	    stores[parseInt("00" + 12)] = finStr[12];
+                	    stores[parseInt("00" + 13)] = finStr[13];
+                	    stores[parseInt("00" + 14)] = finStr[14];
+                	    stores[parseInt("00" + 15)] = finStr[15];
+						this.updateQudStores();
+                	console.log(stores);
+                break;
             }
 			enyo.job("j1", enyo.bind(this, "switchback"), 1503);
     	} else {
@@ -4475,7 +4623,7 @@ enyo.kind({
 	},
 	updateTriStores: function() {
         if(t < 16) {
-			this.$["00" + t].setContent("000000000000000"[t]);
+			this.$["09" + t].setContent("000000000000000"[t]);
 			this.sv3();
     	} else {
 			t=0;
@@ -4483,7 +4631,8 @@ enyo.kind({
 	},
 	updateQudStores: function() {
         if(t < 16) {
-			this.$["00" + t].setContent(stores[parseInt("00" + t)]);
+			this.$["09" + t].setContent(stores[parseInt("00" + t)]);
+			console.log(t + " is the current qud num");
 			this.sv4();
 			
     	} else {
