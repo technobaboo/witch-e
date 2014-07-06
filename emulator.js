@@ -33,6 +33,7 @@ var mainWindow;
 var curTpr = 0;
 var stores = [
 ];
+var LookingForBlkMarkers = false;
 String.prototype.replaceAt=function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
@@ -4076,7 +4077,7 @@ enyo.kind({
     },
     handleChange: function (inSender, inEvent) {
         if (inSender.name == "num1") {
-            curCommands = inSender.getValue().replace(/(<[^>]*>)+/ig, "test").replace(/test(\+|-)/ig, "$1").split("test");
+            curCommands = inSender.getValue().replace(/(<[^>]*>)+/ig, "test").replace(/test(\+|-)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
 			for(i=0; i<curCommands.length; i++) {
 				//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
 				if(curCommands[i] == "") {
@@ -4110,489 +4111,493 @@ enyo.kind({
                 this.$.log.setValue(prevText + "\n" + curCommands[z]);
             }
             var commandStr = curCommands[z];
-		switch(commandStr[0]) {
-            case "0":
-                switch (commandStr[1]) {
-                	case "3":
-                    	//if () {
-                    	//}
-					break;
-                }
-            break;
-            case "1":
-                if (commandStr.slice(1, 3) != "01") {
-                    console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
-                    if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                        if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                         else
-                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                        if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                         else
-                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                        finStr = (s2 + s1).toString();
-                        console.log(finStr);
-                        if (parseInt(finStr) > 0) {
-                            finStr = "0" + finStr;
-                        }
-                        if (parseInt(finStr) < 0) {
-                            while (finStr.length < 9) {
-                                finStr = "90" + finStr.slice(1);
-                                console.log(finStr);
-                            }
-                        } else {
-                            while (finStr.length < 9) {
-                                finStr = "00" + finStr.slice(1);
-                            }
-                        }
-                        stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
-                        stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
-                        stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
-                        stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
-                        stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
-                        stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
-                        stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
-                        stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
-                        stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
-                    } else {
-                        this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
-                    }
-                } else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
-                    this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
-                } else if (parseInt(commandStr.slice(3, 5)) == 8) {
-					finStr = commandStr.slice(5);
-					if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
-					else finStr = finStr.replaceAt(0, "9");
-					console.log(finStr);
-                        stores[0] = finStr[0];
-                        stores[9] = finStr[1];
-                        stores[10] = finStr[2];
-                        stores[11] = finStr[3];
-                        stores[12] = finStr[4];
-                        stores[13] = finStr[5];
-                        stores[14] = finStr[6];
-                        stores[15] = finStr[7];
-					console.log(stores);
-                } else if (parseInt(commandStr.slice(3, 5)) == 9) {
-					finStr = commandStr.slice(5);
-					if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
-					else finStr = finStr.replaceAt(0, "9");
-					console.log(finStr);
-                        stores[0] = finStr[0];
-                        stores[1] = finStr[1];
-                        stores[2] = finStr[2];
-                        stores[3] = finStr[3];
-                        stores[4] = finStr[4];
-                        stores[5] = finStr[5];
-                        stores[6] = finStr[6];
-                        stores[7] = finStr[7];
-                        stores[8] = finStr[8];
-					console.log(stores);
-                } else {
-					var finStr;
-                    for (var i = 0; i < 9; i++) {
-                        var isEight = i == 8;
-                        if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                            if (commandStr.slice(5, 6) == "+") {
-                                var s1 = "0" + commandStr.slice(6);
-                            } else {
-                                var s1 = "9" + commandStr.slice(6);
-                            }
-							finStr = s1;
-                            if (finStr[0] == "9")
-								finStr.replaceAt(1, (9 - parseInt(finStr[i])).toString());
-							console.log((9 - parseInt(finStr[i])).toString());
-                            if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
-                                stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
-                            } else {
-                                stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
-                            }
-                            
-                        }
-                    }
-                }
-                
-                if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01" && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
-                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
-				} else if (commandStr.slice(1, 5) == "0109") {
-					
-					this.updateQudStores();
-                } else if (commandStr.slice(1, 5) == "0108") {
-					
-					this.updateQudStores();
-                } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
-                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
-                }
-                console.log(stores);
-                break;
-            case "2":
-                if (commandStr.slice(3, 5) != "00") {
-                    console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
-                    if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                        if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                         else
-                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                        if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                         else
-                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                        finStr = (s2 - s1) .toString();
-                        console.log(finStr);
-                        if (parseInt(finStr) > 0) {
-                            finStr = "0" + finStr;
-                        }
-                        if (parseInt(finStr) < 0) {
-                            while (finStr.length < 9) {
-                                finStr = "90" + finStr.slice(1);
-                                console.log(finStr);
-                            }
-							for(var d=0; d < 9; d++) {
-								finStr[d] = (9 - parseInt(finStr[d])).toString();
-							}
-                        } else {
-                            while (finStr.length < 9) {
-                                finStr = "00" + finStr.slice(1);
-                            }
-                        }
-                        stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
-                        stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
-                        stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
-                        stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
-                        stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
-                        stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
-                        stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
-                        stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
-                        stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
-                    } else {
-                        this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
-                    }
-                } else if ((parseInt(commandStr.slice(1, 3)) - 10) / 9 < 0 && commandStr.slice(1, 3) != "09") {
-                    this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
-                }
-                if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) != "09") {
-                     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
-                } else if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) == "09") {
-					this.updateTriStores();
-				} else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
-                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
-                     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
-                }
-                console.log(stores);
-                break;
-            case "3":
-                if (commandStr.slice(1, 3) != "01") {
-                    console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
-                    if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                        if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                         else
-                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                        if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                         else
-                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                        finStr = (s2 - s1).toString();
-                        console.log(finStr);
-                        if (parseInt(finStr) > 0) {
-                            finStr = "0" + finStr;
-                        }
-                        if (parseInt(finStr) < 0) {
-                            while (finStr.length < 9) {
-                                finStr = "90" + finStr.slice(1);
-                                console.log(finStr);
-                            }
-                        } else {
-                            while (finStr.length < 9) {
-                                finStr = "00" + finStr.slice(1);
-                            }
-                        }
-                        stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
-                        stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
-                        stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
-                        stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
-                        stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
-                        stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
-                        stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
-                        stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
-                        stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
-                    } else {
-                        this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
-                    }
-                } else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
-                    this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
-				} else if (parseInt(commandStr.slice(3, 5)) == 8) {
-					finStr = commandStr.slice(5);
-					if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
-					else finStr = finStr.replaceAt(0, "9");
-					console.log(finStr);
-                        stores[0] = finStr[0];
-                        stores[9] = finStr[1];
-                        stores[10] = finStr[2];
-                        stores[11] = finStr[3];
-                        stores[12] = finStr[4];
-                        stores[13] = finStr[5];
-                        stores[14] = finStr[6];
-                        stores[15] = finStr[7];
-					console.log(stores);
-                } else if (parseInt(commandStr.slice(3, 5)) == 9) {
-					finStr = commandStr.slice(5);
-					if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
-					else finStr = finStr.replaceAt(0, "9");
-					console.log(finStr);
-                        stores[0] = finStr[0];
-                        stores[1] = finStr[1];
-                        stores[2] = finStr[2];
-                        stores[3] = finStr[3];
-                        stores[4] = finStr[4];
-                        stores[5] = finStr[5];
-                        stores[6] = finStr[6];
-                        stores[7] = finStr[7];
-                        stores[8] = finStr[8];
-					console.log(stores);
-                } else {
-					var finStr;
-                    for (var i = 0; i < 9; i++) {
-                        var isEight = i == 8;
-                        if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                            if (commandStr.slice(5, 6) == "+") {
-                                var s1 = "0" + commandStr.slice(6);
-                            } else {
-                                var s1 = "9" + commandStr.slice(6);
-                            }
-							finStr = s1;
-                            if (commandStr.slice(5, 6) == "9")
-								finStr[i] = (9 - parseInt(finStr[i])).toString;
-                            if (i == 0) {
-                                if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5) + i)] = "9";
-                                 else stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
-                            } else {
-                                if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
-                                    stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
-                                } else {
-                                    stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
-                                }
-                            }
-                        }
-                    }
-                }
-                if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01" && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
-                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
-				} else if (commandStr.slice(1, 5) == "0109") {
-					
-					this.updateQudStores();
-                } else if (commandStr.slice(1, 5) == "0108") {
-					
-					this.updateQudStores();
-                } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
-                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
-                }
-                console.log(stores);
-                break;
-            case "4":
-                if (commandStr.slice(3, 5) != "00") {
-                    console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
-                    if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                        if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                         else
-                        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                        if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                         else
-                        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                        finStr = (s2 - s1) .toString();
-                        console.log(finStr);
-                        if (parseInt(finStr) > 0) {
-                            finStr = "0" + finStr;
-                        }
-                        if (parseInt(finStr) < 0) {
-                            while (finStr.length < 9) {
-                                finStr = "90" + finStr.slice(1);
-                                console.log(finStr);
-                            }
-							for(var d=0; d < 9; d++) {
-								finStr[d] = (9 - parseInt(finStr[d])).toString();
-							}
-                        } else {
-                            while (finStr.length < 9) {
-                                finStr = "00" + finStr.slice(1);
-                            }
-                        }
-                        stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
-                        stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
-                        stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
-                        stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
-                        stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
-                        stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
-                        stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
-                        stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
-                        stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
-                    } else {
-                        this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
-                    }
-                } else if ((parseInt(commandStr.slice(1, 3)) - 10) / 9 < 0 && commandStr.slice(1, 3) != "09") {
-                    this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
-                } else if (parseInt(commandStr.slice(1, 3)) == 9) {
-                    this.$.acc.setContent(commandStr.slice(5));
-                }
-                if (commandStr.slice(3, 5) == "00") {
-                     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
-                } else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
-                     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
-                     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
-                }
-                console.log(stores);
-                break;
-				case "5":
-                	console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
-                	if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                	    if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
-                	    var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                	     else
-                	    var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
-                	    if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                	    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                	     else
-                	    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                	    finStr = (s2 * s1).toString();
-                	    console.log(finStr);
-                	    if (parseInt(finStr) > 0) {
-                	        finStr = "0" + finStr;
-                	    }
-                	    if (parseInt(finStr) < 0) {
-							if(finStr.length > 16) {
-								prevText = this.$.log.getValue();
-								this.$.log.setValue(prevText + "\nThe accumulator has been overfilled!");
-								finStr = finStr.slice(0,1) + finStr.slice(2);
-							}
-                	        while (finStr.length < 16) {
-                	            finStr = "90" + finStr.slice(1);
-                	            console.log(finStr);
+			if(!LookingForBlkMarkers)
+				switch(commandStr[0]) {
+            		case "0":
+            		    switch (commandStr[1]) {
+            		    	case "3":
+            		        	if (this.$["num"+commandStr.slice(4, 5)].getValue().indexOf("["+commandStr.slice(2,3)+"]") == -1) {
+									var prevText = this.$.log.getValue();
+									this.$.log.setValue(prevText + "\nBlock marker not found");
+									z++;
+            		        	}
+							break;
+            		    }
+            		break;
+            		case "1":
+                	if (commandStr.slice(1, 3) != "01") {
+                	    console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
+                	    if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+                	        if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
+                	        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                	         else
+                	        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                	        if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
+                	        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	         else
+                	        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	        finStr = (s2 + s1).toString();
+                	        console.log(finStr);
+                	        if (parseInt(finStr) > 0) {
+                	            finStr = "0" + finStr;
                 	        }
-							for(var d=0; d < 16; d++) {
-								finStr[d] = (9 - parseInt(finStr[d])).toString();
-							}
+                	        if (parseInt(finStr) < 0) {
+                	            while (finStr.length < 9) {
+                	                finStr = "90" + finStr.slice(1);
+                	                console.log(finStr);
+                	            }
+                	        } else {
+                	            while (finStr.length < 9) {
+                	                finStr = "00" + finStr.slice(1);
+                	            }
+                	        }
+                	        stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
+                	        stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
+                	        stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
+                	        stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
+                	        stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
+                	        stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
+                	        stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
+                	        stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
+                	        stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
                 	    } else {
-							if(finStr.length > 16) {
-								prevText = this.$.log.getValue();
-								this.$.log.setValue(prevText + "\nThe accumulator has been overfilled!");
-								finStr = finStr.slice(0,1) + finStr.slice(2);
-							}
-                	        while (finStr.length < 16) {
-                	            finStr = "00" + finStr.slice(1);
+                	        this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+                	    }
+                	} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+                	    this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
+                	} else if (parseInt(commandStr.slice(3, 5)) == 8) {
+						finStr = commandStr.slice(5);
+						if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
+						else finStr = finStr.replaceAt(0, "9");
+						console.log(finStr);
+                	        stores[0] = finStr[0];
+                	        stores[9] = finStr[1];
+                	        stores[10] = finStr[2];
+                	        stores[11] = finStr[3];
+                	        stores[12] = finStr[4];
+                	        stores[13] = finStr[5];
+                	        stores[14] = finStr[6];
+                	        stores[15] = finStr[7];
+						console.log(stores);
+                	} else if (parseInt(commandStr.slice(3, 5)) == 9) {
+						finStr = commandStr.slice(5);
+						if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
+						else finStr = finStr.replaceAt(0, "9");
+						console.log(finStr);
+                	        stores[0] = finStr[0];
+                	        stores[1] = finStr[1];
+                	        stores[2] = finStr[2];
+                	        stores[3] = finStr[3];
+                	        stores[4] = finStr[4];
+                	        stores[5] = finStr[5];
+                	        stores[6] = finStr[6];
+                	        stores[7] = finStr[7];
+                	        stores[8] = finStr[8];
+						console.log(stores);
+                	} else {
+						var finStr;
+                	    for (var i = 0; i < 9; i++) {
+                	        var isEight = i == 8;
+                	        if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+                	            if (commandStr.slice(5, 6) == "+") {
+                	                var s1 = "0" + commandStr.slice(6);
+                	            } else {
+                	                var s1 = "9" + commandStr.slice(6);
+                	            }
+								finStr = s1;
+                	            if (finStr[0] == "9")
+									finStr.replaceAt(1, (9 - parseInt(finStr[i])).toString());
+								console.log((9 - parseInt(finStr[i])).toString());
+                	            if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
+                	                stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
+                	            } else {
+                	                stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
+                	            }
+                	            
                 	        }
                 	    }
+                	}
+                	
+                	if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01" && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+                	     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+					} else if (commandStr.slice(1, 5) == "0109") {
 						
-                	    stores[parseInt("00" + 0)] = (parseInt(finStr[0])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 1)] = (parseInt(finStr[1])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 2)] = (parseInt(finStr[2])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 3)] = (parseInt(finStr[3])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 4)] = (parseInt(finStr[4])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 5)] = (parseInt(finStr[5])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 6)] = (parseInt(finStr[6])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 7)] = (parseInt(finStr[7])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 8)] = (parseInt(finStr[8])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 9)] = (parseInt(finStr[9])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 10)] = (parseInt(finStr[10])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 11)] = (parseInt(finStr[11])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 12)] = (parseInt(finStr[12])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 13)] = (parseInt(finStr[13])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 14)] = (parseInt(finStr[14])+parseInt("00")).toString();
-                	    stores[parseInt("00" + 15)] = (parseInt(finStr[15])+parseInt("00")).toString();
-                	} else {
-                	    this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+						this.updateQudStores();
+                	} else if (commandStr.slice(1, 5) == "0108") {
+						
+						this.updateQudStores();
+                	} else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
+                	     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+                	}
+                	console.log(stores);
+                	break;
+            		case "2":
+                	if (commandStr.slice(3, 5) != "00") {
+                	    console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
+                	    if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+                	        if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
+                	        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                	         else
+                	        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                	        if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
+                	        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	         else
+                	        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	        finStr = (s2 - s1) .toString();
+                	        console.log(finStr);
+                	        if (parseInt(finStr) > 0) {
+                	            finStr = "0" + finStr;
+                	        }
+                	        if (parseInt(finStr) < 0) {
+                	            while (finStr.length < 9) {
+                	                finStr = "90" + finStr.slice(1);
+                	                console.log(finStr);
+                	            }
+								for(var d=0; d < 9; d++) {
+									finStr[d] = (9 - parseInt(finStr[d])).toString();
+								}
+                	        } else {
+                	            while (finStr.length < 9) {
+                	                finStr = "00" + finStr.slice(1);
+                	            }
+                	        }
+                	        stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
+                	        stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
+                	        stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
+                	        stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
+                	        stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
+                	        stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
+                	        stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
+                	        stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
+                	        stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
+                	    } else {
+                	        this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+                	    }
+                	} else if ((parseInt(commandStr.slice(1, 3)) - 10) / 9 < 0 && commandStr.slice(1, 3) != "09") {
+                	    this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
                 	}
                 	if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) != "09") {
-						
+                	     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
+                	} else if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) == "09") {
+						this.updateTriStores();
 					} else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
-                		cmdString = commandStr.slice(1, 3); this.updateQudStores(); 
+                	     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+                	     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
                 	}
                 	console.log(stores);
-                break;
-				case "6":
-                	console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
-                	if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
-                	    if (this.$["090"].getContent() == "0")
-                	    var s1 = parseInt(this.$["091"].getContent() + this.$["092"].getContent() + this.$["093"].getContent() + this.$["094"].getContent() + this.$["095"].getContent() + this.$["096"].getContent() + this.$["097"].getContent() + this.$["098"].getContent() + this.$["099"].getContent() + this.$["0910"].getContent() + this.$["0911"].getContent() + this.$["0912"].getContent() + this.$["0913"].getContent() + this.$["0914"].getContent() + this.$["0915"].getContent());
-                	     else
-                	    var s1 = parseInt(this.$["091"].getContent() + this.$["092"].getContent() + this.$["093"].getContent() + this.$["094"].getContent() + this.$["095"].getContent() + this.$["096"].getContent() + this.$["097"].getContent() + this.$["098"].getContent() + this.$["099"].getContent() + this.$["0910"].getContent() + this.$["0911"].getContent() + this.$["0912"].getContent() + this.$["0913"].getContent() + this.$["0914"].getContent() + this.$["0915"].getContent());
-                	    if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
-                	    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                	     else
-                	    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
-                	    var finStr3 = Math.floor(s1 / s2).toString();
-                	    console.log(finStr3);
-                	    if (parseInt(finStr3) > 0) {
-                	        finStr3 = "0" + finStr3;
-                	    }
-                	    if (parseInt(finStr3) < 0) {
-                	        while (finStr3.length < 9) {
-                	            finStr3 = "90" + finStr3.slice(1);
-                	            console.log(finStr3);
+                	break;
+            		case "3":
+                	if (commandStr.slice(1, 3) != "01") {
+                	    console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
+                	    if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+                	        if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
+                	        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                	         else
+                	        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                	        if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
+                	        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	         else
+                	        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	        finStr = (s2 - s1).toString();
+                	        console.log(finStr);
+                	        if (parseInt(finStr) > 0) {
+                	            finStr = "0" + finStr;
                 	        }
-							for(var d=0; d < 16; d++) {
-								finStr3[d] = (9 - parseInt(finStr3[d])).toString();
-							}
+                	        if (parseInt(finStr) < 0) {
+                	            while (finStr.length < 9) {
+                	                finStr = "90" + finStr.slice(1);
+                	                console.log(finStr);
+                	            }
+                	        } else {
+                	            while (finStr.length < 9) {
+                	                finStr = "00" + finStr.slice(1);
+                	            }
+                	        }
+                	        stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
+                	        stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
+                	        stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
+                	        stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
+                	        stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
+                	        stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
+                	        stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
+                	        stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
+                	        stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
                 	    } else {
-                	        while (finStr3.length < 9) {
-                	            finStr3 = "00" + finStr3.slice(1);
+                	        this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+                	    }
+                	} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+                	    this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
+					} else if (parseInt(commandStr.slice(3, 5)) == 8) {
+						finStr = commandStr.slice(5);
+						if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
+						else finStr = finStr.replaceAt(0, "9");
+						console.log(finStr);
+                	        stores[0] = finStr[0];
+                	        stores[9] = finStr[1];
+                	        stores[10] = finStr[2];
+                	        stores[11] = finStr[3];
+                	        stores[12] = finStr[4];
+                	        stores[13] = finStr[5];
+                	        stores[14] = finStr[6];
+                	        stores[15] = finStr[7];
+						console.log(stores);
+                	} else if (parseInt(commandStr.slice(3, 5)) == 9) {
+						finStr = commandStr.slice(5);
+						if(finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
+						else finStr = finStr.replaceAt(0, "9");
+						console.log(finStr);
+                	        stores[0] = finStr[0];
+                	        stores[1] = finStr[1];
+                	        stores[2] = finStr[2];
+                	        stores[3] = finStr[3];
+                	        stores[4] = finStr[4];
+                	        stores[5] = finStr[5];
+                	        stores[6] = finStr[6];
+                	        stores[7] = finStr[7];
+                	        stores[8] = finStr[8];
+						console.log(stores);
+                	} else {
+						var finStr;
+                	    for (var i = 0; i < 9; i++) {
+                	        var isEight = i == 8;
+                	        if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+                	            if (commandStr.slice(5, 6) == "+") {
+                	                var s1 = "0" + commandStr.slice(6);
+                	            } else {
+                	                var s1 = "9" + commandStr.slice(6);
+                	            }
+								finStr = s1;
+                	            if (commandStr.slice(5, 6) == "9")
+									finStr[i] = (9 - parseInt(finStr[i])).toString;
+                	            if (i == 0) {
+                	                if (commandStr.slice(5, 6) == "-") stores[parseInt(commandStr.slice(3, 5) + i)] = "9";
+                	                 else stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
+                	            } else {
+                	                if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
+                	                    stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
+                	                } else {
+                	                    stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
+                	                }
+                	            }
                 	        }
                 	    }
-						
-                	    stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr3[0];
-                	    stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr3[1];
-                	    stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr3[2];
-                	    stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr3[3];
-                	    stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr3[4];
-                	    stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr3[5];
-                	    stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr3[6];
-                	    stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr3[7];
-                	    stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr3[8];
-                	} else {3
-                	    this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
                 	}
-					ss = true;
-					cmdString = commandStr.slice(3, 5);
-                	this.updateStores();
-					finStr = (s1 % s2).toString();
-					console.log(finStr + " is the initial string");
-					if (parseInt(finStr) < 0) {
-                        while (finStr.length < 16) {
-                            finStr = "90" + finStr.slice(1);
-                            console.log(finStr);
-                        }
-						for(var d=0; d < 16; d++) {
-							finStr[d] = (9 - parseInt(finStr[d])).toString();
-						}
-                    } else {
-						finStr = "0" + finStr;
-                        while (finStr.length < 16) {
-                            finStr = "00" + finStr.slice(1);
-                        }
-                    }
-				
-                	    stores[parseInt("00" + 0)] = finStr[0];
-                	    stores[parseInt("00" + 1)] = finStr[1];
-                	    stores[parseInt("00" + 2)] = finStr[2];
-                	    stores[parseInt("00" + 3)] = finStr[3];
-                	    stores[parseInt("00" + 4)] = finStr[4];
-                	    stores[parseInt("00" + 5)] = finStr[5];
-                	    stores[parseInt("00" + 6)] = finStr[6];
-                	    stores[parseInt("00" + 7)] = finStr[7];
-                	    stores[parseInt("00" + 8)] = finStr[8];
-                	    stores[parseInt("00" + 9)] = finStr[9];
-                	    stores[parseInt("00" + 10)] = finStr[10];
-                	    stores[parseInt("00" + 11)] = finStr[11];
-                	    stores[parseInt("00" + 12)] = finStr[12];
-                	    stores[parseInt("00" + 13)] = finStr[13];
-                	    stores[parseInt("00" + 14)] = finStr[14];
-                	    stores[parseInt("00" + 15)] = finStr[15];
+                	if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01" && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+                	     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+					} else if (commandStr.slice(1, 5) == "0109") {
+						
 						this.updateQudStores();
+                	} else if (commandStr.slice(1, 5) == "0108") {
+						
+						this.updateQudStores();
+                	} else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
+                	     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+                	}
                 	console.log(stores);
-                break;
-            }
+                	break;
+            		case "4":
+                	if (commandStr.slice(3, 5) != "00") {
+                	    console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
+                	    if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+                	        if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
+                	        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                	         else
+                	        var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                	        if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
+                	        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	         else
+                	        var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                	        finStr = (s2 - s1) .toString();
+                	        console.log(finStr);
+                	        if (parseInt(finStr) > 0) {
+                	            finStr = "0" + finStr;
+                	        }
+                	        if (parseInt(finStr) < 0) {
+                	            while (finStr.length < 9) {
+                	                finStr = "90" + finStr.slice(1);
+                	                console.log(finStr);
+                	            }
+								for(var d=0; d < 9; d++) {
+									finStr[d] = (9 - parseInt(finStr[d])).toString();
+								}
+                	        } else {
+                	            while (finStr.length < 9) {
+                	                finStr = "00" + finStr.slice(1);
+                	            }
+                	        }
+                	        stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
+                	        stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
+                	        stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
+                	        stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
+                	        stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
+                	        stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
+                	        stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
+                	        stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
+                	        stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
+                	    } else {
+                	        this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+                	    }
+                	} else if ((parseInt(commandStr.slice(1, 3)) - 10) / 9 < 0 && commandStr.slice(1, 3) != "09") {
+                	    this.$.log.setValue(prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
+                	} else if (parseInt(commandStr.slice(1, 3)) == 9) {
+                	    this.$.acc.setContent(commandStr.slice(5));
+                	}
+                	if (commandStr.slice(3, 5) == "00") {
+                	     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
+                	} else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
+                	     ss = true; cmdString = commandStr.slice(3, 5); this.updateStores();
+                	     sss = true; cmdString2 = commandStr.slice(1, 3); this.updateSecStores(); 
+                	}
+                	console.log(stores);
+                	break;
+					case "5":
+                		console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
+                		if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+                		    if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
+                		    var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                		     else
+                		    var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].getContent() + this.$[commandStr.slice(3, 5) + "2"].getContent() + this.$[commandStr.slice(3, 5) + "3"].getContent() + this.$[commandStr.slice(3, 5) + "4"].getContent() + this.$[commandStr.slice(3, 5) + "5"].getContent() + this.$[commandStr.slice(3, 5) + "6"].getContent() + this.$[commandStr.slice(3, 5) + "7"].getContent() + this.$[commandStr.slice(3, 5) + "8"].getContent());
+                		    if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
+                		    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                		     else
+                		    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+                		    finStr = (s2 * s1).toString();
+                		    console.log(finStr);
+                		    if (parseInt(finStr) > 0) {
+                		        finStr = "0" + finStr;
+                		    }
+                		    if (parseInt(finStr) < 0) {
+								if(finStr.length > 16) {
+									prevText = this.$.log.getValue();
+									this.$.log.setValue(prevText + "\nThe accumulator has been overfilled!");
+									finStr = finStr.slice(0,1) + finStr.slice(2);
+								}
+                		        while (finStr.length < 16) {
+                		            finStr = "90" + finStr.slice(1);
+                		            console.log(finStr);
+                		        }
+								for(var d=0; d < 16; d++) {
+									finStr[d] = (9 - parseInt(finStr[d])).toString();
+								}
+                		    } else {
+								if(finStr.length > 16) {
+									prevText = this.$.log.getValue();
+									this.$.log.setValue(prevText + "\nThe accumulator has been overfilled!");
+									finStr = finStr.slice(0,1) + finStr.slice(2);
+								}
+                		        while (finStr.length < 16) {
+                		            finStr = "00" + finStr.slice(1);
+                		        }
+                		    }
+							
+                		    stores[parseInt("00" + 0)] = (parseInt(finStr[0])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 1)] = (parseInt(finStr[1])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 2)] = (parseInt(finStr[2])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 3)] = (parseInt(finStr[3])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 4)] = (parseInt(finStr[4])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 5)] = (parseInt(finStr[5])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 6)] = (parseInt(finStr[6])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 7)] = (parseInt(finStr[7])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 8)] = (parseInt(finStr[8])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 9)] = (parseInt(finStr[9])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 10)] = (parseInt(finStr[10])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 11)] = (parseInt(finStr[11])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 12)] = (parseInt(finStr[12])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 13)] = (parseInt(finStr[13])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 14)] = (parseInt(finStr[14])+parseInt("00")).toString();
+                		    stores[parseInt("00" + 15)] = (parseInt(finStr[15])+parseInt("00")).toString();
+                		} else {
+                		    this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+                		}
+                		if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) != "09") {
+							
+						} else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(3, 5) != "00") {
+                			cmdString = commandStr.slice(1, 3); this.updateQudStores(); 
+                		}
+                		console.log(stores);
+                	break;
+					case "6":
+            	    	console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
+            	    	if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
+            	    	    if (this.$["090"].getContent() == "0")
+            	    	    var s1 = parseInt(this.$["091"].getContent() + this.$["092"].getContent() + this.$["093"].getContent() + this.$["094"].getContent() + this.$["095"].getContent() + this.$["096"].getContent() + this.$["097"].getContent() + this.$["098"].getContent() + this.$["099"].getContent() + this.$["0910"].getContent() + this.$["0911"].getContent() + this.$["0912"].getContent() + this.$["0913"].getContent() + this.$["0914"].getContent() + this.$["0915"].getContent());
+            	    	     else
+            	    	    var s1 = parseInt(this.$["091"].getContent() + this.$["092"].getContent() + this.$["093"].getContent() + this.$["094"].getContent() + this.$["095"].getContent() + this.$["096"].getContent() + this.$["097"].getContent() + this.$["098"].getContent() + this.$["099"].getContent() + this.$["0910"].getContent() + this.$["0911"].getContent() + this.$["0912"].getContent() + this.$["0913"].getContent() + this.$["0914"].getContent() + this.$["0915"].getContent());
+            	    	    if (this.$[commandStr.slice(1, 3) + "0"].getContent() == "0")
+            	    	    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+            	    	     else
+            	    	    var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].getContent() + this.$[commandStr.slice(1, 3) + "2"].getContent() + this.$[commandStr.slice(1, 3) + "3"].getContent() + this.$[commandStr.slice(1, 3) + "4"].getContent() + this.$[commandStr.slice(1, 3) + "5"].getContent() + this.$[commandStr.slice(1, 3) + "6"].getContent() + this.$[commandStr.slice(1, 3) + "7"].getContent() + this.$[commandStr.slice(1, 3) + "8"].getContent());
+            	    	    var finStr3 = Math.floor(s1 / s2).toString();
+            	    	    console.log(finStr3);
+            	    	    if (parseInt(finStr3) > 0) {
+            	    	        finStr3 = "0" + finStr3;
+            	    	    }
+            	    	    if (parseInt(finStr3) < 0) {
+            	    	        while (finStr3.length < 9) {
+            	    	            finStr3 = "90" + finStr3.slice(1);
+            	    	            console.log(finStr3);
+            	    	        }
+								for(var d=0; d < 16; d++) {
+									finStr3[d] = (9 - parseInt(finStr3[d])).toString();
+								}
+            	    	    } else {
+            	    	        while (finStr3.length < 9) {
+            	    	            finStr3 = "00" + finStr3.slice(1);
+            	    	        }
+            	    	    }
+							
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr3[0];
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr3[1];
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr3[2];
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr3[3];
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr3[4];
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr3[5];
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr3[6];
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr3[7];
+            	    	    stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr3[8];
+            	    	} else {3
+            	    	    this.$.log.setValue(prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
+            	    	}
+						ss = true;
+						cmdString = commandStr.slice(3, 5);
+            	    	this.updateStores();
+						finStr = (s1 % s2).toString();
+						console.log(finStr + " is the initial string");
+						if (parseInt(finStr) < 0) {
+            	            while (finStr.length < 16) {
+            	                finStr = "90" + finStr.slice(1);
+            	                console.log(finStr);
+            	            }
+							for(var d=0; d < 16; d++) {
+								finStr[d] = (9 - parseInt(finStr[d])).toString();
+							}
+            	        } else {
+							finStr = "0" + finStr;
+            	            while (finStr.length < 16) {
+            	                finStr = "00" + finStr.slice(1);
+            	            }
+            	        }
+					
+            	    	    stores[parseInt("00" + 0)] = finStr[0];
+            	    	    stores[parseInt("00" + 1)] = finStr[1];
+            	    	    stores[parseInt("00" + 2)] = finStr[2];
+            	    	    stores[parseInt("00" + 3)] = finStr[3];
+            	    	    stores[parseInt("00" + 4)] = finStr[4];
+            	    	    stores[parseInt("00" + 5)] = finStr[5];
+            	    	    stores[parseInt("00" + 6)] = finStr[6];
+            	    	    stores[parseInt("00" + 7)] = finStr[7];
+            	    	    stores[parseInt("00" + 8)] = finStr[8];
+            	    	    stores[parseInt("00" + 9)] = finStr[9];
+            	    	    stores[parseInt("00" + 10)] = finStr[10];
+            	    	    stores[parseInt("00" + 11)] = finStr[11];
+            	    	    stores[parseInt("00" + 12)] = finStr[12];
+            	    	    stores[parseInt("00" + 13)] = finStr[13];
+            	    	    stores[parseInt("00" + 14)] = finStr[14];
+            	    	    stores[parseInt("00" + 15)] = finStr[15];
+							this.updateQudStores();
+            	    	console.log(stores);
+            	    break;
+            	}
 			enyo.job("j1", enyo.bind(this, "switchback"), 1503);
     	} else {
 			z=0;
