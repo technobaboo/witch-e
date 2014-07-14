@@ -69,13 +69,13 @@
 }
 
 .tapereaderpanel {
-	width: 900px;
+	width: 640px;
 	height: 572px;
 }
 
 .tapereaderimage {
 	width: 128px;
-	height: 356px;
+	height: 300px;
 }
 
 .closetohundred {
@@ -126,4 +126,24 @@
 	display:table-cell;
 	vertical-align:middle;
 	text-align: center;
+}
+.highlight {
+	position: absolute;
+	top: 113px;
+	left: 17px;
+	width: 608px;
+	height: 21px;
+	opacity: 0.5;
+	border: 1px solid #6F687D;
+	background: #6F687D;
+	z-index: 2;
+	pointer-events:none;
+}
+.chkbox {
+	font-size: 30px;
+	width: 114px!important;
+	display: table-cell;
+}
+.boxchk {
+	width:
 }
