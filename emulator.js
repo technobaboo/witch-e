@@ -5076,7 +5076,7 @@ enyo.kind({
 						}
 					break;
 					case "1":
-						if (commandStr.slice(1, 3) != "01") {
+						if (commandStr.slice(2, 3) == curTpr.toString()) {
 							console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
 							if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
 								if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
@@ -5169,14 +5169,14 @@ enyo.kind({
 							}
 						}
 	
-						if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01" && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+						if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(2, 3) == curTpr && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							ss = true;
 							cmdString = commandStr.slice(3, 5);
 							this.updateStores();
-						} else if (commandStr.slice(1, 5) == "0109") {
+						} else if (commandStr.slice(1, 5).indexOf(curTpr + "09") != -1) {
 	
 							this.updateQudStores();
-						} else if (commandStr.slice(1, 5) == "0108") {
+						} else if (commandStr.slice(1, 5).indexOf(curTpr + "08") !=-1) {
 	
 							this.updateQudStores();
 						} else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
@@ -5248,7 +5248,7 @@ enyo.kind({
 						console.log(stores);
 					break;
 					case "3":
-						if (commandStr.slice(1, 3) != "01") {
+						if (commandStr.slice(2, 3) == curTpr.toString()) {
 							console.log(this.$[commandStr.slice(1, 3) + "0"].getContent());
 							if (this.$[commandStr.slice(1, 3) + "0"].getContent() != " " && this.$[commandStr.slice(3, 5) + "0"].getContent() != " ") {
 								if (this.$[commandStr.slice(3, 5) + "0"].getContent() == "0")
@@ -5343,15 +5343,16 @@ enyo.kind({
 								}
 							}
 						}
-						if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(1, 3) == "01" && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+	
+						if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && commandStr.slice(2, 3) == curTpr && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							ss = true;
 							cmdString = commandStr.slice(3, 5);
 							this.updateStores();
-						} else if (commandStr.slice(1, 5) == "0109") {
-
+						} else if (commandStr.slice(1, 5).indexOf(curTpr + "09") != -1) {
+	
 							this.updateQudStores();
-						} else if (commandStr.slice(1, 5) == "0108") {
-
+						} else if (commandStr.slice(1, 5).indexOf(curTpr + "08") !=-1) {
+	
 							this.updateQudStores();
 						} else if (this.$[commandStr.slice(3, 5) + "0"].getContent() != " " && this.$[commandStr.slice(1, 3) + "0"].getContent() != " ") {
 							ss = true;
