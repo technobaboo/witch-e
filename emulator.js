@@ -5061,6 +5061,26 @@ enyo.kind({
 					switch (commandStr[0]) {
 					case "0":
 						switch (commandStr[1]) {
+						case "0":
+							if(commandStr == "00100") {
+								var curTprStr = this.$["num" + (curTpr + 1)].getValue().split(/(<[^>]+>)+/ig);
+								for (g = 0; g < curTprStr.length; g++) {
+									if (curTprStr.indexOf("") != -1) {
+										curTprStr.splice(curTprStr.indexOf(""), 1);
+									}
+									if (curTprStr.indexOf("<br>") != -1) {
+										curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+									}
+								}
+								console.log(curTprStr);
+								if (straight[curTpr])
+									curTprStr.shift();
+								else
+									curTprStr.push(curTprStr.shift());
+								this.$["num" + (curTpr + 1)].setValue(curTprStr.join("<br>"));
+								this.stop();
+							}
+						break;
 						case "2":
 							if (commandStr[2] == "1") {
 								curTpr = parseInt(commandStr.slice(3,5))-1;
