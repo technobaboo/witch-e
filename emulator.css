@@ -144,6 +144,13 @@
 	width: 114px!important;
 	display: table-cell;
 }
-.boxchk {
-	width:
+.printer {
+	width: 520px;
+	height: 412px;
+	font-size: 8px;
+	font-family: "Courier New", Courier, monospace;
+	white-space: nowrap;
+}
+textarea {
+	font-family: "Courier New", Courier, monospace;
 }
