@@ -132,7 +132,7 @@ enyo.kind({
 														name: "log",
 														classes: "enyo-fill",
 														disabled: true,
-														value: "WITCH-E v1.0.0",
+														value: "WITCH-E v2.0.0",
 														fit: true,
 														spotlight: false
                                                 }
