@@ -11,7 +11,7 @@
 
 .samplebox {
 	padding:15px;
-	background:url(images/tapereader.png);
+	background:url(../../assets/tapereader.png);
 	background-size:128px 356px;
 	font-size: 13px;
 	background-repeat:no-repeat;
@@ -22,7 +22,7 @@
 
 .samplebox:hover {
 	padding:15px;
-	background:url(images/tapereaderhover.png);
+	background:url(../../assets/tapereaderhover.png);
 	background-size:128px 356px;
 	font-size: 13px;
 	background-repeat:no-repeat;
@@ -32,7 +32,7 @@
 }
 .samplebox:active {
 	padding:15px;
-	background:url(images/tapereader.png);
+	background:url(../../assets/tapereader.png);
 	background-size:128px 356px;
 	font-size: 13px;
 	background-repeat:no-repeat;
@@ -153,4 +153,10 @@
 }
 textarea {
 	font-family: "Courier New", Courier, monospace;
+}
+
+.headers {
+	font-family: 'Moonstone Miso';
+	font-size: 37.5px !important;
+	height: 60px !important;
 }

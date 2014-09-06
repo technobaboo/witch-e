@@ -4996,6 +4996,7 @@ enyo.kind({
             ]
         }
     ],
+		
 		loopIt: function (inSender, inEvent) {
 			straight[parseInt(inSender.name.slice(6)) - 1] = !straight[parseInt(inSender.name.slice(6)) - 1];
 			if (straight[parseInt(inSender.name.slice(6)) - 1])
@@ -5163,26 +5164,54 @@ enyo.kind({
 					break;
 					case "7": 
 						var possibleOutcomes = ["lblblblblb", "", "", "5csign8d", "5csign8dlb", "5csign8dlblb", "6csign6d", "5csign6d", "5csign6dlb", "5csign6dlblb"];
-						prevText = this.$.printer.get("content");
-						prevText += possibleOutcomes[parseInt(commandStr.slice(2, 3))];
-						prevText = prevText.replace(/lb/g, "\n");
-						if(this.$[commandStr.slice(3, 5) + "0"] == "0")
-							prevText = prevText.replace(/sign/g, "+");
-						else
-							prevText = prevText.replace(/sign/g, "-");
-						if(commandStr.slice(2, 3) != 0) {
-							prevText = prevText.replace(/8d/g, this.$[commandStr.slice(3, 5) + "1"].get("content") + this.$[commandStr.slice(3, 5) + "2"].get("content") + this.$[commandStr.slice(3, 5) + "3"].get("content") + this.$[commandStr.slice(3, 5) + "4"].get("content") + this.$[commandStr.slice(3, 5) + "5"].get("content") + this.$[commandStr.slice(3, 5) + "6"].get("content") + this.$[commandStr.slice(3, 5) + "7"].get("content") + this.$[commandStr.slice(3, 5) + "8"].get("content"));
-							prevText = prevText.replace(/6d/g, this.$[commandStr.slice(3, 5) + "1"].get("content") + this.$[commandStr.slice(3, 5) + "2"].get("content") + this.$[commandStr.slice(3, 5) + "3"].get("content") + this.$[commandStr.slice(3, 5) + "4"].get("content") + this.$[commandStr.slice(3, 5) + "5"].get("content") + this.$[commandStr.slice(3, 5) + "6"].get("content"));
-						}
-						prevText = prevText.replace(/5c/g, "  ");
-						prevText = prevText.replace(/6c/g, "   ");
-						this.$.printer.set("content", prevText);
+						outcomeToBePrinted = possibleOutcomes[parseInt(commandStr.slice(2, 3))];
 					break;
 					}
 				break;
 				case "1":
 					if (commandStr.slice(2, 3) == (curTpr + 1).toString()) {
-						if (this.$[commandStr.slice(1, 3) + "0"] && this.$[commandStr.slice(1, 3) + "0"].get("content") != " " && this.$[commandStr.slice(3, 5) + "0"].get("content") != " ") {
+						if(parseInt(commandStr.slice(3, 5)) == 1 || parseInt(commandStr.slice(3, 5)) == 3) {
+							prevText = this.$.printer.get("content");
+							prevText += outcomeToBePrinted;
+							prevText = prevText.replace(/lb/g, "\n");
+							if(this.$[commandStr.slice(3, 5) + "0"] == "0")
+								prevText = prevText.replace(/sign/g, "+");
+							else
+								prevText = prevText.replace(/sign/g, "-");
+							if(outcomeToBePrinted != "lblblblblb") {
+								if(commandStr.slice(2,3) == "08") {
+									prevText = prevText.replace(/8d/g, this.$[commandStr.slice(2, 3) + "9"].get("content") + this.$[commandStr.slice(2, 3) + "10"].get("content") + this.$[commandStr.slice(2, 3) + "11"].get("content") + this.$[commandStr.slice(2, 3) + "12"].get("content") + this.$[commandStr.slice(2, 3) + "13"].get("content") + this.$[commandStr.slice(2, 3) + "14"].get("content") + this.$[commandStr.slice(2, 3) + "15"].get("content") + " ");
+									prevText = prevText.replace(/6d/g, this.$[commandStr.slice(2, 3) + "9"].get("content") + this.$[commandStr.slice(2, 3) + "10"].get("content") + this.$[commandStr.slice(2, 3) + "11"].get("content") + this.$[commandStr.slice(2, 3) + "12"].get("content") + this.$[commandStr.slice(2, 3) + "13"].get("content") + this.$[commandStr.slice(2, 3) + "14"].get("content"));
+								} else {
+									prevText = prevText.replace(/8d/g, this.$[commandStr.slice(2, 3) + "1"].get("content") + this.$[commandStr.slice(2, 3) + "2"].get("content") + this.$[commandStr.slice(2, 3) + "3"].get("content") + this.$[commandStr.slice(2, 3) + "4"].get("content") + this.$[commandStr.slice(2, 3) + "5"].get("content") + this.$[commandStr.slice(2, 3) + "6"].get("content") + this.$[commandStr.slice(2, 3) + "7"].get("content") + this.$[commandStr.slice(2, 3) + "8"].get("content"));
+									prevText = prevText.replace(/6d/g, this.$[commandStr.slice(2, 3) + "1"].get("content") + this.$[commandStr.slice(2, 3) + "2"].get("content") + this.$[commandStr.slice(2, 3) + "3"].get("content") + this.$[commandStr.slice(2, 3) + "4"].get("content") + this.$[commandStr.slice(2, 3) + "5"].get("content") + this.$[commandStr.slice(2, 3) + "6"].get("content"));
+								}
+							}
+							prevText = prevText.replace(/5c/g, "  ");
+							prevText = prevText.replace(/6c/g, "   ");
+							this.$.printer.set("content", prevText);
+						} else if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
+							var finStr;
+							for (var i = 0; i < 9; i++) {
+								var isEight = i == 8;
+								if (this.$[commandStr.slice(3, 5) + "0"].get("content") != " ") {
+									if (commandStr.slice(5, 6) == "+") {
+										var s1 = "0" + commandStr.slice(6);
+									} else {
+										var s1 = "9" + commandStr.slice(6);
+									}
+									finStr = s1;
+									if (finStr[0] == "9")
+										finStr.replaceAt(1, (9 - parseInt(finStr[i])).toString());
+									console.log((9 - parseInt(finStr[i])).toString());
+									if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
+										stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
+									} else {
+										stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
+									}
+								}
+							}
+						} else if (this.$[commandStr.slice(1, 3) + "0"] && this.$[commandStr.slice(1, 3) + "0"].get("content") != " " && this.$[commandStr.slice(3, 5) + "0"].get("content") != " ") {
 							if (this.$[commandStr.slice(3, 5) + "0"].get("content") == "0")
 								var s1 = parseInt(this.$[commandStr.slice(3, 5) + "1"].get("content") + this.$[commandStr.slice(3, 5) + "2"].get("content") + this.$[commandStr.slice(3, 5) + "3"].get("content") + this.$[commandStr.slice(3, 5) + "4"].get("content") + this.$[commandStr.slice(3, 5) + "5"].get("content") + this.$[commandStr.slice(3, 5) + "6"].get("content") + this.$[commandStr.slice(3, 5) + "7"].get("content") + this.$[commandStr.slice(3, 5) + "8"].get("content"));
 							else
@@ -5206,6 +5235,7 @@ enyo.kind({
 									finStr = "00" + finStr.slice(1);
 								}
 							}
+							console.log("Adding stores together!");
 							stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
 							stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
 							stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
@@ -5246,27 +5276,6 @@ enyo.kind({
 							stores[7] = finStr[7];
 							stores[8] = finStr[8];
 							console.log(stores);
-						} else if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
-							var finStr;
-							for (var i = 0; i < 9; i++) {
-								var isEight = i == 8;
-								if (this.$[commandStr.slice(3, 5) + "0"].get("content") != " ") {
-									if (commandStr.slice(5, 6) == "+") {
-										var s1 = "0" + commandStr.slice(6);
-									} else {
-										var s1 = "9" + commandStr.slice(6);
-									}
-									finStr = s1;
-									if (finStr[0] == "9")
-										finStr.replaceAt(1, (9 - parseInt(finStr[i])).toString());
-									console.log((9 - parseInt(finStr[i])).toString());
-									if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
-										stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
-									} else {
-										stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
-									}
-								}
-							}
 						} else if(this.$[commandStr.slice(3, 5) + "0"] == " " || !between(parseInt(commandStr.slice(3, 5)), 8, 99)) {
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
@@ -5774,10 +5783,13 @@ enyo.kind({
 				if (this.$["num" + stbCurTpr].get("value") != "" && done) {
 					
 					var curTprStr = this.$["num" + stbCurTpr].get("value").split(/(<[^>]+>)+/ig);
+					console.log(blkNum + ":" + curTprStr[0]);
 					if (curTprStr[0] == "[" + blkNum + "]") {
+						console.log("YESSSSSSS!");
 						foundBlkMarker = true;
 						done = false;
 					}
+					console.log(foundBlkMarker + ":" + done);
 					for (g = 0; g < curTprStr.length; g++) {
 						if (curTprStr.indexOf("") != -1) {
 							curTprStr.splice(curTprStr.indexOf(""), 1);
@@ -5822,8 +5834,23 @@ enyo.kind({
 					
 					this.switchback();
 				} else if (foundBlkMarker && this.$["num" + stbCurTpr].get("value") != "") {
+					var curTprStr = this.$["num" + (curTpr+1)].get("value").split(/(<[^>]+>)+/ig);
+					for (g = 0; g < curTprStr.length; g++) {
+						if (curTprStr.indexOf("") != -1) {
+							curTprStr.splice(curTprStr.indexOf(""), 1);
+						}
+						if (curTprStr.indexOf("<br>") != -1) {
+							curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+						}
+					}
+					console.log(curTprStr);
+					if (straight[parseInt(curTpr) - 1])
+						curTprStr.shift();
+					else
+						curTprStr.push(curTprStr.shift());
+					this.$["num" + (curTpr+1)].set("value", curTprStr.join("<br>"));
 					done = false;
-					runForTheFirstTime =  true;
+					runForTheFirstTime = true;
 					this.evaluate();
 					foundBlkMarker = false;
 				} else if (!foundBlkMarker && this.$["num" + stbCurTpr].get("value") != "") {
