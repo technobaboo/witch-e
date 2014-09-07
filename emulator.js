@@ -710,7 +710,7 @@ enyo.kind({
 								if (commandStr.slice(5, 6) == "+") {
 									var s1 = "0" + commandStr.slice(6);
 								} else {
-									var s1 = "9" + commandStr.slice(6);
+									var s1 = "9" + (99999999 - parseInt(commandStr.slice(6)));
 								}
 								finStr = s1;
 								console.log(finStr);
@@ -776,24 +776,19 @@ enyo.kind({
 						} else if (this.$[commandStr.slice(1, 3) + "0"] && this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && this.$[commandStr.slice(1, 3) + "0"].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5) + "0"].get("content"));
 							var s2 = parseInt(this.$[commandStr.slice(1, 3) + "0"].get("content"));
+							var s3 = s1 + s2;
+							if (Math.round(s3/1000000000)) {
+								s3 = (s3 - 1000000000)+1;
+							}
 							console.log("s1 - " + s1);
-							console.log("s1 - " + s2);
-							finStr = (s2 + s1).toString();
+							console.log("s2 - " + s2);
+							console.log("s3 - " + s3);
+							finStr = (s3).toString();
 							console.log("finStr - " + finStr);
-						if(finStr[0] != "-")
+						if(finStr[0] != "9")
 							finStr = "0" + finStr ;
 
 						console.log(finStr);
-						if (finStr[0] == "9") {
-							while (finStr.length < 9) {
-								finStr = "90" + finStr.slice(1);
-								console.log(finStr);
-							}
-						} else {
-							while (finStr.length < 9) {
-								finStr = "00" + finStr.slice(1);
-							}
-						}
 						console.log("Adding stores together!");
 						stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr;
 					}
