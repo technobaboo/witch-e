@@ -714,7 +714,7 @@ enyo.kind({
 								}
 								finStr = s1;
 								console.log(finStr);
-								stores[parseInt(commandStr.slice(3, 5) + "0")] = finStr;
+								stores[parseInt(commandStr.slice(3, 5))] = finStr;
 //							}
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							// sanity check for valid store addresses //
@@ -725,7 +725,7 @@ enyo.kind({
 						} else if (parseInt(commandStr.slice(3, 5)) == 9) {
 							// accumulator store 09//
 							console.log("09ing");
-						} else if(this.$[commandStr.slice(3, 5) + "0"] == " " || !between(parseInt(commandStr.slice(3, 5)), 8, 99)) {
+						} else if(this.$[commandStr.slice(3, 5)] == " " || !between(parseInt(commandStr.slice(3, 5)), 8, 99)) {
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
 					} else if(parseInt(commandStr.slice(3, 5)) == 1 || parseInt(commandStr.slice(3, 5)) == 3) {
@@ -750,8 +750,8 @@ enyo.kind({
 							prevText = prevText.replace(/6c/g, "   ");
 							this.$.printer.set("content", prevText);
 					} else if (this.$[commandStr.slice(1, 3) + "0"] && this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && this.$[commandStr.slice(1, 3) + "0"].get("content") != " ") {
-							var s1 = parseInt(this.$[commandStr.slice(3, 5) + "0"].get("content"));
-							var s2 = parseInt(this.$[commandStr.slice(1, 3) + "0"].get("content"));
+							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
+							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
 							var s3 = s1 + s2;
 							if (Math.round(s3/1000000000)) {
 								s3 = (s3 - 1000000000)+1;
@@ -766,9 +766,9 @@ enyo.kind({
 
 						console.log(finStr);
 						console.log("Adding stores together!");
-						stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr;
+						stores[parseInt(commandStr.slice(3, 5))] = finStr;
 					}
-					if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && commandStr.slice(2, 3) == curTpr + 1 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+					if (this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && commandStr.slice(2, 3) == curTpr + 1 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 						console.log("Updating");
 						ss = true;
 						cmdString = commandStr.slice(3, 5);
@@ -779,7 +779,7 @@ enyo.kind({
 					} else if (commandStr.slice(1, 5).indexOf(curTpr + "08") !=-1) {
 	
 						this.updateQudStores();
-					} else if (this.$[commandStr.slice(1, 3) + "0"] && this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && this.$[commandStr.slice(1, 3) + "0"].get("content") != " ") {
+					} else if (this.$[commandStr.slice(1, 3)] && this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && this.$[commandStr.slice(1, 3)].get("content") != " ") {
 						console.log("Updating 2");
 						ss = true;
 						cmdString = commandStr.slice(3, 5);
@@ -1227,7 +1227,7 @@ enyo.kind({
 			updateStores: function () {
 				console.log("updateStores!");
 				console.log(cmdString + "-" + s);
-				this.$[cmdString + s].set("content", stores[parseInt(cmdString + s)]);
+				this.$[cmdString].set("content", stores[parseInt(cmdString)]);
 				console.log(s);
 				console.log(stores);
 //				this.switchbackv2();
@@ -1237,8 +1237,8 @@ enyo.kind({
 			updateSecStores: function () {
 				console.log("updateSecStores!");
 					console.log(cmdString2 + "-" + s);
-					this.$[cmdString2 + s].set("content", "000000000");
-					stores[parseInt(cmdString2 + s)] = "000000000";
+					this.$[cmdString2].set("content", "000000000");
+					stores[parseInt(cmdString2)] = "000000000";
 					console.log(stores);
 					s = 0;
 					sss = false;
