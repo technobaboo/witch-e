@@ -874,12 +874,15 @@ enyo.kind({
 						this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"09-10-99\"");
 					}
 					if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) != "09") {
+						console.log("first if statement!");
 						sss = true;
 						cmdString2 = commandStr.slice(1, 3);
 						this.updateSecStores();
 					} else if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) == "09") {
+						console.log("second if statement!");
 						this.updateTriStores();
 					} else if (this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && commandStr.slice(3, 5) != "00") {
+						console.log("third if statement!");
 						ss = true;
 						cmdString = commandStr.slice(3, 5);
 						this.updateStores();
@@ -1274,14 +1277,18 @@ enyo.kind({
 			},
 			updateSecStores: function () {
 				console.log("updateSecStores!");
-				this.$[cmdString2 + s].set("content", "000000000");
-				stores[parseInt(cmdString2 + s)] = "000000000";
-				console.log(stores);
-				console.log(cmdString2);
-				this.switchbackv2();
-				s = 0;
-				sss = false;
-				cmdString2 = "";
+					console.log(cmdString2 + "-" + s);
+				if (s < 9 ) {
+					this.$[cmdString2 + s].set("content", "000000000");
+					stores[parseInt(cmdString2 + s)] = "000000000";
+					console.log(stores);
+					this.switchbackv2();
+					s=9;
+				} else {
+					s = 0;
+					sss = false;
+					cmdString2 = "";
+				}
 			},
 			updateTriStores: function () {
 				if (t < 16) {
@@ -1311,6 +1318,7 @@ enyo.kind({
 				enyo.job("j5", enyo.bind(this, "updateQudStores"), 92);
 			},
 			switchbackv2: function () {
+				s++;
 				if (ss) {
 					enyo.job("j2", enyo.bind(this, "updateStores"), 165);
 				}
