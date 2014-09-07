@@ -434,7 +434,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "900",
+												name: "90",
 												content: " ",
 												classes: "dek"
 											}
@@ -443,7 +443,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "800",
+												name: "80",
 												content: " ",
 												classes: "dek"
 											}
@@ -452,7 +452,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "700",
+												name: "70",
 												content: " ",
 												classes: "dek"
 											}
@@ -461,7 +461,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "600",
+												name: "60",
 												content: " ",
 												classes: "dek"
 											}
@@ -470,7 +470,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "500",
+												name: "50",
 												content: " ",
 												classes: "dek"
 											}
@@ -479,7 +479,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "400",
+												name: "40",
 												content: " ",
 												classes: "dek"
 											}
@@ -488,7 +488,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "300",
+												name: "30",
 												content: " ",
 												classes: "dek"
 											}
@@ -497,7 +497,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "200",
+												name: "20",
 												content: " ",
 												classes: "dek"
 											}
@@ -507,7 +507,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "100",
+												name: "10",
 												content: " ",
 												classes: "dek"
 											}
