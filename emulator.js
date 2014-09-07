@@ -1278,17 +1278,12 @@ enyo.kind({
 			updateSecStores: function () {
 				console.log("updateSecStores!");
 					console.log(cmdString2 + "-" + s);
-				if (s < 9 ) {
 					this.$[cmdString2 + s].set("content", "000000000");
 					stores[parseInt(cmdString2 + s)] = "000000000";
 					console.log(stores);
-					this.switchbackv2();
-					s=9;
-				} else {
 					s = 0;
 					sss = false;
 					cmdString2 = "";
-				}
 			},
 			updateTriStores: function () {
 				if (t < 16) {
