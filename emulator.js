@@ -434,47 +434,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "900",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "901",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "902",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "903",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "904",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "905",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "906",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "907",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "908",
+												name: "90",
 												content: " ",
 												classes: "dek"
 											}
@@ -483,47 +443,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "800",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "801",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "802",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "803",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "804",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "805",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "806",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "807",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "808",
+												name: "80",
 												content: " ",
 												classes: "dek"
 											}
@@ -532,47 +452,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "700",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "701",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "702",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "703",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "704",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "705",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "706",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "707",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "708",
+												name: "70",
 												content: " ",
 												classes: "dek"
 											}
@@ -581,47 +461,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "600",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "601",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "602",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "603",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "604",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "605",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "606",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "607",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "608",
+												name: "60",
 												content: " ",
 												classes: "dek"
 											}
@@ -630,47 +470,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "500",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "501",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "502",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "503",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "504",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "505",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "506",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "507",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "508",
+												name: "50",
 												content: " ",
 												classes: "dek"
 											}
@@ -679,47 +479,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "400",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "401",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "402",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "403",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "404",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "405",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "406",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "407",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "408",
+												name: "40",
 												content: " ",
 												classes: "dek"
 											}
@@ -728,47 +488,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "300",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "301",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "302",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "303",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "304",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "305",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "306",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "307",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "308",
+												name: "30",
 												content: " ",
 												classes: "dek"
 											}
@@ -777,47 +497,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "200",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "201",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "202",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "203",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "204",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "205",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "206",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "207",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "208",
+												name: "20",
 												content: " ",
 												classes: "dek"
 											}
@@ -827,47 +507,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "100",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "101",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "102",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "103",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "104",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "105",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "106",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "107",
-												content: " ",
-												classes: "dek"
-											},
-											{
-												name: "108",
+												name: "10",
 												content: " ",
 												classes: "dek"
 											}
