@@ -774,21 +774,15 @@ enyo.kind({
 							prevText = prevText.replace(/6c/g, "   ");
 							this.$.printer.set("content", prevText);
 						} else if (this.$[commandStr.slice(1, 3) + "0"] && this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && this.$[commandStr.slice(1, 3) + "0"].get("content") != " ") {
-						if (this.$[commandStr.slice(3, 5) + "0"].get("content") == "0")
-							var s1 = parseInt("+" + this.$[commandStr.slice(3, 5) + "1"].get("content") + this.$[commandStr.slice(3, 5) + "2"].get("content") + this.$[commandStr.slice(3, 5) + "3"].get("content") + this.$[commandStr.slice(3, 5) + "4"].get("content") + this.$[commandStr.slice(3, 5) + "5"].get("content") + this.$[commandStr.slice(3, 5) + "6"].get("content") + this.$[commandStr.slice(3, 5) + "7"].get("content") + this.$[commandStr.slice(3, 5) + "8"].get("content"));
-						else
-							var s1 = parseInt("-" + this.$[commandStr.slice(3, 5) + "1"].get("content") + this.$[commandStr.slice(3, 5) + "2"].get("content") + this.$[commandStr.slice(3, 5) + "3"].get("content") + this.$[commandStr.slice(3, 5) + "4"].get("content") + this.$[commandStr.slice(3, 5) + "5"].get("content") + this.$[commandStr.slice(3, 5) + "6"].get("content") + this.$[commandStr.slice(3, 5) + "7"].get("content") + this.$[commandStr.slice(3, 5) + "8"].get("content"));
-						if (this.$[commandStr.slice(1, 3) + "0"].get("content") == "0")
-							var s2 = parseInt("+" + this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content") + this.$[commandStr.slice(1, 3) + "7"].get("content") + this.$[commandStr.slice(1, 3) + "8"].get("content"));
-						else
-							var s2 = parseInt("-" + this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content") + this.$[commandStr.slice(1, 3) + "7"].get("content") + this.$[commandStr.slice(1, 3) + "8"].get("content"));
-						finStr = (s2 + s1).toString();
-						console.log(finStr);
-						if(finStr[0] != "-") {
-							finStr = finStr + "0";
-						} else {
-							finStr = finStr.replace(/-/ig, "9");
-						}
+							var s1 = parseInt(this.$[commandStr.slice(3, 5) + "0"].get("content"));
+							var s2 = parseInt(this.$[commandStr.slice(1, 3) + "0"].get("content"));
+							console.log("s1 - " + s1);
+							console.log("s1 - " + s2);
+							finStr = (s2 + s1).toString();
+							console.log("finStr - " + finStr);
+						if(finStr[0] != "-")
+							finStr = "0" + finStr ;
+
 						console.log(finStr);
 						if (finStr[0] == "9") {
 							while (finStr.length < 9) {
@@ -801,15 +795,7 @@ enyo.kind({
 							}
 						}
 						console.log("Adding stores together!");
-						stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr[0];
-						stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr[1];
-						stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr[2];
-						stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr[3];
-						stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr[4];
-						stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr[5];
-						stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr[6];
-						stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr[7];
-						stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr[8];
+						stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr;
 					}
 					if (this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && commandStr.slice(2, 3) == curTpr + 1 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 						console.log("Updating");
