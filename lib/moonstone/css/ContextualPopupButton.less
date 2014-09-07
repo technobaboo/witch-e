@@ -1,39 +1,37 @@
 /*ContextualPopupButton.css*/
-.moon-button.contextual-popup-button{
-	background-image: @moon-contextual-arrow;
+.contextual-popup-button,
+.contextual-popup-button.small {
+	background-image: url(../images/contextual-arrow.png);
 	background-repeat: no-repeat;
 	background-position: right center;
-	padding-right: @moon-contextual-arrow-padding;
-	&.spotlight {
-		background-image: @moon-contextual-arrow-spotlight;
-	}
-	&.pressed,
-	&:active {
-		background-image: @moon-contextual-arrow;
-	}
-	&[disabled] {
-	background-image: @moon-contextual-arrow-deactivated;
-	}
+	padding-right: 50px;
+}
+.contextual-popup-button.spotlight {
+	background-image: url(../images/contextual-arrow-spotlight.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding-right: 50px;
+}
+.contextual-popup-button.pressed,
+.contextual-popup-button:active {
+	background-image: url(../images/contextual-arrow.png);
 }
 
 .enyo-locale-right-to-left {	
-	.moon-button.contextual-popup-button {
-		background-image: @moon-contextual-arrow-rtl;
+	.contextual-popup-button {
+		background-image: url(../images/contextual-arrow-rtl.png);
 		background-position: left center;
-		padding-right: @moon-button-h-padding;
-		padding-left: @moon-contextual-arrow-padding;
-		&.small {
-			padding-right: @moon-button-small-h-padding;
-		}
-		&.spotlight {
-			background-image: @moon-contextual-arrow-spotlight-rtl;
-		}
-		&.pressed,
-		&:active {
-			background-image: @moon-contextual-arrow-rtl;
-		}
-		&[disabled] {
-      background-image: @moon-contextual-arrow-deactivated-rtl;
-    }
+		padding-right: 22px;
+		padding-left: 50px;
+	}
+	.contextual-popup-button.small {
+		padding-right: 20px;
+	}
+	.contextual-popup-button.spotlight {
+		background-image: url(../images/contextual-arrow-spotlight-rtl.png);
+	}
+	.contextual-popup-button.pressed,
+	.contextual-popup-button:active {
+		background-image: url(../images/contextual-arrow-rtl.png);
 	}
 }
