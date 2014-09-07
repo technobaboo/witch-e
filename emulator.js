@@ -705,25 +705,16 @@ enyo.kind({
 						if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
 							console.log("Adding to stores...");
 							var finStr;
-							for (var i = 0; i < 9; i++) {
-								var isEight = i == 8;
-								if (this.$[commandStr.slice(3, 5) + "0"].get("content") != " ") {
-									if (commandStr.slice(5, 6) == "+") {
-										var s1 = "0" + commandStr.slice(6);
-									} else {
-										var s1 = "9" + commandStr.slice(6);
-									}
-									finStr = s1;
-									if (finStr[0] == "9")
-										finStr.replaceAt(1, (9 - parseInt(finStr[i])).toString());
-									console.log((9 - parseInt(finStr[i])).toString());
-									if (finStr.length < 9 && 8 - i - 1 > finStr.length) {
-										stores[parseInt(commandStr.slice(3, 5) + i)] = "0";
-									} else {
-										stores[parseInt(commandStr.slice(3, 5) + i)] = finStr[i];
-									}
+							console.log(commandStr.slice(5,14));
+//							if (this.$[commandStr.slice(3, 5) + "0"].get("content") != " ") {
+								if (commandStr.slice(5, 6) == "+") {
+									var s1 = "0" + commandStr.slice(6);
+								} else {
+									var s1 = "9" + commandStr.slice(6);
 								}
-							}
+								finStr = s1;
+								console.log(finStr);
+//							}
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"08-99\"");
 						} else if (parseInt(commandStr.slice(3, 5)) == 8) {
@@ -1289,7 +1280,8 @@ enyo.kind({
 				console.log("Clearing Stores!");
 				console.log(stores);
 				this.$[cmdString2].set("content", "000000000");
-				stores[parseInt(cmdString2)] = "000000000";
+//				stores[parseInt(cmdString2)] = "000000000";
+				console.log(cmdString2);
 				this.switchbackv2();
 				s = 0;
 				sss = false;
