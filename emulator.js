@@ -686,8 +686,9 @@ enyo.kind({
 							console.log("s3 - " + s3);
 							finStr = (s3).toString();
 							console.log("finStr - " + finStr);
-						if(finStr[0] != "9")
-							finStr = "0" + finStr ;
+							if (Math.round(s3/100000000)) {
+								finStr = "0" + finStr ;
+							}
 
 						console.log(finStr);
 						console.log("Adding stores together!");
