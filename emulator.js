@@ -717,38 +717,14 @@ enyo.kind({
 								stores[parseInt(commandStr.slice(3, 5) + "0")] = finStr;
 //							}
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+							// sanity check for valid store addresses //
 							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"08-99\"");
 						} else if (parseInt(commandStr.slice(3, 5)) == 8) {
+							// accumulator store 08 //
 							console.log("08ing");
-							finStr = commandStr.slice(5);
-							if (finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
-							else finStr = finStr.replaceAt(0, "9");
-							console.log(finStr);
-							stores[0] = finStr[0];
-							stores[9] = finStr[1];
-							stores[10] = finStr[2];
-							stores[11] = finStr[3];
-							stores[12] = finStr[4];
-							stores[13] = finStr[5];
-							stores[14] = finStr[6];
-							stores[15] = finStr[7];
-							console.log(stores);
 						} else if (parseInt(commandStr.slice(3, 5)) == 9) {
+							// accumulator store 09//
 							console.log("09ing");
-							finStr = commandStr.slice(5);
-							if (finStr[0] == "+") finStr = finStr.replaceAt(0, "0");
-							else finStr = finStr.replaceAt(0, "9");
-							console.log(finStr);
-							stores[0] = finStr[0];
-							stores[1] = finStr[1];
-							stores[2] = finStr[2];
-							stores[3] = finStr[3];
-							stores[4] = finStr[4];
-							stores[5] = finStr[5];
-							stores[6] = finStr[6];
-							stores[7] = finStr[7];
-							stores[8] = finStr[8];
-							console.log(stores);
 						} else if(this.$[commandStr.slice(3, 5) + "0"] == " " || !between(parseInt(commandStr.slice(3, 5)), 8, 99)) {
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
@@ -773,7 +749,7 @@ enyo.kind({
 							prevText = prevText.replace(/5c/g, "  ");
 							prevText = prevText.replace(/6c/g, "   ");
 							this.$.printer.set("content", prevText);
-						} else if (this.$[commandStr.slice(1, 3) + "0"] && this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && this.$[commandStr.slice(1, 3) + "0"].get("content") != " ") {
+					} else if (this.$[commandStr.slice(1, 3) + "0"] && this.$[commandStr.slice(3, 5) + "0"] && this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && this.$[commandStr.slice(1, 3) + "0"].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5) + "0"].get("content"));
 							var s2 = parseInt(this.$[commandStr.slice(1, 3) + "0"].get("content"));
 							var s3 = s1 + s2;
