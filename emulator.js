@@ -1288,16 +1288,12 @@ enyo.kind({
 			updateSecStores: function () {
 				console.log("Clearing Stores!");
 				console.log(stores);
-				if (s < 9) {
-					this.$[cmdString2 + s].set("content", "000000000"[s]);
-					stores[parseInt(cmdString2 + s)] = "000000000"[s];
-					if (!done)
-						this.switchbackv2();
-				} else {
-					s = 0;
-					sss = false;
-					cmdString2 = "";
-				}
+				this.$[cmdString2].set("content", "000000000");
+				stores[parseInt(cmdString2)] = "000000000";
+				this.switchbackv2();
+				s = 0;
+				sss = false;
+				cmdString2 = "";
 			},
 			updateTriStores: function () {
 				if (t < 16) {
