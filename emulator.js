@@ -714,6 +714,7 @@ enyo.kind({
 								}
 								finStr = s1;
 								console.log(finStr);
+								stores[parseInt(commandStr.slice(3, 5) + "0")] = finStr;
 //							}
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"08-99\"");
@@ -1268,10 +1269,11 @@ enyo.kind({
 			},
 			updateStores: function () {
 				console.log("updateStores!");
+				console.log(cmdString + "-" + s);
 				this.$[cmdString + s].set("content", stores[parseInt(cmdString + s)]);
 				console.log(s);
 				console.log(stores);
-				this.switchbackv2();
+//				this.switchbackv2();
 				s = 0;
 				ss = false;
 			},
