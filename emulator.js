@@ -685,12 +685,14 @@ enyo.kind({
 							console.log("s3 - " + s3);
 							finStr = (s3).toString();
 							console.log("finStr - " + finStr);
-							if (Math.round(s3/100000000 == 1)) {
+							while ( finStr.length < 9 )
 								finStr = "0" + finStr ;
-							}
 						console.log(finStr);
 						console.log("Adding stores together!");
 						stores[parseInt(commandStr.slice(3, 5))] = finStr;
+						if (commandStr[0] == 2 )
+						stores[parseInt(commandStr.slice(1, 3))] = "000000000";
+
 					}
 					if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) != "09") {
 						console.log("first if statement!");
