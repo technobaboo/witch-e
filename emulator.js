@@ -434,7 +434,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "90",
+												name: "900",
 												content: " ",
 												classes: "dek"
 											}
@@ -443,7 +443,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "80",
+												name: "800",
 												content: " ",
 												classes: "dek"
 											}
@@ -452,7 +452,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "70",
+												name: "700",
 												content: " ",
 												classes: "dek"
 											}
@@ -461,7 +461,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "60",
+												name: "600",
 												content: " ",
 												classes: "dek"
 											}
@@ -470,7 +470,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "50",
+												name: "500",
 												content: " ",
 												classes: "dek"
 											}
@@ -479,7 +479,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "40",
+												name: "400",
 												content: " ",
 												classes: "dek"
 											}
@@ -488,7 +488,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "30",
+												name: "300",
 												content: " ",
 												classes: "dek"
 											}
@@ -497,7 +497,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "20",
+												name: "200",
 												content: " ",
 												classes: "dek"
 											}
@@ -507,7 +507,7 @@ enyo.kind({
 										classes: "dekcell",
 										components: [
 											{
-												name: "10",
+												name: "100",
 												content: " ",
 												classes: "dek"
 											}
@@ -1264,23 +1264,19 @@ enyo.kind({
 					this.stop();
 			},
 			updateStores: function () {
-				if (s < 9) {
-					this.$[cmdString + s].set("content", stores[parseInt(cmdString + s)]);
-					console.log(s);
-
-					console.log(stores);
-					if (!done)
-						this.switchbackv2();
-				} else {
-					s = 0;
-					ss = false;
-				}
+				console.log("updateStores!");
+				this.$[cmdString + s].set("content", stores[parseInt(cmdString + s)]);
+				console.log(s);
+				console.log(stores);
+				this.switchbackv2();
+				s = 0;
+				ss = false;
 			},
 			updateSecStores: function () {
-				console.log("Clearing Stores!");
+				console.log("updateSecStores!");
+				this.$[cmdString2 + s].set("content", "000000000");
+				stores[parseInt(cmdString2 + s)] = "000000000";
 				console.log(stores);
-				this.$[cmdString2].set("content", "000000000");
-//				stores[parseInt(cmdString2)] = "000000000";
 				console.log(cmdString2);
 				this.switchbackv2();
 				s = 0;
@@ -1315,7 +1311,6 @@ enyo.kind({
 				enyo.job("j5", enyo.bind(this, "updateQudStores"), 92);
 			},
 			switchbackv2: function () {
-				s++;
 				if (ss) {
 					enyo.job("j2", enyo.bind(this, "updateStores"), 165);
 				}
