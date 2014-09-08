@@ -1641,6 +1641,22 @@ enyo.kind({
 					case "5":
 						console.log(this.$[commandStr.slice(1, 3)].get("content"));
 						if (this.$[commandStr.slice(1, 3)].get("content") != " " && this.$[commandStr.slice(3, 5)].get("content") != " ") {
+							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
+							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
+							var s3 = s1 * s2;
+//							if (Math.round((s3/1000000000)-0.5)) {
+//								s3 = (s3 - 1000000000)+1;
+//							}
+							console.log("s1 - " + s1);
+							console.log("s2 - " + s2);
+							console.log("s3 - " + s3);
+							finStr = (s3).toString();
+							console.log("finStr - " + finStr);
+//							while ( finStr.length < 9 )
+//								finStr = "0" + finStr ;
+							console.log(finStr);
+
+/*
 							if (this.$[commandStr.slice(3, 5)].get("content")[0] == "0")
 								var s1 = parseInt("+" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
 							else
@@ -1671,7 +1687,7 @@ enyo.kind({
 									finStr = "00" + finStr.slice(1);
 								}
 							}
-
+*/
 							stores[9] = finStr;
 						} else {
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
