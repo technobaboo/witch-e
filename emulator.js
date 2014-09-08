@@ -690,8 +690,12 @@ enyo.kind({
 						console.log(finStr);
 						console.log("Adding stores together!");
 						stores[parseInt(commandStr.slice(3, 5))] = finStr;
-						if (commandStr[0] == 2 )
-						stores[parseInt(commandStr.slice(1, 3))] = "000000000";
+						if (commandStr[0] == "2" ) {
+							stores[parseInt(commandStr.slice(1, 3))] = "000000000";
+							ss = true;
+							cmdString = commandStr.slice(1, 3);
+							this.updateStores();
+						}
 
 					}
 					if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) != "09") {
