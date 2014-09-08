@@ -302,7 +302,7 @@ enyo.kind({
 						style: "height:250px; width:100%;",
 						components: [
 							{
-								name: "column2",
+
 								kind: "FittableRows",
 								components: [
 									{
@@ -348,7 +348,7 @@ enyo.kind({
                             ]
                         },
 							{
-								name: "column2",
+
 								kind: "FittableRows",
 								components: [
 									{
@@ -440,6 +440,843 @@ enyo.kind({
                                 }
 							]
 
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "1",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "91",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "81",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "71",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "61",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "51",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "41",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "31",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "21",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "11",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "2",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "92",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "82",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "72",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "62",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "52",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "42",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "32",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "22",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "12",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "3",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "93",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "83",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "73",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "63",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "53",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "43",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "33",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "23",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "13",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "4",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "94",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "84",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "74",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "64",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "54",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "44",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "34",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "24",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "14",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "5",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "95",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "85",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "75",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "65",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "55",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "45",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "35",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "25",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "15",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "6",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "96",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "86",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "76",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "66",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "56",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "46",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "36",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "26",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "16",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "7",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "97",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "87",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "77",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "67",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "57",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "47",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "37",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "27",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "17",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "8",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "98",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "88",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "78",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "68",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "58",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "48",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "38",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "28",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "18",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
+                        },{
+
+								kind: "FittableRows",
+								components: [
+									{
+										content: "9",
+										classes: "tblcell"
+									},
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "99",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "89",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "79",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "69",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "59",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "49",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "39",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }, {
+										classes: "dekcell",
+										components: [
+											{
+												name: "29",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                },
+									{
+										classes: "dekcell",
+										components: [
+											{
+												name: "19",
+												content: " ",
+												classes: "dek"
+											}
+                                    ]
+                                }
+							]
+
                         },
 					]
                 },
@@ -466,22 +1303,7 @@ enyo.kind({
 			this.inherited(arguments);
 
 
-			stores[parseInt("00" + 0)] = "0";
-			stores[parseInt("00" + 1)] = "0";
-			stores[parseInt("00" + 2)] = "0";
-			stores[parseInt("00" + 3)] = "0";
-			stores[parseInt("00" + 4)] = "0";
-			stores[parseInt("00" + 5)] = "0";
-			stores[parseInt("00" + 6)] = "0";
-			stores[parseInt("00" + 7)] = "0";
-			stores[parseInt("00" + 8)] = "0";
-			stores[parseInt("00" + 9)] = "0";
-			stores[parseInt("00" + 10)] = "0";
-			stores[parseInt("00" + 11)] = "0";
-			stores[parseInt("00" + 12)] = "0";
-			stores[parseInt("00" + 13)] = "0";
-			stores[parseInt("00" + 14)] = "0";
-			stores[parseInt("00" + 15)] = "0";
+			stores["9"] = "0000000000000000";
 		},
 		handleChange: function (inSender, inEvent) {
 			if (inSender.name == "num1") {
@@ -579,13 +1401,13 @@ enyo.kind({
 							if(commandStr.slice(3, 5) == "08" || commandStr.slice(3, 5) == "09") {
 								storedValue = this.$["090"].get("content") == "0";
 							} else if(parseInt(commandStr.slice(3, 5)) >= 10 && parseInt(commandStr.slice(3, 5)) <= 99) {
-								storedValue = this.$[commandStr.slice(3, 5) + "0"].get("content") == "0";
+								storedValue = this.$[commandStr.slice(3, 5)].get("content") == "0";
 							}
 						} else if(commandStr[2] == "2") {
 							if(commandStr.slice(3, 5) == "08" || commandStr.slice(3, 5) == "09") {
 								storedValue = this.$["090"].get("content") == "9";
 							} else if(parseInt(commandStr.slice(3, 5)) >= 10 && parseInt(commandStr.slice(3, 5)) <= 99) {
-								storedValue = this.$[commandStr.slice(3, 5) + "0"].get("content") == "9";
+								storedValue = this.$[commandStr.slice(3, 5)].get("content") == "9";
 							}
 						}
 						console.log(storedValue);
@@ -642,7 +1464,7 @@ enyo.kind({
 								stores[parseInt(commandStr.slice(3, 5))] = finStr;
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							// sanity check for valid store addresses //
-							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"08-99\"");
+							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "with \"08-99\"");
 						} else if (parseInt(commandStr.slice(3, 5)) == 8) {
 							// accumulator store 08 //
 							console.log("08ing");
@@ -657,8 +1479,15 @@ enyo.kind({
 							prevText = this.$.printer.get("content");
 							prevText += outcomeToBePrinted;
 							prevText = prevText.replace(/lb/g, "\n");
-							var printText = this.$[commandStr.slice(1, 3)].get("content");;
+                            if(commandStr.slice(1, 3) != "08" && commandStr.slice(1, 3) != "09") {
+				                var printText = this.$[commandStr.slice(1, 3)].get("content");
+                            } else if(commandStr.slice(1, 3) == "08") {
+                                var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
+                            } else if(commandStr.slice(1, 3) == "09") {
+                                var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
+                            }
 							var printVal;
+                            console.log(printText);
 							if(printText[0] == "0") {
 								prevText = prevText.replace(/sign/g, "+");
 								printVal = parseInt(printText);
@@ -668,13 +1497,8 @@ enyo.kind({
 								printVal=(999999999 - parseInt(printText));
 							}
 							if(outcomeToBePrinted != "lblblblblb") {
-								if(commandStr.slice(1,3) == "08")  {
-									prevText = prevText.replace(/8d/g, this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content") + this.$["0915"].get("content") + " ");
-									prevText = prevText.replace(/6d/g, this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content"));
-								} else {
-									prevText = prevText.replace(/8d/g, (printVal/10000000));
-									prevText = prevText.replace(/6d/g, (Math.round(printVal/100)/100000));
-								}
+								prevText = prevText.replace(/8d/g, (printVal/10000000));
+								prevText = prevText.replace(/6d/g, (Math.round(printVal/100)/100000));
 							}
 							prevText = prevText.replace(/5c/g, "  ");
 							prevText = prevText.replace(/6c/g, "   ");
@@ -695,7 +1519,13 @@ enyo.kind({
 								finStr = "0" + finStr ;
 						console.log(finStr);
 						console.log("Adding stores together!");
-						stores[parseInt(commandStr.slice(3, 5))] = finStr;
+                        if(commandStr.slice(1,3) == "09") {
+                            stores[parseInt(commandStr.slice(3, 5))] = finStr.slice(0, 7);
+                        } else if(commandStr.slice(1,3) == "08") {
+                            stores[parseInt(commandStr.slice(3, 5))] = finStr.slice(0, 1) + finStr.slice(8, 15);
+                        } else {
+                            stores[parseInt(commandStr.slice(3, 5))] = finStr;
+                        }
 						if (commandStr[0] == "2" ) {
 							stores[parseInt(commandStr.slice(1, 3))] = "000000000";
 							ss = true;
@@ -743,7 +1573,7 @@ enyo.kind({
 								stores[parseInt(commandStr.slice(3, 5))] = finStr;
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							// sanity check for valid store addresses //
-							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "\" with \"08-99\"");
+							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "with \"08-99\"");
 						} else if (parseInt(commandStr.slice(3, 5)) == 8) {
 							// accumulator store 08 //
 							console.log("08ing");
@@ -758,18 +1588,25 @@ enyo.kind({
 							prevText = this.$.printer.get("content");
 							prevText += outcomeToBePrinted;
 							prevText = prevText.replace(/lb/g, "\n");
-							if(this.$[commandStr.slice(3, 5) + "0"] == "0")
+                            if(commandStr.slice(1, 3) != "08" && commandStr.slice(1, 3) != "09") {
+				                var printText = this.$[commandStr.slice(1, 3)].get("content");
+                            } else if(commandStr.slice(1, 3) == "08") {
+                                var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
+                            } else if(commandStr.slice(1, 3) != "09") {
+                                var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
+                            }
+							var printVal;
+							if(printText[0] == "0") {
 								prevText = prevText.replace(/sign/g, "+");
-							else
+								printVal = parseInt(printText);
+							}
+							else {
 								prevText = prevText.replace(/sign/g, "-");
+								printVal=(999999999 - parseInt(printText));
+							}
 							if(outcomeToBePrinted != "lblblblblb") {
-								if(commandStr.slice(1,3) == "08")  {
-									prevText = prevText.replace(/8d/g, this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content") + this.$["0915"].get("content") + " ");
-									prevText = prevText.replace(/6d/g, this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content"));
-								} else {
-									prevText = prevText.replace(/8d/g, this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content") + this.$[commandStr.slice(1, 3) + "7"].get("content") + this.$[commandStr.slice(1, 3) + "8"].get("content"));
-									prevText = prevText.replace(/6d/g, this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content"));
-								}
+								prevText = prevText.replace(/8d/g, (printVal/10000000));
+								prevText = prevText.replace(/6d/g, (Math.round(printVal/100)/100000));
 							}
 							prevText = prevText.replace(/5c/g, "  ");
 							prevText = prevText.replace(/6c/g, "   ");
@@ -822,23 +1659,23 @@ enyo.kind({
 					console.log(stores);
 				break;
 					case "5":
-						console.log(this.$[commandStr.slice(1, 3) + "0"].get("content"));
-						if (this.$[commandStr.slice(1, 3) + "0"].get("content") != " " && this.$[commandStr.slice(3, 5) + "0"].get("content") != " ") {
-							if (this.$[commandStr.slice(3, 5) + "0"].get("content") == "0")
-								var s1 = parseInt("+" + this.$[commandStr.slice(3, 5) + "1"].get("content") + this.$[commandStr.slice(3, 5) + "2"].get("content") + this.$[commandStr.slice(3, 5) + "3"].get("content") + this.$[commandStr.slice(3, 5) + "4"].get("content") + this.$[commandStr.slice(3, 5) + "5"].get("content") + this.$[commandStr.slice(3, 5) + "6"].get("content") + this.$[commandStr.slice(3, 5) + "7"].get("content") + this.$[commandStr.slice(3, 5) + "8"].get("content"));
+						console.log(this.$[commandStr.slice(1, 3)].get("content"));
+						if (this.$[commandStr.slice(1, 3)].get("content") != " " && this.$[commandStr.slice(3, 5)].get("content") != " ") {
+							if (this.$[commandStr.slice(3, 5)].get("content")[0] == "0")
+								var s1 = parseInt("+" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
 							else
-								var s1 = parseInt("-" + this.$[commandStr.slice(3, 5) + "1"].get("content") + this.$[commandStr.slice(3, 5) + "2"].get("content") + this.$[commandStr.slice(3, 5) + "3"].get("content") + this.$[commandStr.slice(3, 5) + "4"].get("content") + this.$[commandStr.slice(3, 5) + "5"].get("content") + this.$[commandStr.slice(3, 5) + "6"].get("content") + this.$[commandStr.slice(3, 5) + "7"].get("content") + this.$[commandStr.slice(3, 5) + "8"].get("content"));
-							if (this.$[commandStr.slice(1, 3) + "0"].get("content") == "0")
-								var s2 = parseInt("+" + this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content") + this.$[commandStr.slice(1, 3) + "7"].get("content") + this.$[commandStr.slice(1, 3) + "8"].get("content"));
+								var s1 = parseInt("-" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
+							if (this.$[commandStr.slice(3, 5)].get("content")[0])
+								var s2 = parseInt("+" + this.$[commandStr.slice(1, 3)].get("content").slice(1));
 							else
-								var s2 = parseInt("-" + this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content") + this.$[commandStr.slice(1, 3) + "7"].get("content") + this.$[commandStr.slice(1, 3) + "8"].get("content"));
+								var s2 = parseInt("-" + this.$[commandStr.slice(1, 3)].get("content").slice(1));
 							finStr = (s2 * s1).toString();
 							if(finStr[0] != "-") {
 								finStr = finStr + "0";
 							} else {
 								finStr = finStr.replace(/-/ig, "9");
 							}
-							console.log(finStr);
+							console.log(commandStr.slice(1, 3));
 							if (finStr.length > 16) {
 								prevText = this.$.log.get("value");
 								this.$.log.set("value", prevText + "\nThe accumulator has been overfilled!");
@@ -855,28 +1692,13 @@ enyo.kind({
 								}
 							}
 
-							stores[parseInt("00" + 0)] = (parseInt(finStr[0]) + parseInt("00")).toString();
-							stores[parseInt("00" + 1)] = (parseInt(finStr[1]) + parseInt("00")).toString();
-							stores[parseInt("00" + 2)] = (parseInt(finStr[2]) + parseInt("00")).toString();
-							stores[parseInt("00" + 3)] = (parseInt(finStr[3]) + parseInt("00")).toString();
-							stores[parseInt("00" + 4)] = (parseInt(finStr[4]) + parseInt("00")).toString();
-							stores[parseInt("00" + 5)] = (parseInt(finStr[5]) + parseInt("00")).toString();
-							stores[parseInt("00" + 6)] = (parseInt(finStr[6]) + parseInt("00")).toString();
-							stores[parseInt("00" + 7)] = (parseInt(finStr[7]) + parseInt("00")).toString();
-							stores[parseInt("00" + 8)] = (parseInt(finStr[8]) + parseInt("00")).toString();
-							stores[parseInt("00" + 9)] = (parseInt(finStr[9]) + parseInt("00")).toString();
-							stores[parseInt("00" + 10)] = (parseInt(finStr[10]) + parseInt("00")).toString();
-							stores[parseInt("00" + 11)] = (parseInt(finStr[11]) + parseInt("00")).toString();
-							stores[parseInt("00" + 12)] = (parseInt(finStr[12]) + parseInt("00")).toString();
-							stores[parseInt("00" + 13)] = (parseInt(finStr[13]) + parseInt("00")).toString();
-							stores[parseInt("00" + 14)] = (parseInt(finStr[14]) + parseInt("00")).toString();
-							stores[parseInt("00" + 15)] = (parseInt(finStr[15]) + parseInt("00")).toString();
+							stores[9] = finStr;
 						} else {
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
 						if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) != "09") {
 
-						} else if (this.$[commandStr.slice(3, 5) + "0"].get("content") != " " && commandStr.slice(3, 5) != "00") {
+						} else if (this.$[commandStr.slice(3, 5)].get("content") != " " && commandStr.slice(3, 5) != "00") {
 							cmdString = commandStr.slice(1, 3);
 							this.updateQudStores();
 							sss = true;
@@ -886,16 +1708,16 @@ enyo.kind({
 						console.log(stores);
 						break;
 					case "6":
-						console.log(this.$[commandStr.slice(1, 3) + "0"].get("content"));
-						if (this.$[commandStr.slice(1, 3) + "0"].get("content") != " " && this.$[commandStr.slice(3, 5) + "0"].get("content") != " ") {
-							if (this.$["090"].get("content") == "0")
-								var s1 = parseInt(this.$["091"].get("content") + this.$["092"].get("content") + this.$["093"].get("content") + this.$["094"].get("content") + this.$["095"].get("content") + this.$["096"].get("content") + this.$["097"].get("content") + this.$["098"].get("content") + this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content") + this.$["0915"].get("content"));
+						console.log(this.$[commandStr.slice(1, 3)].get("content"));
+						if (this.$[commandStr.slice(1, 3)].get("content") != " " && this.$[commandStr.slice(3, 5)].get("content") != " ") {
+							if (this.$[commandStr.slice(3, 5)].get("content")[0] == "0")
+								var s2 = parseInt("+" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
 							else
-								var s1 = parseInt(this.$["091"].get("content") + this.$["092"].get("content") + this.$["093"].get("content") + this.$["094"].get("content") + this.$["095"].get("content") + this.$["096"].get("content") + this.$["097"].get("content") + this.$["098"].get("content") + this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content") + this.$["0915"].get("content"));
-							if (this.$[commandStr.slice(1, 3) + "0"].get("content") == "0")
-								var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content") + this.$[commandStr.slice(1, 3) + "7"].get("content") + this.$[commandStr.slice(1, 3) + "8"].get("content"));
+								var s2 = parseInt("-" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
+							if (this.$[commandStr.slice(3, 5)].get("content")[0])
+								var s1 = parseInt("+" + this.$["09"].get("content").slice(1));
 							else
-								var s2 = parseInt(this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content") + this.$[commandStr.slice(1, 3) + "7"].get("content") + this.$[commandStr.slice(1, 3) + "8"].get("content"));
+								var s1 = parseInt("-" + this.$["09"].get("content").slice(1));
 							var finStr3 = Math.floor(s1 / s2).toString();
 							if(finStr3[0] != "-") {
 								finStr3 = finStr3 + "0";
@@ -914,15 +1736,7 @@ enyo.kind({
 								}
 							}
 
-							stores[parseInt(commandStr.slice(3, 5) + 0)] = finStr3[0];
-							stores[parseInt(commandStr.slice(3, 5) + 1)] = finStr3[1];
-							stores[parseInt(commandStr.slice(3, 5) + 2)] = finStr3[2];
-							stores[parseInt(commandStr.slice(3, 5) + 3)] = finStr3[3];
-							stores[parseInt(commandStr.slice(3, 5) + 4)] = finStr3[4];
-							stores[parseInt(commandStr.slice(3, 5) + 5)] = finStr3[5];
-							stores[parseInt(commandStr.slice(3, 5) + 6)] = finStr3[6];
-							stores[parseInt(commandStr.slice(3, 5) + 7)] = finStr3[7];
-							stores[parseInt(commandStr.slice(3, 5) + 8)] = finStr3[8];
+							stores[parseInt(commandStr.slice(3, 5))] = finStr3;
 						} else {
 							3
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
@@ -1016,40 +1830,10 @@ enyo.kind({
 					cmdString2 = "";
 			},
 			updateTriStores: function () {
-				if (t < 16) {
-					this.$["09" + t].set("content", "000000000000000"[t]);
-					if (!done)
-						this.sv3();
-				} else {
-					t = 0;
-				}
+				this.$["09"].set("content", "000000000000000");
 			},
 			updateQudStores: function () {
-				if (t < 16) {
-					this.$["09" + t].set("content", stores[parseInt("00" + t)]);
-					console.log(t + " is the current qud num");
-					if (!done)
-						this.sv4();
-				} else {
-					t = 0;
-				}
-			},
-			sv3: function () {
-				t++;
-				enyo.job("j4", enyo.bind(this, "updateTriStores"), 92);
-			},
-			sv4: function () {
-				t++;
-				enyo.job("j5", enyo.bind(this, "updateQudStores"), 92);
-			},
-			switchbackv2: function () {
-				s++;
-				if (ss) {
-					enyo.job("j2", enyo.bind(this, "updateStores"), 165);
-				}
-				if (sss) {
-					enyo.job("j3", enyo.bind(this, "updateSecStores"), 165);
-				}
+				this.$["09"].set("content", stores[9]);
 			},
 			stop: function () {
 				done = true;
