@@ -672,8 +672,8 @@ enyo.kind({
 									prevText = prevText.replace(/8d/g, this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content") + this.$["0915"].get("content") + " ");
 									prevText = prevText.replace(/6d/g, this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content"));
 								} else {
-									prevText = prevText.replace(/8d/g, printVal);
-//									prevText = prevText.replace(/6d/g, this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content"));
+									prevText = prevText.replace(/8d/g, (printVal/10000000));
+									prevText = prevText.replace(/6d/g, (Math.round(printVal/100)/100000));
 								}
 							}
 							prevText = prevText.replace(/5c/g, "  ");
