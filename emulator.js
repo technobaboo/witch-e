@@ -770,8 +770,8 @@ enyo.kind({
 							this.$.printer.set("content", prevText);
 					} else if (this.$[commandStr.slice(1, 3)] && this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && this.$[commandStr.slice(1, 3)].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
-							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
-							var s3 = s1-s2;
+							var s2 = (999999999 - parseInt(this.$[commandStr.slice(1, 3)].get("content")));
+							var s3 = s1+s2;
 							if (Math.round((s3/1000000000)-0.5)) {
 								s3 = (s3 - 1000000000)+1;
 							}
