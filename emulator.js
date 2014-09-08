@@ -657,17 +657,23 @@ enyo.kind({
 							prevText = this.$.printer.get("content");
 							prevText += outcomeToBePrinted;
 							prevText = prevText.replace(/lb/g, "\n");
-							if(this.$[commandStr.slice(3, 5) + "0"] == "0")
+							var printText = this.$[commandStr.slice(1, 3)].get("content");;
+							var printVal;
+							if(printText[0] == "0") {
 								prevText = prevText.replace(/sign/g, "+");
-							else
+								printVal = parseInt(printText);
+							}
+							else {
 								prevText = prevText.replace(/sign/g, "-");
+								printVal=(999999999 - parseInt(printText));
+							}
 							if(outcomeToBePrinted != "lblblblblb") {
 								if(commandStr.slice(1,3) == "08")  {
 									prevText = prevText.replace(/8d/g, this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content") + this.$["0915"].get("content") + " ");
 									prevText = prevText.replace(/6d/g, this.$["099"].get("content") + this.$["0910"].get("content") + this.$["0911"].get("content") + this.$["0912"].get("content") + this.$["0913"].get("content") + this.$["0914"].get("content"));
 								} else {
-									prevText = prevText.replace(/8d/g, this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content") + this.$[commandStr.slice(1, 3) + "7"].get("content") + this.$[commandStr.slice(1, 3) + "8"].get("content"));
-									prevText = prevText.replace(/6d/g, this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content"));
+									prevText = prevText.replace(/8d/g, printVal);
+//									prevText = prevText.replace(/6d/g, this.$[commandStr.slice(1, 3) + "1"].get("content") + this.$[commandStr.slice(1, 3) + "2"].get("content") + this.$[commandStr.slice(1, 3) + "3"].get("content") + this.$[commandStr.slice(1, 3) + "4"].get("content") + this.$[commandStr.slice(1, 3) + "5"].get("content") + this.$[commandStr.slice(1, 3) + "6"].get("content"));
 								}
 							}
 							prevText = prevText.replace(/5c/g, "  ");
