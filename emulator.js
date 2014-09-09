@@ -1662,38 +1662,6 @@ enyo.kind({
 
 							console.log(finStr);
 
-/*
-							if (this.$[commandStr.slice(3, 5)].get("content")[0] == "0")
-								var s1 = parseInt("+" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
-							else
-								var s1 = parseInt("-" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
-							if (this.$[commandStr.slice(3, 5)].get("content")[0])
-								var s2 = parseInt("+" + this.$[commandStr.slice(1, 3)].get("content").slice(1));
-							else
-								var s2 = parseInt("-" + this.$[commandStr.slice(1, 3)].get("content").slice(1));
-							finStr = (s2 * s1).toString();
-							if(finStr[0] != "-") {
-								finStr = finStr + "0";
-							} else {
-								finStr = finStr.replace(/-/ig, "9");
-							}
-							console.log(commandStr.slice(1, 3));
-							if (finStr.length > 16) {
-								prevText = this.$.log.get("value");
-								this.$.log.set("value", prevText + "\nThe accumulator has been overfilled!");
-								finStr = finStr.slice(0, 1) + finStr.slice(2);
-							}
-							if (finStr[0] == "9") {
-								while (finStr.length < 9) {
-									finStr = "90" + finStr.slice(1);
-									console.log(finStr);
-								}
-							} else {
-								while (finStr.length < 9) {
-									finStr = "00" + finStr.slice(1);
-								}
-							}
-*/
 							stores[9] = finStr;
 						} else {
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
