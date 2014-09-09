@@ -1429,7 +1429,7 @@ enyo.kind({
 				break;
 				case "1":
 				case "2":
-					if (commandStr.slice(2, 3) == (curTpr + 1).toString()) {
+					if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
 						if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
 							console.log("Adding to stores...");
 							var finStr;
@@ -1459,13 +1459,13 @@ enyo.kind({
 							prevText = this.$.printer.get("content");
 							prevText += outcomeToBePrinted;
 							prevText = prevText.replace(/lb/g, "\n");
-                            if(commandStr.slice(1, 3) != "08" && commandStr.slice(1, 3) != "09") {
-				                var printText = this.$[commandStr.slice(1, 3)].get("content");
-                            } else if(commandStr.slice(1, 3) == "08") {
-                                var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
-                            } else if(commandStr.slice(1, 3) == "09") {
-                                var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
-                            }
+							if(commandStr.slice(1, 3) != "08" && commandStr.slice(1, 3) != "09") {
+								var printText = this.$[commandStr.slice(1, 3)].get("content");
+							} else if(commandStr.slice(1, 3) == "08") {
+								var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
+							} else if(commandStr.slice(1, 3) == "09") {
+								var printText = this.$[commandStr.slice(1, 3)].get("content").slice(0,9);
+							}
 							var printVal;
                             console.log(printText);
 							if(printText[0] == "0") {
@@ -1477,7 +1477,10 @@ enyo.kind({
 								printVal=(999999999 - parseInt(printText));
 							}
 							if(outcomeToBePrinted != "lblblblblb") {
-								prevText = prevText.replace(/8d/g, (printVal/10000000));
+								var fixedValue;
+								printVal = (printVal/10000000);
+								fixedValue = printVal.toFixed(7);
+								prevText = prevText.replace(/8d/g, fixedValue);
 								prevText = prevText.replace(/6d/g, (Math.round(printVal/100)/100000));
 							}
 							prevText = prevText.replace(/5c/g, "  ");
@@ -1643,15 +1646,14 @@ enyo.kind({
 						if (this.$[commandStr.slice(1, 3)].get("content") != " " && this.$[commandStr.slice(3, 5)].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
 							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
-							var s3 = s1 * s2;
-							var carry_out = Math.round((s3/1000000000)-0.5);
+							var s3 = ((s1/10000000) * (s2/10000000)) * 10000000;
+//							var carry_out = Math.round((s3/1000000000)-0.5);
 							console.log("s1 - " + s1);
 							console.log("s2 - " + s2);
 							console.log("s3 - " + s3);
-							if (carry_out) {
-								s3 = (s3 - (carry_out * 1000000000))+carry_out;
-							}
-
+//							if (carry_out) {
+//								s3 = (s3 - (carry_out * 1000000000))+carry_out;
+//							}
 							finStr = (s3).toString();
 							console.log("finStr - " + finStr);
 							while ( finStr.length < 9 )
