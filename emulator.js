@@ -1646,7 +1646,7 @@ enyo.kind({
 						if (this.$[commandStr.slice(1, 3)].get("content") != " " && this.$[commandStr.slice(3, 5)].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
 							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
-							var s3 = ((s1/10000000) * (s2/10000000)) * 10000000;
+							var s3 = ((s1/10000000) * (s2/10000000)) * 100000000000000;
 							s3 = Math.round(s3);
 //							var carry_out = Math.round((s3/1000000000)-0.5);
 							console.log("s1 - " + s1);
@@ -1657,10 +1657,8 @@ enyo.kind({
 //							}
 							finStr = (s3).toString();
 							console.log("finStr - " + finStr);
-							while ( finStr.length < 9 )
-								finStr = "0" + finStr ;
 							while ( finStr.length < 16 )
-								finStr = finStr + "0" ;
+								finStr = "0" + finStr ;
 
 							console.log(finStr);
 
