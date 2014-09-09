@@ -1381,13 +1381,15 @@ enyo.kind({
 							if(commandStr.slice(3, 5) == "08" || commandStr.slice(3, 5) == "09") {
 								storedValue = this.$["090"].get("content") == "0";
 							} else if(parseInt(commandStr.slice(3, 5)) >= 10 && parseInt(commandStr.slice(3, 5)) <= 99) {
-								storedValue = this.$[commandStr.slice(3, 5)].get("content") == "0";
+								var checkValue = this.$[commandStr.slice(3, 5)].get("content");
+								storedValue =  checkValue[0] == "0";
 							}
 						} else if(commandStr[2] == "2") {
 							if(commandStr.slice(3, 5) == "08" || commandStr.slice(3, 5) == "09") {
 								storedValue = this.$["090"].get("content") == "9";
 							} else if(parseInt(commandStr.slice(3, 5)) >= 10 && parseInt(commandStr.slice(3, 5)) <= 99) {
-								storedValue = this.$[commandStr.slice(3, 5)].get("content") == "9";
+								var checkValue = this.$[commandStr.slice(3, 5)].get("content");
+								storedValue =  checkValue[0] == "9";
 							}
 						}
 						console.log(storedValue);
