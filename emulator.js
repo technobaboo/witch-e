@@ -1491,10 +1491,13 @@ enyo.kind({
 					} else if (this.$[commandStr.slice(1, 3)] && this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && this.$[commandStr.slice(1, 3)].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
 							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
+							if (commandStr.slice(1,3) == "09") {
+								s2 = Math.round((s2/10000000)-0.5);
+							}
 							var s3 = s1 + s2;
-//							if (Math.round((s3/1000000000)-0.5)) {
-//								s3 = (s3 - 1000000000)+1;
-//							}
+							if (Math.round((s3/1000000000)-0.5)) {
+								s3 = (s3 - 1000000000)+1;
+							}
 							console.log("s1 - " + s1);
 							console.log("s2 - " + s2);
 							console.log("s3 - " + s3);
@@ -1504,13 +1507,7 @@ enyo.kind({
 								finStr = "0" + finStr ;
 						console.log(finStr);
 						console.log("Adding stores together!");
-                        if(commandStr.slice(1,3) == "09") {
-                            stores[parseInt(commandStr.slice(3, 5))] = finStr.slice(0, 7);
-                        } else if(commandStr.slice(1,3) == "08") {
-                            stores[parseInt(commandStr.slice(3, 5))] = finStr.slice(0, 1) + finStr.slice(8, 15);
-                        } else {
-                            stores[parseInt(commandStr.slice(3, 5))] = finStr;
-                        }
+						stores[parseInt(commandStr.slice(3, 5))] = finStr;
 						if (commandStr[0] == "2" ) {
 							stores[parseInt(commandStr.slice(1, 3))] = "000000000";
 							ss = true;
