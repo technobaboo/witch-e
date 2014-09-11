@@ -99,14 +99,6 @@ enyo.kind({
 									}
                             ]
                         },
-                        /*
-				{name:"panel3", components: [
-	{kind: "moon.Header", title: "Printer", titleBelow:"Out it goes!", fit:true},
-	{kind: "moon.InputDecorator", fit:true, classes:"enyo-fill", style:"height:500px;", fit:true, components: [
-			{kind: "moon.TextArea", classes:"dek", name:"log", classes:"enyo-fill", disabled: true, spotlight:false, value:"Ready to print", fit:true}
-		]},
-	
-				]}*/
 							{
 								name: "panel4",
 								kind: "FittableRows",
@@ -258,7 +250,8 @@ enyo.kind({
 								{
 									classes: "printer textarea",
 									name: "printer",
-									style: "font-size: 15px; white-space: pre; border: 3px solid #cccccc; padding: 5px; background: #FFFFFF; background-position: bottom right; background-repeat: no-repeat;"
+                                    content:"",
+									style: "overflow: scroll; font-size: 15px; white-space: pre; border: 3px solid #cccccc; padding: 5px; background: #FFFFFF; background-position: bottom right; background-repeat: no-repeat;"
                                 }
                             ]
                         }
