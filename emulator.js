@@ -1514,6 +1514,8 @@ enyo.kind({
 						sss = true;
 						cmdString2 = commandStr.slice(1, 3);
 						this.updateSecStores();
+					} else if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) == "09") {
+						this.updateTriStores();
 					} else if (this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && commandStr.slice(2, 3) == curTpr + 1 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 						console.log("Updating");
 						ss = true;
@@ -1672,74 +1674,36 @@ enyo.kind({
 					case "6":
 						console.log(this.$[commandStr.slice(1, 3)].get("content"));
 						if (this.$[commandStr.slice(1, 3)].get("content") != " " && this.$[commandStr.slice(3, 5)].get("content") != " ") {
-							if (this.$[commandStr.slice(3, 5)].get("content")[0] == "0")
-								var s2 = parseInt("+" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
-							else
-								var s2 = parseInt("-" + this.$[commandStr.slice(3, 5)].get("content").slice(1));
-							if (this.$[commandStr.slice(3, 5)].get("content")[0])
-								var s1 = parseInt("+" + this.$["09"].get("content").slice(1));
-							else
-								var s1 = parseInt("-" + this.$["09"].get("content").slice(1));
-							var finStr3 = Math.floor(s1 / s2).toString();
-							if(finStr3[0] != "-") {
-								finStr3 = finStr3 + "0";
-							} else {
-								finStr3 = finStr3.replace(/-/ig, "9");
-							}
-							console.log(finStr3);
-							if (finStr3[0] == "9") {
-								while (finStr3.length < 9) {
-									finStr3 = "90" + finStr.slice(1);
-									console.log(finStr3);
-								}
-							} else {
-								while (finStr3.length < 9) {
-									finStr3 = "00" + finStr3.slice(1);
-								}
-							}
+							var s1 = parseInt(stores[9]);
+							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
+							var s3 = (s1 / s2) * 10000000;
+							console.log("s1 - " + s1);
+							console.log("s2 - " + s2);
+							console.log("s3 - " + s3);
+							finStr = (s3).toString();
+							console.log("finStr - " + finStr);
+							while ( finStr.length < 9 )
+								finStr = "0" + finStr;
 
-							stores[parseInt(commandStr.slice(3, 5))] = finStr3;
+							console.log(finStr);
+
+							stores[commandStr.slice(3, 5)] = finStr;
 						} else {
-							3
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
-						ss = true;
-						cmdString = commandStr.slice(3, 5);
-						this.updateStores();
-						finStr = (s1 % s2).toString();
-						console.log(finStr + " is the initial string");
-						if (parseInt(finStr) < 0) {
-							while (finStr.length < 16) {
-								finStr = "90" + finStr.slice(1);
-								console.log(finStr);
-							}
-							for (var d = 0; d < 16; d++) {
-								finStr[d] = (9 - parseInt(finStr[d])).toString();
-							}
-						} else {
-							finStr = "0" + finStr;
-							while (finStr.length < 16) {
-								finStr = "00" + finStr.slice(1);
-							}
-						}
+						if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) != "09") {
 
-						stores[parseInt("00" + 0)] = finStr[0];
-						stores[parseInt("00" + 1)] = finStr[1];
-						stores[parseInt("00" + 2)] = finStr[2];
-						stores[parseInt("00" + 3)] = finStr[3];
-						stores[parseInt("00" + 4)] = finStr[4];
-						stores[parseInt("00" + 5)] = finStr[5];
-						stores[parseInt("00" + 6)] = finStr[6];
-						stores[parseInt("00" + 7)] = finStr[7];
-						stores[parseInt("00" + 8)] = finStr[8];
-						stores[parseInt("00" + 9)] = finStr[9];
-						stores[parseInt("00" + 10)] = finStr[10];
-						stores[parseInt("00" + 11)] = finStr[11];
-						stores[parseInt("00" + 12)] = finStr[12];
-						stores[parseInt("00" + 13)] = finStr[13];
-						stores[parseInt("00" + 14)] = finStr[14];
-						stores[parseInt("00" + 15)] = finStr[15];
-						this.updateQudStores();
+						} else if (this.$[commandStr.slice(3, 5)].get("content") != " " && commandStr.slice(3, 5) != "00") {
+							console.log("Updating 6");
+							ss = true;
+							cmdString = commandStr.slice(3, 5);
+							this.updateStores();
+//							cmdString = commandStr.slice(1, 3);
+//							this.updateQudStores();
+//							sss = true;
+//							cmdString2 = commandStr.slice(3, 5);
+//							this.updateSecStores();
+						}
 						console.log(stores);
 						break;
 					}
@@ -1777,7 +1741,6 @@ enyo.kind({
 				this.$[cmdString].set("content", stores[parseInt(cmdString)]);
 				console.log(s);
 				console.log(stores);
-//				this.switchbackv2();
 				s = 0;
 				ss = false;
 			},
