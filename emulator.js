@@ -1516,7 +1516,7 @@ enyo.kind({
 						this.updateSecStores();
 					} else if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) == "09") {
 						this.updateTriStores();
-					} else if (this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && commandStr.slice(2, 3) == curTpr + 1 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+					} else if (this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && commandStr.slice(2, 3) == curTpr + 1) {
 						console.log("Updating");
 						ss = true;
 						cmdString = commandStr.slice(3, 5);
