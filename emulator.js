@@ -1680,6 +1680,7 @@ enyo.kind({
 							console.log("s1 - " + s1);
 							console.log("s2 - " + s2);
 							console.log("s3 - " + s3);
+							s3 = Math.round(s3);
 							finStr = (s3).toString();
 							console.log("finStr - " + finStr);
 							while ( finStr.length < 9 )
