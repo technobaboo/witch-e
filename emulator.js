@@ -1390,9 +1390,9 @@ enyo.kind({
 					break;
 					case "2":
                         if(storedValue == null) {
-                            this.$.log.set("value", prevText + "\nSign Inspection: Undefined");
+                            this.$.log.set("value", prevText + "\nSign: Null");
                         } else {
-                            this.$.log.set("value", prevText + "\nSign Inspection: " + (storedValue.toString()[0].toUpperCase() + storedValue.toString().slice(1)));
+                            this.$.log.set("value", prevText + "\nSign: " + (storedValue.toString()[0].toUpperCase() + storedValue.toString().slice(1)));
                         }
 						if (commandStr[2] == "1") {
 							curTpr = parseInt(commandStr.slice(3,5))-1;
