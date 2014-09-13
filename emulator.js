@@ -1387,10 +1387,14 @@ enyo.kind({
 							}
 						}
                         prevText = this.$.log.get("value");
-                        this.$.log.set("value", prevText + "\nThe stored sign value is " + storedValue +".");
 						console.log(storedValue);
 					break;
 					case "2":
+                        if(storedValue == null) {
+                            this.$.log.set("value", prevText + "\nSign Inspection: Undefined");
+                        } else {
+                            this.$.log.set("value", prevText + "\nSign Inspection: " + (storedValue.toString()[0].toUpperCase() + storedValue.toString().slice(1)));
+                        }
 						if (commandStr[2] == "1") {
 							curTpr = parseInt(commandStr.slice(3,5))-1;
 							this.sv6();
@@ -1399,7 +1403,6 @@ enyo.kind({
 							this.sv6();
 						} else if (commandStr[2] == "2" && !storedValue) {
 							var prevText = this.$.log.get("value");
-							this.$.log.set("value", prevText + "\nError: The stored value is either NO or UNDEFINED.");
 						}
 					break;
 					case "3":
@@ -1408,15 +1411,18 @@ enyo.kind({
 						done = true;
 						this.searchForBlkMarker();
 					break;
-					case "5": 
+					case "5":
+                            
+                        if(storedValue == null) {
+                            this.$.log.set("value", prevText + "\nSign Inspection: Undefined");
+                        } else {
+                            this.$.log.set("value", prevText + "\nSign Inspection: " + (storedValue.toString()[0].toUpperCase() + storedValue.toString().slice(1)));
+                        }
 						if (storedValue) {
 							blkNum = commandStr.slice(2, 3);
 							stbCurTpr = commandStr.slice(4);
 							done = true;
 							this.searchForBlkMarker();
-						} else {
-							var prevText = this.$.log.get("value");
-							this.$.log.set("value", prevText + "\nError: The stored value is either NO or UNDEFINED.");
 						}
 					break;
 					case "7": 
