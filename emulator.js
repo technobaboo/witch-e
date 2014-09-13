@@ -31,6 +31,7 @@ var done = false;
 var storedValue = null;
 var tprPositions = [0, 0, 0, 0, 0];
 var outcomeToBePrinted = null;
+var tapeValues = ["", "", "", "", ""];
 String.prototype.replaceAt = function (index, character) {
 	return this.substr(0, index) + character + this.substr(index + character.length);
 }
@@ -216,6 +217,14 @@ enyo.kind({
 												style: "height:50px; width:128px",
 												onclick: "execCommands",
 												content: "Start"
+											},
+                                            {
+												name: "resetTapes",
+												classes: "fontsize mouseover",
+												fit: true,
+												style: "height:50px; width:128px",
+												onclick: "resetTapes",
+												content: "Reset Tapes"
 											},
 											{
 												name: "stop",
@@ -1290,6 +1299,7 @@ enyo.kind({
 			}
 			enyo.log(curCommands);
 			tpr[parseInt(inSender.name.substring(3)) - 1] = inSender.get("value");
+            tapeValues = tpr;
 			console.log(tpr + " : " + curCommands);
 		},
 		execCommands: function () {
@@ -1879,5 +1889,12 @@ enyo.kind({
 			},
 			sv5: function () {
 				enyo.job("j5", enyo.bind(this, "searchForBlkMarker"), 712);
-			}
+			},
+            resetTapes: function() {
+                for(var ts = 1; ts <= 5; ts++) {
+                    if(tapeValues[ts-1] == undefined)
+                        tapeValues[ts-1] = "";
+                    this.$["num" + ts].set("value", tapeValues[ts-1]);
+                }
+            }
 });
