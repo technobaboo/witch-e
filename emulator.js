@@ -1389,19 +1389,21 @@ enyo.kind({
 						console.log(storedValue);
 					break;
 					case "2":
-                        if(storedValue == null) {
-                            this.$.log.set("value", prevText + "\nSign: Null");
-                        } else {
-                            this.$.log.set("value", prevText + "\nSign: " + (storedValue.toString()[0].toUpperCase() + storedValue.toString().slice(1)));
-                        }
 						if (commandStr[2] == "1") {
+                            this.$.log.set("value", prevText + "\nSign: Skip");
 							curTpr = parseInt(commandStr.slice(3,5))-1;
 							this.sv6();
 						} else if (commandStr[2] == "2" && storedValue) {
-							curTpr = parseInt(commandStr.slice(3,5))-1;
+                            Tpr = parseInt(commandStr.slice(3,5))-1;
 							this.sv6();
+							var prevText = this.$.log.get("value");
+                            this.$.log.set("value", prevText + "\nSign: True");
 						} else if (commandStr[2] == "2" && !storedValue) {
 							var prevText = this.$.log.get("value");
+                            if(storedValue == null)
+                                this.$.log.set("value", prevText + "\nSign: Null");
+                            else
+                                this.$.log.set("value", prevText + "\nSign: False");
 						}
 					break;
 					case "3":
@@ -1411,18 +1413,21 @@ enyo.kind({
 						this.searchForBlkMarker();
 					break;
 					case "5":
-                            
-                        if(storedValue == null) {
-                            this.$.log.set("value", prevText + "\nSign Inspection: Undefined");
-                        } else {
-                            this.$.log.set("value", prevText + "\nSign Inspection: " + (storedValue.toString()[0].toUpperCase() + storedValue.toString().slice(1)));
-                        }
 						if (storedValue) {
 							blkNum = commandStr.slice(2, 3);
 							stbCurTpr = commandStr.slice(4);
 							done = true;
+						} else if (commandStr[2] == "2" && !storedValue) {
+							var prevText = this.$.log.get("value");
 							this.searchForBlkMarker();
-						}
+                            this.$.log.set("value", prevText + "\nSign: True");
+						} else {
+							var prevText = this.$.log.get("value");
+                            if(storedValue == null)
+                                this.$.log.set("value", prevText + "\nSign: Null");
+                            else
+                                this.$.log.set("value", prevText + "\nSign: False");
+                        }
 					break;
 					case "7": 
 						var possibleOutcomes = ["lblblblblb", "", "", "5csign8d", "5csign8dlb", "5csign8dlblb", "6csign6d", "5csign6d", "5csign6dlb", "5csign6dlblb"];
