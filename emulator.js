@@ -1295,6 +1295,7 @@ enyo.kind({
 		execCommands: function () {
 			
 			prevText = this.$.log.get("value");
+            this.$.log.set("value", prevText + "\nThe stored sign value is " + storedValue +".");
 			if (curCommands[0].length != 3 && curCommands[0].length != 5 && curCommands[0].length != 14) {
 				curTapeReader = "";
 				this.$.log.set("value", prevText + "Error: This Command/Block Marker must be 3 or 5 or 9 characters long with a plus/minus included, ex. [1], [2], 21000 or 10110\n+12345678");
@@ -1385,6 +1386,8 @@ enyo.kind({
 								storedValue =  checkValue[0] == "9";
 							}
 						}
+                        prevText = this.$.log.get("value");
+                        this.$.log.set("value", prevText + "\nThe stored sign value is " + storedValue +".");
 						console.log(storedValue);
 					break;
 					case "2":
