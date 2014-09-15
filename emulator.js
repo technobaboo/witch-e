@@ -1896,5 +1896,6 @@ enyo.kind({
                         tapeValues[ts-1] = "";
                     this.$["num" + ts].set("value", tapeValues[ts-1]);
                 }
+                curTpr = 0;
             }
 });
