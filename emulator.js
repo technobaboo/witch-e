@@ -1288,6 +1288,7 @@ enyo.kind({
 			stores["9"] = "0000000000000000";
 		},
 		handleChange: function (inSender, inEvent) {
+            inSender.set("value", inSender.get("value").replace(/<br><br>/ig, "<br>").replace(/<[^br][^>]*>/ig, ""));
 			if (inSender.name == "num1") {
 				curCommands = inSender.get("value").replace(/(<[^>]*>)+/ig, "test").replace(/test(\+|-)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
 				for (i = 0; i < curCommands.length; i++) {
@@ -1404,7 +1405,7 @@ enyo.kind({
 							curTpr = parseInt(commandStr.slice(3,5))-1;
 							this.sv6();
 						} else if (commandStr[2] == "2" && storedValue) {
-                            Tpr = parseInt(commandStr.slice(3,5))-1;
+                            curTpr = parseInt(commandStr.slice(3,5))-1;
 							this.sv6();
 							var prevText = this.$.log.get("value");
                             this.$.log.set("value", prevText + "\nSign: True");
