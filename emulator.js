@@ -1288,9 +1288,9 @@ enyo.kind({
 			stores["9"] = "0000000000000000";
 		},
 		handleChange: function (inSender, inEvent) {
-            inSender.set("value", inSender.get("value").replace(/<br><br>/ig, "<br>").replace(/<[^br][^>]*>/ig, ""));
+            inSender.set("value", inSender.get("value").replace(/<\/div>/ig, "").replace(/<div>/ig, "<br>").replace(/(<br>)+/ig, "<br>").replace(/<br>/ig, "break").replace(/<[^>]+>/ig, "").replace(/break/ig, "<br>"));
 			if (inSender.name == "num1") {
-				curCommands = inSender.get("value").replace(/(<[^>]*>)+/ig, "test").replace(/test(\+|-)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
+				curCommands = inSender.get("value").replace(/<br>(\+|-)/ig, "$1").replace(/<br>\[[0-9]\]/ig, "").split("<br>");
 				for (i = 0; i < curCommands.length; i++) {
 					//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
 					if (curCommands[i] == "") {
