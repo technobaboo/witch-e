@@ -1428,17 +1428,18 @@ enyo.kind({
 							blkNum = commandStr.slice(2, 3);
 							stbCurTpr = commandStr.slice(4);
 							done = true;
+							this.$.log.set("value", prevText + "\n05xyy");
 						} else if (commandStr[2] == "2" && !storedValue) {
 							var prevText = this.$.log.get("value");
 							this.searchForBlkMarker();
-                            this.$.log.set("value", prevText + "\nSign: True");
+							this.$.log.set("value", prevText + "\nSign: True");
 						} else {
 							var prevText = this.$.log.get("value");
-                            if(storedValue == null)
-                                this.$.log.set("value", prevText + "\nSign: Null");
-                            else
-                                this.$.log.set("value", prevText + "\nSign: False");
-                        }
+							if(storedValue == null)
+								this.$.log.set("value", prevText + "\nSign: Null");
+							else
+								this.$.log.set("value", prevText + "\nSign: False");
+						}
 					break;
 					case "7": 
 						var possibleOutcomes = ["lblblblblb", "", "", "5csign8d", "5csign8dlb", "5csign8dlblb", "6csign6d", "5csign6d", "5csign6dlb", "5csign6dlblb"];
