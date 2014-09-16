@@ -1464,6 +1464,11 @@ enyo.kind({
 								}
                             }
 							finStr = s1;
+							if (commandStr.slice(3,5) == "09") {
+								while ( finStr.length < 16 ) {
+									finStr = finStr + "0";
+								}
+							}
 							console.log(finStr);
 							stores[parseInt(commandStr.slice(3, 5))] = finStr;
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
@@ -1527,6 +1532,12 @@ enyo.kind({
 							console.log("finStr - " + finStr);
 							while ( finStr.length < 9 )
 								finStr = "0" + finStr ;
+							if (commandStr.slice(3,5) == "09") {
+								while ( finStr.length < 16 ) {
+									finStr = finStr + "0";
+								}
+							}
+
 						console.log(finStr);
 						console.log("Adding stores together!");
 						stores[parseInt(commandStr.slice(3, 5))] = finStr;
@@ -1707,7 +1718,7 @@ enyo.kind({
 					case "6":
 						console.log(this.$[commandStr.slice(1, 3)].get("content"));
 						if (this.$[commandStr.slice(1, 3)].get("content") != " " && this.$[commandStr.slice(3, 5)].get("content") != " ") {
-							var s1 = parseInt(stores[9]);
+							var s1 = parseInt(stores[9].slice(0,9));
 							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
 							var s3 = (s1 / s2) * 10000000;
 							console.log("s1 - " + s1);
@@ -1789,7 +1800,7 @@ enyo.kind({
 					cmdString2 = "";
 			},
 			updateTriStores: function () {
-				this.$["09"].set("content", "000000000000000");
+				this.$["09"].set("content", "0000000000000000");
 			},
 			updateQudStores: function () {
 				this.$["09"].set("content", stores[9]);
