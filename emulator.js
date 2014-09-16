@@ -1452,15 +1452,19 @@ enyo.kind({
 						if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
 							console.log("Adding to stores...");
 							var finStr;
-							console.log(commandStr.slice(5,14));
-								if (commandStr.slice(5, 6) == "+") {
+                            if(commandStr[5] && commandStr[5] == "*") {
+                                var s1 = "0" + commandStr.slice(6) + "000";
+                            } else {
+				                console.log(commandStr.slice(5,14));
+                                if (commandStr.slice(5, 6) == "+") {
 									var s1 = "0" + commandStr.slice(6);
 								} else {
 									var s1 = "9" + (99999999 - parseInt(commandStr.slice(6)));
 								}
-								finStr = s1;
-								console.log(finStr);
-								stores[parseInt(commandStr.slice(3, 5))] = finStr;
+                            }
+							finStr = s1;
+							console.log(finStr);
+							stores[parseInt(commandStr.slice(3, 5))] = finStr;
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							// sanity check for valid store addresses //
 							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "with \"08-99\"");
@@ -1563,15 +1567,19 @@ enyo.kind({
 						if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
 							console.log("Adding to stores...");
 							var finStr;
-							console.log(commandStr.slice(5,14));
-								if (commandStr.slice(5, 6) == "+") {
+                            if(commandStr[5] && commandStr[5] == "*") {
+                                var s1 = "0" + commandStr.slice(6) + "000";
+                            } else {
+				                console.log(commandStr.slice(5,14));
+                                if (commandStr.slice(5, 6) == "+") {
 									var s1 = "0" + commandStr.slice(6);
 								} else {
 									var s1 = "9" + (99999999 - parseInt(commandStr.slice(6)));
 								}
-								finStr = s1;
-								console.log(finStr);
-								stores[parseInt(commandStr.slice(3, 5))] = finStr;
+                            }
+							finStr = s1;
+							console.log(finStr);
+							stores[parseInt(commandStr.slice(3, 5))] = finStr;
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
 							// sanity check for valid store addresses //
 							this.$.log.set("value", prevText + "Error: The store " + commandStr.slice(3, 5) + " is invalid. Please send to another store. Substitute \"" + commandStr.slice(3, 5) + "with \"08-99\"");
