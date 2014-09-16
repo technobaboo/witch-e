@@ -1428,7 +1428,7 @@ enyo.kind({
 							blkNum = commandStr.slice(2, 3);
 							stbCurTpr = commandStr.slice(4);
 							done = true;
-							this.$.log.set("value", prevText + "\n05xyy");
+							this.searchForBlkMarker();
 						} else if (commandStr[2] == "2" && !storedValue) {
 							var prevText = this.$.log.get("value");
 							this.searchForBlkMarker();
