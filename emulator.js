@@ -1695,7 +1695,7 @@ enyo.kind({
 							if (commandStr.slice(1,3) == "09") {
 								s2 = Math.round((s2/10000000)-0.5);
 							}
-							var s3 = s2 - s1;
+							var s3 = s1 - s2;
 							if (Math.round((s3/1000000000)-0.5)) {
 								s3 = (s3 - 1000000000)+1;
 							}
