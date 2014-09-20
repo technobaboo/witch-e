@@ -31,7 +31,7 @@ var done = false;
 var storedValue = null;
 var tprPositions = [0, 0, 0, 0, 0];
 var outcomeToBePrinted = null;
-var tapeValues = ["", "", "", "", ""];
+var tapeValues = [];
 String.prototype.replaceAt = function (index, character) {
 	return this.substr(0, index) + character + this.substr(index + character.length);
 }
@@ -1290,7 +1290,7 @@ enyo.kind({
 		handleChange: function (inSender, inEvent) {
             inSender.set("value", inSender.get("value").replace(/(\n)+/ig, "\n"));
 			if (inSender.name == "num1") {
-				curCommands = inSender.get("value").replace(/<br>(\+|-)/ig, "$1").replace(/<br>\[[0-9]\]/ig, "").split("<br>");
+				curCommands = inSender.get("value").replace(/\n(\+|-)/ig, "$1").replace(/\n\[[0-9]\]/ig, "").split("\n");
 				for (i = 0; i < curCommands.length; i++) {
 					//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
 					if (curCommands[i] == "") {
@@ -1334,7 +1334,7 @@ enyo.kind({
 			this.$.button4.setDisabled(true);
 			this.$.button5.setDisabled(true);
 			
-			curCommands = this.$["num" + (curTpr + 1)].get("value").replace(/(<[^>]*>)+/ig, "test").replace(/test(\+|-)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
+			curCommands = this.$["num" + (curTpr + 1)].get("value").replace(/(\n)+/ig, "test").replace(/test(\+|-)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
 			for (i = 0; i < curCommands.length; i++) {
 				//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
 				if (curCommands[i] == "") {
@@ -1362,13 +1362,13 @@ enyo.kind({
 					switch (commandStr[1]) {
 					case "0":
 						if(commandStr == "00100") {
-							var curTprStr = this.$["num" + (curTpr + 1)].get("value").split(/(<[^>]+>)+/ig);
+							var curTprStr = this.$["num" + (curTpr + 1)].get("value").split("\n");
 							for (g = 0; g < curTprStr.length; g++) {
 								if (curTprStr.indexOf("") != -1) {
 									curTprStr.splice(curTprStr.indexOf(""), 1);
 								}
-								if (curTprStr.indexOf("<br>") != -1) {
-									curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+								if (curTprStr.indexOf("\n") != -1) {
+									curTprStr.splice(curTprStr.indexOf("\n"), 1);
 								}
 							}
 							console.log(curTprStr);
@@ -1376,7 +1376,7 @@ enyo.kind({
 								curTprStr.shift();
 							else
 								curTprStr.push(curTprStr.shift());
-							this.$["num" + (curTpr + 1)].set("value", curTprStr.join("<br>"));
+							this.$["num" + (curTpr + 1)].set("value", curTprStr.join("\n"));
 							this.stop();
 						}
 					break;
@@ -1477,9 +1477,33 @@ enyo.kind({
 						} else if (parseInt(commandStr.slice(3, 5)) == 8) {
 							// accumulator store 08 //
 							console.log("08ing");
+                            if(commandStr[5] && commandStr[5] == "*") {
+                                var finStr = "0" + commandStr.slice(6) + "000";
+                            } else {
+				                console.log(commandStr.slice(5,14));
+                                if (commandStr.slice(5, 6) == "+") {
+									var finStr = "0" + commandStr.slice(6);
+								} else {
+									var finStr = "9" + (99999999 - parseInt(commandStr.slice(6)));
+								}
+                            }
+							console.log(finStr);
+							stores[9] = finStr[0]+stores[9].slice(1, 9)+finStr.slice(1);
 						} else if (parseInt(commandStr.slice(3, 5)) == 9) {
 							// accumulator store 09//
 							console.log("09ing");
+                            if(commandStr[5] && commandStr[5] == "*") {
+                                var finStr = "0" + commandStr.slice(6) + "000";
+                            } else {
+				                console.log(commandStr.slice(5,14));
+                                if (commandStr.slice(5, 6) == "+") {
+									var finStr = "0" + commandStr.slice(6);
+								} else {
+									var finStr = "9" + (99999999 - parseInt(commandStr.slice(6)));
+								}
+                            }
+							console.log(finStr);
+							stores[9] = finStr[0]+finStr.slice(1)+stores[9].slice(9);
 						} else if(this.$[commandStr.slice(3, 5)] == " " || !between(parseInt(commandStr.slice(3, 5)), 8, 99)) {
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
@@ -1563,7 +1587,7 @@ enyo.kind({
 						this.updateStores();
 					} else if (commandStr.slice(1, 5).indexOf(curTpr + "09") != -1) {
 						this.updateQudStores();
-					} else if (commandStr.slice(1, 5).indexOf(curTpr + "08") !=-1) {
+					} else if (commandStr.slice(1, 5).indexOf(curTpr + "08") != -1) {
 						this.updateQudStores();
 					} else if (this.$[commandStr.slice(1, 3)] && this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && this.$[commandStr.slice(1, 3)].get("content") != " ") {
 						console.log("Updating 2");
@@ -1575,7 +1599,7 @@ enyo.kind({
 				break;
 				case "3":
 				case "4":
-					if (commandStr.slice(2, 3) == (curTpr + 1).toString()) {
+					if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
 						if(commandStr.slice(1,3) == "0"+(curTpr+1).toString()) {
 							console.log("Adding to stores...");
 							var finStr;
@@ -1590,6 +1614,11 @@ enyo.kind({
 								}
                             }
 							finStr = s1;
+							if (commandStr.slice(3,5) == "09") {
+								while ( finStr.length < 16 ) {
+									finStr = finStr + "0";
+								}
+							}
 							console.log(finStr);
 							stores[parseInt(commandStr.slice(3, 5))] = finStr;
 						} else if ((parseInt(commandStr.slice(3, 5)) - 10) / 9 < 0 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
@@ -1598,9 +1627,33 @@ enyo.kind({
 						} else if (parseInt(commandStr.slice(3, 5)) == 8) {
 							// accumulator store 08 //
 							console.log("08ing");
+                            if(commandStr[5] && commandStr[5] == "*") {
+                                var finStr = "0" + commandStr.slice(6) + "000";
+                            } else {
+				                console.log(commandStr.slice(5,14));
+                                if (commandStr.slice(5, 6) == "+") {
+									var finStr = "0" + commandStr.slice(6);
+								} else {
+									var finStr = "9" + (99999999 - parseInt(commandStr.slice(6)));
+								}
+                            }
+							console.log(finStr);
+							stores[9] = finStr[0]+stores[9].slice(1, 9)+finStr.slice(1);
 						} else if (parseInt(commandStr.slice(3, 5)) == 9) {
 							// accumulator store 09//
 							console.log("09ing");
+                            if(commandStr[5] && commandStr[5] == "*") {
+                                var finStr = "0" + commandStr.slice(6) + "000";
+                            } else {
+				                console.log(commandStr.slice(5,14));
+                                if (commandStr.slice(5, 6) == "+") {
+									var finStr = "0" + commandStr.slice(6);
+								} else {
+									var finStr = "9" + (99999999 - parseInt(commandStr.slice(6)));
+								}
+                            }
+							console.log(finStr);
+							stores[9] = finStr[0]+finStr.slice(1)+stores[9].slice(9);
 						} else if(this.$[commandStr.slice(3, 5)] == " " || !between(parseInt(commandStr.slice(3, 5)), 8, 99)) {
 							this.$.log.set("value", prevText + "Error: you must pick a defined store, or the accumulator. Valid stores are 09-99.");
 						}
@@ -1609,14 +1662,15 @@ enyo.kind({
 							prevText = this.$.printer.get("content");
 							prevText += outcomeToBePrinted;
 							prevText = prevText.replace(/lb/g, "\n");
-                            if(commandStr.slice(1, 3) != "08" && commandStr.slice(1, 3) != "09") {
-				                var printText = this.$[commandStr.slice(1, 3)].get("content");
-                            } else if(commandStr.slice(1, 3) == "08") {
-                                var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
-                            } else if(commandStr.slice(1, 3) != "09") {
-                                var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
-                            }
+							if(commandStr.slice(1, 3) != "08" && commandStr.slice(1, 3) != "09") {
+								var printText = this.$[commandStr.slice(1, 3)].get("content");
+							} else if(commandStr.slice(1, 3) == "08") {
+								var printText = this.$[commandStr.slice(1, 3)].get("content")[0] + this.$[commandStr.slice(1, 3)].get("content").slice(8, 15);
+							} else if(commandStr.slice(1, 3) == "09") {
+								var printText = this.$[commandStr.slice(1, 3)].get("content").slice(0,9);
+							}
 							var printVal;
+                            console.log(printText);
 							if(printText[0] == "0") {
 								prevText = prevText.replace(/sign/g, "+");
 								printVal = parseInt(printText);
@@ -1626,7 +1680,10 @@ enyo.kind({
 								printVal=(999999999 - parseInt(printText));
 							}
 							if(outcomeToBePrinted != "lblblblblb") {
-								prevText = prevText.replace(/8d/g, (printVal/10000000));
+								var fixedValue;
+								printVal = (printVal/10000000);
+								fixedValue = printVal.toFixed(7);
+								prevText = prevText.replace(/8d/g, fixedValue);
 								prevText = prevText.replace(/6d/g, (Math.round(printVal/100)/100000));
 							}
 							prevText = prevText.replace(/5c/g, "  ");
@@ -1634,8 +1691,11 @@ enyo.kind({
 							this.$.printer.set("content", prevText);
 					} else if (this.$[commandStr.slice(1, 3)] && this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && this.$[commandStr.slice(1, 3)].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
-							var s2 = (999999999 - parseInt(this.$[commandStr.slice(1, 3)].get("content")));
-							var s3 = s1+s2;
+							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
+							if (commandStr.slice(1,3) == "09") {
+								s2 = Math.round((s2/10000000)-0.5);
+							}
+							var s3 = s2 - s1;
 							if (Math.round((s3/1000000000)-0.5)) {
 								s3 = (s3 - 1000000000)+1;
 							}
@@ -1646,10 +1706,16 @@ enyo.kind({
 							console.log("finStr - " + finStr);
 							while ( finStr.length < 9 )
 								finStr = "0" + finStr ;
+							if (commandStr.slice(3,5) == "09") {
+								while ( finStr.length < 16 ) {
+									finStr = finStr + "0";
+								}
+							}
+
 						console.log(finStr);
 						console.log("Adding stores together!");
 						stores[parseInt(commandStr.slice(3, 5))] = finStr;
-						if (commandStr[0] == "4" ) {
+						if (commandStr[0] == "2" ) {
 							stores[parseInt(commandStr.slice(1, 3))] = "000000000";
 							ss = true;
 							cmdString = commandStr.slice(1, 3);
@@ -1662,14 +1728,16 @@ enyo.kind({
 						sss = true;
 						cmdString2 = commandStr.slice(1, 3);
 						this.updateSecStores();
-					} else if (this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && commandStr.slice(2, 3) == curTpr + 1 && commandStr.slice(3, 5) != "09" && commandStr.slice(3, 5) != "08") {
+					} else if (commandStr.slice(3, 5) == "00" && commandStr.slice(1, 3) == "09") {
+						this.updateTriStores();
+					} else if (this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && commandStr.slice(2, 3) == curTpr + 1) {
 						console.log("Updating");
 						ss = true;
 						cmdString = commandStr.slice(3, 5);
 						this.updateStores();
 					} else if (commandStr.slice(1, 5).indexOf(curTpr + "09") != -1) {
 						this.updateQudStores();
-					} else if (commandStr.slice(1, 5).indexOf(curTpr + "08") !=-1) {
+					} else if (commandStr.slice(1, 5).indexOf(curTpr + "08") != -1) {
 						this.updateQudStores();
 					} else if (this.$[commandStr.slice(1, 3)] && this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && this.$[commandStr.slice(1, 3)].get("content") != " ") {
 						console.log("Updating 2");
@@ -1760,13 +1828,13 @@ enyo.kind({
 				}
 			},
 			switchback: function () {
-				var curTprStr = this.$["num" + (curTpr + 1)].get("value").split(/(<[^>]+>)+/ig);
+				var curTprStr = this.$["num" + (curTpr + 1)].get("value").split("\n");
 				for (g = 0; g < curTprStr.length; g++) {
 					if (curTprStr.indexOf("") != -1) {
 						curTprStr.splice(curTprStr.indexOf(""), 1);
 					}
-					if (curTprStr.indexOf("<br>") != -1) {
-						curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+					if (curTprStr.indexOf("\n") != -1) {
+						curTprStr.splice(curTprStr.indexOf("\n"), 1);
 					}
 				}
 				console.log(curTprStr);
@@ -1774,7 +1842,7 @@ enyo.kind({
 					curTprStr.shift();
 				else
 					curTprStr.push(curTprStr.shift());
-				this.$["num" + (curTpr + 1)].set("value", curTprStr.join("<br>"));
+				this.$["num" + (curTpr + 1)].set("value", curTprStr.join("\n"));
 				if (curTprStr != "")
 					this.evaluate();
 				else
@@ -1825,7 +1893,7 @@ enyo.kind({
 				if(done) {
 					if (this.$["num" + stbCurTpr].get("value") != "" && done) {
 						
-						var curTprStr = this.$["num" + stbCurTpr].get("value").split(/(<[^>]+>)+/ig);
+						var curTprStr = this.$["num" + stbCurTpr].get("value").split("\n");
 						console.log(blkNum + ":" + curTprStr[0]);
 						if (curTprStr[0] == "[" + blkNum + "]") {
 							console.log("YESSSSSSS!");
@@ -1837,8 +1905,8 @@ enyo.kind({
 							if (curTprStr.indexOf("") != -1) {
 								curTprStr.splice(curTprStr.indexOf(""), 1);
 							}
-							if (curTprStr.indexOf("<br>") != -1) {
-								curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+							if (curTprStr.indexOf("\n") != -1) {
+								curTprStr.splice(curTprStr.indexOf("\n"), 1);
 							}
 						}
 						console.log(curTprStr);
@@ -1846,7 +1914,7 @@ enyo.kind({
 							curTprStr.shift();
 						else
 							curTprStr.push(curTprStr.shift());
-						this.$["num" + (stbCurTpr)].set("value", curTprStr.join("<br>"));
+						this.$["num" + (stbCurTpr)].set("value", curTprStr.join("\n"));
 					}
 					if (!foundBlkMarker && this.$["num" + stbCurTpr].get("value") == "") {
 						var prevText = this.$.log.get("value");
@@ -1859,13 +1927,13 @@ enyo.kind({
 							
 						done = false;
 						if(stbCurTpr != curTpr) {
-							var curTprStr = this.$["num" + (curTpr+1)].get("value").split(/(<[^>]+>)+/ig);
+							var curTprStr = this.$["num" + (curTpr+1)].get("value").split("\n");
 							for (g = 0; g < curTprStr.length; g++) {
 								if (curTprStr.indexOf("") != -1) {
 									curTprStr.splice(curTprStr.indexOf(""), 1);
 								}
-								if (curTprStr.indexOf("<br>") != -1) {
-									curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+								if (curTprStr.indexOf("\n") != -1) {
+									curTprStr.splice(curTprStr.indexOf("\n"), 1);
 								}
 							}
 							console.log(curTprStr);
@@ -1873,19 +1941,19 @@ enyo.kind({
 								curTprStr.shift();
 							else
 								curTprStr.push(curTprStr.shift());
-							this.$["num" + (curTpr+1)].set("value", curTprStr.join("<br>"));
+							this.$["num" + (curTpr+1)].set("value", curTprStr.join("\n"));
 						}
 						done = false;
 						
 						this.switchback();
 					} else if (foundBlkMarker && this.$["num" + stbCurTpr].get("value") != "") {
-						var curTprStr = this.$["num" + (curTpr+1)].get("value").split(/(<[^>]+>)+/ig);
+						var curTprStr = this.$["num" + (curTpr+1)].get("value").split("\n");
 						for (g = 0; g < curTprStr.length; g++) {
 							if (curTprStr.indexOf("") != -1) {
 								curTprStr.splice(curTprStr.indexOf(""), 1);
 							}
-							if (curTprStr.indexOf("<br>") != -1) {
-								curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+							if (curTprStr.indexOf("\n") != -1) {
+								curTprStr.splice(curTprStr.indexOf("\n"), 1);
 							}
 						}
 						if(stbCurTpr != curTpr + 1) {
@@ -1894,7 +1962,7 @@ enyo.kind({
 								curTprStr.shift();
 							else
 								curTprStr.push(curTprStr.shift());
-							this.$["num" + (curTpr+1)].set("value", curTprStr.join("<br>"));
+							this.$["num" + (curTpr+1)].set("value", curTprStr.join("\n"));
 						}
 						done = false;
 						runForTheFirstTime = true;
