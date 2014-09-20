@@ -1318,7 +1318,8 @@ enyo.kind({
 					this.searchForBlkMarker();
 				}
 				done = false;
-				this.evaluate();
+                if(!runForTheFirstTime)
+                    this.evaluate();
 			}
 			return false;
 		},
@@ -1897,6 +1898,10 @@ enyo.kind({
 							this.$["num" + (curTpr+1)].set("value", curTprStr.join("\n"));
 						}
 						done = false;
+                        var prevText = this.$.log.get("value");
+                        if(!runForTheFirstTime) {
+							this.$.log.set("value", prevText + "\n[1]");
+						}
 						runForTheFirstTime = true;
 						this.evaluate();
 						foundBlkMarker = false;
