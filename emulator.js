@@ -1311,15 +1311,16 @@ enyo.kind({
 				this.$.log.set("value", prevText + "Error: This Command/Block Marker must be 3 or 5 or 9 characters long with a plus/minus included, ex. [1], [2], 21000 or 10110\n+12345678");
 			} else {
 				curTapeReader = "";
-				if(!runForTheFirstTime) {
+                if(runForTheFirstTime) {
+                    this.evaluate();
+                } else {
 					done = true;
 					blkNum = "1";
 					stbCurTpr = "1";
 					this.searchForBlkMarker();
 				}
 				done = false;
-                if(runForTheFirstTime)
-                    this.evaluate();
+                
 			}
 			return false;
 		},
@@ -1902,8 +1903,8 @@ enyo.kind({
                         if(!runForTheFirstTime) {
 							this.$.log.set("value", prevText + "\n[1]");
 						}
-						runForTheFirstTime = true;
 						this.evaluate();
+						runForTheFirstTime = true;
 						foundBlkMarker = false;
 					} else if (!foundBlkMarker && this.$["num" + stbCurTpr].get("value") != "") {
 						ranAlready = true;
