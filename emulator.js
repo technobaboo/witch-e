@@ -1924,5 +1924,19 @@ enyo.kind({
                     this.$["num" + ts].set("value", tapeValues[ts-1]);
                 }
                 curTpr = 0;
+                curCommands = this.$.num1.get("value").replace(/\n(\+|-|\*)/ig, "$1").replace(/\n\[[0-9]\]/ig, "").split("\n");
+                for (i = 0; i < curCommands.length; i++) {
+                	//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
+                	if (curCommands[i] == "") {
+                		curCommands.splice(i, 1);
+                	}
+                }
+                enyo.log(curCommands);
+                for(var c=0; c<5; c++) {
+                    tpr[parseInt(this.$["num" + (c+1)].name.substring(3)) - 1] = this.$["num" + (c+1)].get("value");
+                }
+                runForTheFirstTime = false;
+                done = true;
             }
+            
 });
