@@ -1290,7 +1290,7 @@ enyo.kind({
 		handleChange: function (inSender, inEvent) {
             inSender.set("value", inSender.get("value").replace(/(\n)+/ig, "\n"));
 			if (inSender.name == "num1") {
-				curCommands = inSender.get("value").replace(/\n(\+|-)/ig, "$1").replace(/\n\[[0-9]\]/ig, "").split("\n");
+				curCommands = inSender.get("value").replace(/\n(\+|-|\*)/ig, "$1").replace(/\n\[[0-9]\]/ig, "").split("\n");
 				for (i = 0; i < curCommands.length; i++) {
 					//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
 					if (curCommands[i] == "") {
@@ -1318,7 +1318,7 @@ enyo.kind({
 					this.searchForBlkMarker();
 				}
 				done = false;
-                if(!runForTheFirstTime)
+                if(runForTheFirstTime)
                     this.evaluate();
 			}
 			return false;
@@ -1335,7 +1335,7 @@ enyo.kind({
 			this.$.button4.setDisabled(true);
 			this.$.button5.setDisabled(true);
 			
-			curCommands = this.$["num" + (curTpr + 1)].get("value").replace(/(\n)+/ig, "test").replace(/test(\+|-)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
+			curCommands = this.$["num" + (curTpr + 1)].get("value").replace(/(\n)+/ig, "test").replace(/test(\+|-|\*)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
 			for (i = 0; i < curCommands.length; i++) {
 				//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
 				if (curCommands[i] == "") {
@@ -1350,10 +1350,10 @@ enyo.kind({
 				var overflow = 0;
 				var prevText = this.$.log.get("value");
 				console.log(typeof(curCommands));
-				if (curCommands != [] && curCommands[0][0] != "[" && isNaN(parseInt(curCommands[0]))) {
-					this.$.log.set("value", prevText + "\n" + curCommands[0].replace(/(.....)\+......../ig, "$1") + "\nError: Command(s) need to include only numbers and maybe plus signs and dashes");
+				if (curCommands != [] && curCommands[0][0] != "[" && curCommands[0][0] != "*" && isNaN(parseInt(curCommands[0]))) {
+					this.$.log.set("value", prevText + "\n" + curCommands[0].replace(/(.....)(\+........|\*.....)/ig, "$1") + "\nError: Command(s) need to include only numbers and maybe plus signs and dashes");
 				} else if (curCommands != []) {
-					this.$.log.set("value", prevText + "\n" + curCommands[0].replace(/(.....)\+......../ig, "$1"));
+					this.$.log.set("value", prevText + "\n" + curCommands[0].replace(/(.....)(\+........|\*.....)/ig, "$1"));
 				}
 				var prevText = this.$.log.get("value");
 				ranAlready = true;
