@@ -65,33 +65,17 @@ enyo.kind({
 										title: "Log",
 										classes: "headers"
 								},
-									{
-										kind: "moon.Scroller",
-										fit: true,
-										horizontal: "hidden",
-										classes: "enyo-fill",
-										spotlight: false,
-										components: [
-											{
-												kind: "moon.InputDecorator",
-												classes: "closetohundred",
-												style: "height:410px;",
-												fit: true,
-												components: [
-													{
-														kind: "enyo.TextArea",
-														classes: "dek",
-														name: "log",
-														classes: "enyo-fill",
-														disabled: true,
-														value: "WITCH-E v2.0.0",
-														fit: true,
-														spotlight: false
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
+								    {
+									  	kind: "enyo.TextArea",
+									  	classes: "dek",
+									  	name: "log",
+									  	classes: "enyo-fill",
+                                        style: "height:410px;",
+									  	disabled: true,
+									  	value: "WITCH-E v2.0.0",
+									  	fit: true,
+									  	spotlight: false
+                                    },
 									{
 										tag: "br"
 									},
@@ -272,6 +256,17 @@ enyo.kind({
                             
 							]
                         },
+                    {
+                        name: "AlarmLight",
+                        classes: "light_off",
+                        style:"width:32px;height:32px;"
+                    },
+                    {
+                        name: "FinishLight",
+                        classes: "light_off",
+                        style:"width:32px;height:32px;"
+                    },
+                    
 					{
 						content: "STORES",
 						style: "padding-left: 460px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
@@ -1364,6 +1359,7 @@ enyo.kind({
 					switch (commandStr[1]) {
 					case "0":
 						if(commandStr == "00100") {
+                            this.alarmLightOn();
 							var curTprStr = this.$["num" + (curTpr + 1)].get("value").split("\n");
 							for (g = 0; g < curTprStr.length; g++) {
 								if (curTprStr.indexOf("") != -1) {
@@ -1380,7 +1376,9 @@ enyo.kind({
 								curTprStr.push(curTprStr.shift());
 							this.$["num" + (curTpr + 1)].set("value", curTprStr.join("\n"));
 							this.stop();
-						}
+						} else if(commandStr == "00200") {
+                            this.alarmLightOn();
+                        }
 					break;
 					case "1":
 						if(commandStr[2] == "1") {
@@ -1855,6 +1853,7 @@ enyo.kind({
 						if(runForTheFirstTime) {
 							this.$.log.set("value", prevText + "\nBlock marker not found");
 						} else {
+                            this.alarmLightOn();
 							this.$.log.set("value", prevText + "\nBlock marker 1 not found on first tape reader");
 							this.stop();
 						}
@@ -1917,7 +1916,25 @@ enyo.kind({
 			sv5: function () {
 				enyo.job("j5", enyo.bind(this, "searchForBlkMarker"), 712);
 			},
+            alarmLightOn: function() {
+                this.$.AlarmLight.removeClass("light_off");
+                this.$.AlarmLight.addClass("alarm_light_on");
+            },
+            alarmLightOff: function() {
+                this.$.AlarmLight.removeClass("alarm_light_on");
+                this.$.AlarmLight.addClass("light_off");
+            },
+            finishLightOn: function() {
+                this.$.FinishLight.removeClass("light_off");
+                this.$.FinishLight.addClass("finish_light_on");
+            },
+            finishLightOff: function() {
+                this.$.FinishLight.removeClass("finish_light_on");
+                this.$.FinishLight.addClass("light_off");
+            },
             resetTapes: function() {
+                this.finishLightOff();
+                this.alarmLightOff();
                 for(var ts = 1; ts <= 5; ts++) {
                     if(tapeValues[ts-1] == undefined)
                         tapeValues[ts-1] = "";

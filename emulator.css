@@ -36,7 +36,7 @@
 	background-size:128px 356px;
 	font-size: 13px;
 	background-repeat:no-repeat;
-	border: 5px solid #cf0652;
+	border: 3px solid #cf0652;
 	padding-left: 25px;
 	color: black;
 }
@@ -159,4 +159,19 @@ textarea {
 	font-family: 'Moonstone Miso';
 	font-size: 37.5px !important;
 	height: 60px !important;
+}
+
+.light_off {
+    background-image: url(images/light_off.png);
+    background-size: 32px 32px;
+}
+
+.alarm_light_on {
+    background-image: url(images/light_on.png);
+    background-size: 32px 32px;
+}
+
+.finish_light_on {
+    background-image: url(images/finish_light_on.png);
+    background-size: 32px 32px;
 }
