@@ -256,39 +256,35 @@ enyo.kind({
                             
 							]
                         },
-                    {kind: "FittableColumns", components: [
-                        {kind: "FittableRows", components: [
-                            {
-                                name: "AlarmLight",
-                                classes: "light_off",
-                                style:"width:32px;height:32px;"
-                            },
-                            {content: "Alarm", classes: "fontsize", style:"padding-left: 0px; padding-top: 5px;"}
-                        ]},
-                        {
-                            style: "width:10px;"
-                        },
-                        {kind: "FittableRows", components: [
-                            {
-                                name: "FinishLight",
-                                classes: "light_off",
-                                style:"width:32px;height:32px;"
-                            },
-                            {content: "Finish", classes: "fontsize", style:"padding-left: 0px; padding-top: 5px;"}
-                        ]}
-                    ]},
-                    
+					{
+						kind: "FittableColumns",
+						components: [
 					{
 						content: "STORES",
 						style: "padding-left: 460px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
 					},
 					{
 						content: "ACCUMULATOR",
-						style: "padding-left: 1076px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
-				},
+						style: "padding-left: 512px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
+				}
+				]
+					},
 					{
 						kind: "FittableColumns",
 						components: [
+                            {
+                                name: "AlarmLight",
+                                classes: "light_off",
+                                style:"width:32px;height:32px;"
+                            },
+                            {content: "Alarm", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;padding-right: 30px;"},
+                            {
+                                name: "FinishLight",
+                                classes: "light_off",
+                                style:"width:32px;height:32px;"
+                            },
+                            {content: "Finish", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;"},
+                    
 							{
 								classes: "space"
 					},
