@@ -61,9 +61,8 @@ enyo.kind({
 								style: "height: 572px;",
 								components: [
 									{
-										kind: "moon.Header",
-										title: "Log",
-										classes: "headers"
+										classes: "fontsizeb",
+										content: "PROCESS LOG",
 								},
 								    {
 									  	kind: "enyo.TextArea",
@@ -93,9 +92,8 @@ enyo.kind({
 								classes: "tapereaderpanel",
 								components: [
 									{
-										kind: "moon.Header",
-										title: "Tape Readers",
-										classes: "headers"
+										classes: "fontsizeb",
+										content: "TAPE READERS",
 									},
 									{
 										kind: "FittableColumns",
@@ -223,10 +221,8 @@ enyo.kind({
 						style: "height: 572px;",
 						components: [
 							{
-								kind: "moon.Header",
-								title: "Printer",
-								fit: true,
-								classes: "headers"
+								classes: "fontsizeb",
+								content: "PRINTER",
 							},
 							{
 								kind: "moon.Scroller",
@@ -253,7 +249,6 @@ enyo.kind({
                         },
 					{
 						kind: "FittableColumns",
-						style: "padding-top: 20px;",
 						components: [
 							{
 								classes: "fontsizeb",
