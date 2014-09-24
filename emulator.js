@@ -253,36 +253,30 @@ enyo.kind({
                         },
 					{
 						kind: "FittableColumns",
+						style: "padding-top: 20px;",
 						components: [
-					{
-						content: "STORES",
-						style: "padding-left: 460px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
-					},
-					{
-						content: "ACCUMULATOR",
-						style: "padding-left: 512px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
-				}
-				]
-					},
-					{
-						kind: "FittableColumns",
-						components: [
-                            {
-                                name: "AlarmLight",
-                                classes: "light_off",
-                                style:"width:32px;height:32px;"
-                            },
-                            {content: "Alarm", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;padding-right: 30px;"},
-                            {
-                                name: "FinishLight",
-                                classes: "light_off",
-                                style:"width:32px;height:32px;"
-                            },
-                            {content: "Finish", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;"},
-                    
 							{
-								classes: "space"
-					},
+								classes: "fontsizeb",
+								content: "STORES",
+								style: "padding-right: 260px;",
+							},
+							{
+								name: "AlarmLight",
+								classes: "light_off",
+								style:"width:32px;height:32px;"
+							},
+							{content: "Alarm", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;padding-right: 50px;"},
+							{
+								name: "FinishLight",
+								classes: "light_off",
+								style:"width:32px;height:32px;"
+							},
+							{content: "Finish", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;"},
+							{
+								classes: "fontsizeb",
+								content: "ACCUMULATOR",
+								style: "padding-left: 285px; padding-right: 10px;"
+							},
 							{
 								classes: "acc",
 								components: [
@@ -291,9 +285,9 @@ enyo.kind({
 										content: " ",
 										classes: "dek"
 									}
-					]
+								]
 							}
-				]
+						]
 					},
 					{
 
