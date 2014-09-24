@@ -97,6 +97,10 @@ enyo.kind({
 									{
 										kind: "FittableColumns",
 										components: [
+                                            
+                                            {
+                                                style:"width: 40px;"
+                                            },
 											{
 												name: "button1",
 												kind: "enyo.Button",
@@ -127,24 +131,27 @@ enyo.kind({
 												style: "font-size: 27px; width:128px;",
 												content: "Straight",
 												onclick: "loopIt"
-											},
-
-											{
-												name: "button5",
-												kind: "enyo.Button",
-												style: "font-size: 27px; width:128px;",
-												content: "Straight",
-												onclick: "loopIt"
 											}
 									]
 									},
-									{
-										classes: "highlight"
-									},
+                                    {
+										kind: "FittableColumns",
+                                        style: "height: 20px;",
+										components: [
+                                            {
+                                                style:"width: 40px;"
+                                            },
+									       {
+									       	   classes: "highlight"
+									       }
+                                        ]},
 									{
 										kind: "FittableColumns",
 										style: "height:300px;",
 										components: [
+                                            {
+                                                style:"width: 40px;"
+                                            },
 											{
 												name: "num1",
 												kind: "enyo.TextArea",
@@ -171,14 +178,6 @@ enyo.kind({
 											},
 											{
 												name: "num4",
-												kind: "enyo.TextArea",
-												classes: "tapereaderimage samplebox",
-												source: "images/tapereader.png",
-												oninput: "handleChange",
-												onchange: "handleChange"
-											},
-											{
-												name: "num5",
 												kind: "enyo.TextArea",
 												classes: "tapereaderimage samplebox",
 												source: "images/tapereader.png",

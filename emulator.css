@@ -69,8 +69,9 @@
 }
 
 .tapereaderpanel {
-	width: 640px;
+	width: 592px;
 	height: 572px;
+    display: block;
 }
 
 .tapereaderimage {
@@ -129,9 +130,9 @@
 }
 .highlight {
 	position: absolute;
-	top: 113px;
+	top: 33px;
 	left: 17px;
-	width: 608px;
+	width: 530px;
 	height: 21px;
 	opacity: 0.5;
 	border: 1px solid #6F687D;
