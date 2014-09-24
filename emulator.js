@@ -256,16 +256,22 @@ enyo.kind({
                             
 							]
                         },
-                    {
-                        name: "AlarmLight",
-                        classes: "light_off",
-                        style:"width:32px;height:32px;"
-                    },
-                    {
-                        name: "FinishLight",
-                        classes: "light_off",
-                        style:"width:32px;height:32px;"
-                    },
+                    {kind: "FittableColumns", components: [
+                        {
+                            name: "AlarmLight",
+                            classes: "light_off",
+                            style:"width:32px;height:32px;"
+                        },
+                        {content: "Alarm", classes: "fontsize", style:"padding-left: 0px; padding-top: 5px;"}
+                    ]},
+                    {kind: "FittableColumns", components: [
+                        {
+                            name: "FinishLight",
+                            classes: "light_off",
+                            style:"width:32px;height:32px;"
+                        },
+                        {content: "Finish", classes: "fontsize", style:"padding-left: 0px; padding-top: 5px;"}
+                    ]},
                     
 					{
 						content: "STORES",
