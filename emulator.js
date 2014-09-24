@@ -1360,7 +1360,7 @@ enyo.kind({
 					switch (commandStr[1]) {
 					case "0":
 						if(commandStr == "00100") {
-                            this.finishLightOn();
+							this.finishLightOn();
 							var curTprStr = this.$["num" + (curTpr + 1)].get("value").split("\n");
 							for (g = 0; g < curTprStr.length; g++) {
 								if (curTprStr.indexOf("") != -1) {
@@ -1378,8 +1378,9 @@ enyo.kind({
 							this.$["num" + (curTpr + 1)].set("value", curTprStr.join("\n"));
 							this.stop();
 						} else if(commandStr == "00200") {
-                            this.alarmLightOn();
-                        }
+							this.alarmLightOn();
+							this.stop();
+						}
 					break;
 					case "1":
 						if(commandStr[2] == "1") {
