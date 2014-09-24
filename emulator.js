@@ -31,7 +31,7 @@ var done = false;
 var storedValue = null;
 var tprPositions = [0, 0, 0, 0, 0];
 var outcomeToBePrinted = null;
-var tapeValues = ["", "", "", "", ""];
+var tapeValues = [];
 String.prototype.replaceAt = function (index, character) {
 	return this.substr(0, index) + character + this.substr(index + character.length);
 }
@@ -61,37 +61,20 @@ enyo.kind({
 								style: "height: 572px;",
 								components: [
 									{
-										kind: "moon.Header",
-										title: "Log",
-										classes: "headers"
-								},
+										classes: "fontsizeb",
+										content: "PROCESS LOG",
+									},
 									{
-										kind: "moon.Scroller",
-										fit: true,
-										horizontal: "hidden",
+										kind: "enyo.TextArea",
+										classes: "dek",
+										name: "log",
 										classes: "enyo-fill",
+										style: "height:410px; resize: none;",
+										disabled: true,
+										value: "WITCH-E v2.0.0",
+										fit: true,
 										spotlight: false,
-										components: [
-											{
-												kind: "moon.InputDecorator",
-												classes: "closetohundred",
-												style: "height:410px;",
-												fit: true,
-												components: [
-													{
-														kind: "enyo.TextArea",
-														classes: "dek",
-														name: "log",
-														classes: "enyo-fill",
-														disabled: true,
-														value: "WITCH-E v2.0.0",
-														fit: true,
-														spotlight: false
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
+									},
 									{
 										tag: "br"
 									},
@@ -100,15 +83,17 @@ enyo.kind({
 									}
                             ]
                         },
+                                            {
+                                                style:"width: 10px;"
+                                            },
 							{
 								name: "panel4",
 								kind: "FittableRows",
 								classes: "tapereaderpanel",
 								components: [
 									{
-										kind: "moon.Header",
-										title: "Tape Readers",
-										classes: "headers"
+										classes: "fontsizeb",
+										content: "TAPE READERS",
 									},
 									{
 										kind: "FittableColumns",
@@ -143,20 +128,17 @@ enyo.kind({
 												style: "font-size: 27px; width:128px;",
 												content: "Straight",
 												onclick: "loopIt"
-											},
-
-											{
-												name: "button5",
-												kind: "enyo.Button",
-												style: "font-size: 27px; width:128px;",
-												content: "Straight",
-												onclick: "loopIt"
 											}
 									]
 									},
-									{
-										classes: "highlight"
-									},
+                                    {
+										kind: "FittableColumns",
+										style: "height: 20px;",
+										components: [
+									       {
+									       	   classes: "highlight"
+									       }
+                                        ]},
 									{
 										kind: "FittableColumns",
 										style: "height:300px;",
@@ -187,14 +169,6 @@ enyo.kind({
 											},
 											{
 												name: "num4",
-												kind: "enyo.TextArea",
-												classes: "tapereaderimage samplebox",
-												source: "images/tapereader.png",
-												oninput: "handleChange",
-												onchange: "handleChange"
-											},
-											{
-												name: "num5",
 												kind: "enyo.TextArea",
 												classes: "tapereaderimage samplebox",
 												source: "images/tapereader.png",
@@ -239,15 +213,16 @@ enyo.kind({
                                 }
                             ]
                         },
+                                            {
+                                                style:"width: 10px;"
+                                            },
 						{
 						name: "panel2",
 						style: "height: 572px;",
 						components: [
 							{
-								kind: "moon.Header",
-								title: "Printer",
-								fit: true,
-								classes: "headers"
+								classes: "fontsizeb",
+								content: "PRINTER",
 							},
 							{
 								kind: "moon.Scroller",
@@ -273,19 +248,30 @@ enyo.kind({
 							]
                         },
 					{
-						content: "STORES",
-						style: "padding-left: 460px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
-					},
-					{
-						content: "ACCUMULATOR",
-						style: "padding-left: 1076px; font-family: 'Moonstone Miso'; font-size: 37.5px;"
-				},
-					{
 						kind: "FittableColumns",
 						components: [
 							{
-								classes: "space"
-					},
+								classes: "fontsizeb",
+								content: "STORES",
+								style: "padding-right: 260px;",
+							},
+							{
+								name: "AlarmLight",
+								classes: "light_off",
+								style:"width:32px;height:32px;"
+							},
+							{content: "Alarm", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;padding-right: 50px;"},
+							{
+								name: "FinishLight",
+								classes: "light_off",
+								style:"width:32px;height:32px;"
+							},
+							{content: "Finish", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;"},
+							{
+								classes: "fontsizeb",
+								content: "ACCUMULATOR",
+								style: "padding-left: 285px; padding-right: 10px;"
+							},
 							{
 								classes: "acc",
 								components: [
@@ -294,9 +280,9 @@ enyo.kind({
 										content: " ",
 										classes: "dek"
 									}
-					]
+								]
 							}
-				]
+						]
 					},
 					{
 
@@ -1290,7 +1276,7 @@ enyo.kind({
 		handleChange: function (inSender, inEvent) {
             inSender.set("value", inSender.get("value").replace(/(\n)+/ig, "\n"));
 			if (inSender.name == "num1") {
-				curCommands = inSender.get("value").replace(/<br>(\+|-)/ig, "$1").replace(/<br>\[[0-9]\]/ig, "").split("<br>");
+				curCommands = inSender.get("value").replace(/\n(\+|-|\*)/ig, "$1").replace(/\n\[[0-9]\]/ig, "").split("\n");
 				for (i = 0; i < curCommands.length; i++) {
 					//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
 					if (curCommands[i] == "") {
@@ -1311,14 +1297,16 @@ enyo.kind({
 				this.$.log.set("value", prevText + "Error: This Command/Block Marker must be 3 or 5 or 9 characters long with a plus/minus included, ex. [1], [2], 21000 or 10110\n+12345678");
 			} else {
 				curTapeReader = "";
-				if(!runForTheFirstTime) {
+                if(runForTheFirstTime) {
+                    this.evaluate();
+                } else {
 					done = true;
 					blkNum = "1";
 					stbCurTpr = "1";
 					this.searchForBlkMarker();
 				}
 				done = false;
-				this.evaluate();
+                
 			}
 			return false;
 		},
@@ -1327,14 +1315,13 @@ enyo.kind({
 			this.$.num2.setDisabled(true);
 			this.$.num3.setDisabled(true);
 			this.$.num4.setDisabled(true);
-			this.$.num5.setDisabled(true);
 			this.$.button1.setDisabled(true);
 			this.$.button2.setDisabled(true);
 			this.$.button3.setDisabled(true);
 			this.$.button4.setDisabled(true);
-			this.$.button5.setDisabled(true);
 			
-			curCommands = this.$["num" + (curTpr + 1)].get("value").replace(/(<[^>]*>)+/ig, "test").replace(/test(\+|-)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
+			
+			curCommands = this.$["num" + (curTpr + 1)].get("value").replace(/(\n)+/ig, "test").replace(/test(\+|-|\*)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
 			for (i = 0; i < curCommands.length; i++) {
 				//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
 				if (curCommands[i] == "") {
@@ -1349,10 +1336,10 @@ enyo.kind({
 				var overflow = 0;
 				var prevText = this.$.log.get("value");
 				console.log(typeof(curCommands));
-				if (curCommands != [] && curCommands[0][0] != "[" && isNaN(parseInt(curCommands[0]))) {
-					this.$.log.set("value", prevText + "\n" + curCommands[0].replace(/(.....)\+......../ig, "$1") + "\nError: Command(s) need to include only numbers and maybe plus signs and dashes");
+				if (curCommands != [] && curCommands[0][0] != "[" && curCommands[0][0] != "*" && isNaN(parseInt(curCommands[0]))) {
+					this.$.log.set("value", prevText + "\n" + curCommands[0].replace(/(.....)(\+........|\*.....)/ig, "$1") + "\nError: Command(s) need to include only numbers and maybe plus signs and dashes");
 				} else if (curCommands != []) {
-					this.$.log.set("value", prevText + "\n" + curCommands[0].replace(/(.....)\+......../ig, "$1"));
+					this.$.log.set("value", prevText + "\n" + curCommands[0].replace(/(.....)(\+........|\*.....)/ig, "$1"));
 				}
 				var prevText = this.$.log.get("value");
 				ranAlready = true;
@@ -1362,13 +1349,14 @@ enyo.kind({
 					switch (commandStr[1]) {
 					case "0":
 						if(commandStr == "00100") {
-							var curTprStr = this.$["num" + (curTpr + 1)].get("value").split(/(<[^>]+>)+/ig);
+							this.finishLightOn();
+							var curTprStr = this.$["num" + (curTpr + 1)].get("value").split("\n");
 							for (g = 0; g < curTprStr.length; g++) {
 								if (curTprStr.indexOf("") != -1) {
 									curTprStr.splice(curTprStr.indexOf(""), 1);
 								}
-								if (curTprStr.indexOf("<br>") != -1) {
-									curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+								if (curTprStr.indexOf("\n") != -1) {
+									curTprStr.splice(curTprStr.indexOf("\n"), 1);
 								}
 							}
 							console.log(curTprStr);
@@ -1376,7 +1364,10 @@ enyo.kind({
 								curTprStr.shift();
 							else
 								curTprStr.push(curTprStr.shift());
-							this.$["num" + (curTpr + 1)].set("value", curTprStr.join("<br>"));
+							this.$["num" + (curTpr + 1)].set("value", curTprStr.join("\n"));
+							this.stop();
+						} else if(commandStr == "00200") {
+							this.alarmLightOn();
 							this.stop();
 						}
 					break;
@@ -1755,18 +1746,20 @@ enyo.kind({
 					
 					if (!done)
 						enyo.job("j1", enyo.bind(this, "switchback"), 1506);
-					if(this.$["num" + (curTpr + 1)].get("value").indexOf(/<[^>]+>/ig) != -1 || this.$["num" + (curTpr + 1)].get("value") == "")
-						this.stop();
+					if(this.$["num" + (curTpr + 1)].get("value").indexOf(/<[^>]+>/ig) != -1 || this.$["num" + (curTpr + 1)].get("value") == "") {
+						this.finishLightOn();
+                        this.stop();
+                    }
 				}
 			},
 			switchback: function () {
-				var curTprStr = this.$["num" + (curTpr + 1)].get("value").split(/(<[^>]+>)+/ig);
+				var curTprStr = this.$["num" + (curTpr + 1)].get("value").split("\n");
 				for (g = 0; g < curTprStr.length; g++) {
 					if (curTprStr.indexOf("") != -1) {
 						curTprStr.splice(curTprStr.indexOf(""), 1);
 					}
-					if (curTprStr.indexOf("<br>") != -1) {
-						curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+					if (curTprStr.indexOf("\n") != -1) {
+						curTprStr.splice(curTprStr.indexOf("\n"), 1);
 					}
 				}
 				console.log(curTprStr);
@@ -1774,11 +1767,13 @@ enyo.kind({
 					curTprStr.shift();
 				else
 					curTprStr.push(curTprStr.shift());
-				this.$["num" + (curTpr + 1)].set("value", curTprStr.join("<br>"));
+				this.$["num" + (curTpr + 1)].set("value", curTprStr.join("\n"));
 				if (curTprStr != "")
 					this.evaluate();
-				else
+				else {
+                    this.finishLightOn();
 					this.stop();
+                }
 			},
 			updateStores: function () {
 				console.log("updateStores!");
@@ -1811,12 +1806,11 @@ enyo.kind({
 				this.$.num2.setDisabled(false);
 				this.$.num3.setDisabled(false);
 				this.$.num4.setDisabled(false);
-				this.$.num5.setDisabled(false);
 				this.$.button1.setDisabled(false);
 				this.$.button2.setDisabled(false);
 				this.$.button3.setDisabled(false);
 				this.$.button4.setDisabled(false);
-				this.$.button5.setDisabled(false);
+				
 			},
 			sv6: function() {
 				this.evaluate();
@@ -1825,7 +1819,7 @@ enyo.kind({
 				if(done) {
 					if (this.$["num" + stbCurTpr].get("value") != "" && done) {
 						
-						var curTprStr = this.$["num" + stbCurTpr].get("value").split(/(<[^>]+>)+/ig);
+						var curTprStr = this.$["num" + stbCurTpr].get("value").split("\n");
 						console.log(blkNum + ":" + curTprStr[0]);
 						if (curTprStr[0] == "[" + blkNum + "]") {
 							console.log("YESSSSSSS!");
@@ -1837,8 +1831,8 @@ enyo.kind({
 							if (curTprStr.indexOf("") != -1) {
 								curTprStr.splice(curTprStr.indexOf(""), 1);
 							}
-							if (curTprStr.indexOf("<br>") != -1) {
-								curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+							if (curTprStr.indexOf("\n") != -1) {
+								curTprStr.splice(curTprStr.indexOf("\n"), 1);
 							}
 						}
 						console.log(curTprStr);
@@ -1846,26 +1840,27 @@ enyo.kind({
 							curTprStr.shift();
 						else
 							curTprStr.push(curTprStr.shift());
-						this.$["num" + (stbCurTpr)].set("value", curTprStr.join("<br>"));
+						this.$["num" + (stbCurTpr)].set("value", curTprStr.join("\n"));
 					}
 					if (!foundBlkMarker && this.$["num" + stbCurTpr].get("value") == "") {
 						var prevText = this.$.log.get("value");
 						if(runForTheFirstTime) {
 							this.$.log.set("value", prevText + "\nBlock marker not found");
 						} else {
+                            this.alarmLightOn();
 							this.$.log.set("value", prevText + "\nBlock marker 1 not found on first tape reader");
 							this.stop();
 						}
 							
 						done = false;
 						if(stbCurTpr != curTpr) {
-							var curTprStr = this.$["num" + (curTpr+1)].get("value").split(/(<[^>]+>)+/ig);
+							var curTprStr = this.$["num" + (curTpr+1)].get("value").split("\n");
 							for (g = 0; g < curTprStr.length; g++) {
 								if (curTprStr.indexOf("") != -1) {
 									curTprStr.splice(curTprStr.indexOf(""), 1);
 								}
-								if (curTprStr.indexOf("<br>") != -1) {
-									curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+								if (curTprStr.indexOf("\n") != -1) {
+									curTprStr.splice(curTprStr.indexOf("\n"), 1);
 								}
 							}
 							console.log(curTprStr);
@@ -1873,19 +1868,19 @@ enyo.kind({
 								curTprStr.shift();
 							else
 								curTprStr.push(curTprStr.shift());
-							this.$["num" + (curTpr+1)].set("value", curTprStr.join("<br>"));
+							this.$["num" + (curTpr+1)].set("value", curTprStr.join("\n"));
 						}
 						done = false;
 						
 						this.switchback();
 					} else if (foundBlkMarker && this.$["num" + stbCurTpr].get("value") != "") {
-						var curTprStr = this.$["num" + (curTpr+1)].get("value").split(/(<[^>]+>)+/ig);
+						var curTprStr = this.$["num" + (curTpr+1)].get("value").split("\n");
 						for (g = 0; g < curTprStr.length; g++) {
 							if (curTprStr.indexOf("") != -1) {
 								curTprStr.splice(curTprStr.indexOf(""), 1);
 							}
-							if (curTprStr.indexOf("<br>") != -1) {
-								curTprStr.splice(curTprStr.indexOf("<br>"), 1);
+							if (curTprStr.indexOf("\n") != -1) {
+								curTprStr.splice(curTprStr.indexOf("\n"), 1);
 							}
 						}
 						if(stbCurTpr != curTpr + 1) {
@@ -1894,11 +1889,15 @@ enyo.kind({
 								curTprStr.shift();
 							else
 								curTprStr.push(curTprStr.shift());
-							this.$["num" + (curTpr+1)].set("value", curTprStr.join("<br>"));
+							this.$["num" + (curTpr+1)].set("value", curTprStr.join("\n"));
 						}
 						done = false;
-						runForTheFirstTime = true;
+                        var prevText = this.$.log.get("value");
+                        if(!runForTheFirstTime) {
+							this.$.log.set("value", prevText + "\n[1]");
+						}
 						this.evaluate();
+						runForTheFirstTime = true;
 						foundBlkMarker = false;
 					} else if (!foundBlkMarker && this.$["num" + stbCurTpr].get("value") != "") {
 						ranAlready = true;
@@ -1911,12 +1910,44 @@ enyo.kind({
 			sv5: function () {
 				enyo.job("j5", enyo.bind(this, "searchForBlkMarker"), 712);
 			},
+            alarmLightOn: function() {
+                this.$.AlarmLight.removeClass("light_off");
+                this.$.AlarmLight.addClass("alarm_light_on");
+            },
+            alarmLightOff: function() {
+                this.$.AlarmLight.removeClass("alarm_light_on");
+                this.$.AlarmLight.addClass("light_off");
+            },
+            finishLightOn: function() {
+                this.$.FinishLight.removeClass("light_off");
+                this.$.FinishLight.addClass("finish_light_on");
+            },
+            finishLightOff: function() {
+                this.$.FinishLight.removeClass("finish_light_on");
+                this.$.FinishLight.addClass("light_off");
+            },
             resetTapes: function() {
+                this.finishLightOff();
+                this.alarmLightOff();
                 for(var ts = 1; ts <= 5; ts++) {
                     if(tapeValues[ts-1] == undefined)
                         tapeValues[ts-1] = "";
                     this.$["num" + ts].set("value", tapeValues[ts-1]);
                 }
                 curTpr = 0;
+                curCommands = this.$.num1.get("value").replace(/\n(\+|-|\*)/ig, "$1").replace(/\n\[[0-9]\]/ig, "").split("\n");
+                for (i = 0; i < curCommands.length; i++) {
+                	//curCommands[i].replace(/(<.{1,4}>)+/ig, "");
+                	if (curCommands[i] == "") {
+                		curCommands.splice(i, 1);
+                	}
+                }
+                enyo.log(curCommands);
+                for(var c=0; c<5; c++) {
+                    tpr[parseInt(this.$["num" + (c+1)].name.substring(3)) - 1] = this.$["num" + (c+1)].get("value");
+                }
+                runForTheFirstTime = false;
+                done = true;
             }
+            
 });
