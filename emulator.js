@@ -257,20 +257,25 @@ enyo.kind({
 							]
                         },
                     {kind: "FittableColumns", components: [
+                        {kind: "FittableRows", components: [
+                            {
+                                name: "AlarmLight",
+                                classes: "light_off",
+                                style:"width:32px;height:32px;"
+                            },
+                            {content: "Alarm", classes: "fontsize", style:"padding-left: 0px; padding-top: 5px;"}
+                        ]},
                         {
-                            name: "AlarmLight",
-                            classes: "light_off",
-                            style:"width:32px;height:32px;"
+                            style: "width:10px;"
                         },
-                        {content: "Alarm", classes: "fontsize", style:"padding-left: 0px; padding-top: 5px;"}
-                    ]},
-                    {kind: "FittableColumns", components: [
-                        {
-                            name: "FinishLight",
-                            classes: "light_off",
-                            style:"width:32px;height:32px;"
-                        },
-                        {content: "Finish", classes: "fontsize", style:"padding-left: 0px; padding-top: 5px;"}
+                        {kind: "FittableRows", components: [
+                            {
+                                name: "FinishLight",
+                                classes: "light_off",
+                                style:"width:32px;height:32px;"
+                            },
+                            {content: "Finish", classes: "fontsize", style:"padding-left: 0px; padding-top: 5px;"}
+                        ]}
                     ]},
                     
 					{
