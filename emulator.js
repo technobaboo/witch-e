@@ -84,6 +84,9 @@ enyo.kind({
 									}
                             ]
                         },
+                                            {
+                                                style:"width: 10px;"
+                                            },
 							{
 								name: "panel4",
 								kind: "FittableRows",
@@ -97,10 +100,6 @@ enyo.kind({
 									{
 										kind: "FittableColumns",
 										components: [
-                                            
-                                            {
-                                                style:"width: 10px;"
-                                            },
 											{
 												name: "button1",
 												kind: "enyo.Button",
@@ -146,9 +145,6 @@ enyo.kind({
 										kind: "FittableColumns",
 										style: "height:300px;",
 										components: [
-                                            {
-                                                style:"width: 10px;"
-                                            },
 											{
 												name: "num1",
 												kind: "enyo.TextArea",
@@ -219,6 +215,9 @@ enyo.kind({
                                 }
                             ]
                         },
+                                            {
+                                                style:"width: 10px;"
+                                            },
 						{
 						name: "panel2",
 						style: "height: 572px;",
