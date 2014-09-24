@@ -1330,12 +1330,11 @@ enyo.kind({
 			this.$.num2.setDisabled(true);
 			this.$.num3.setDisabled(true);
 			this.$.num4.setDisabled(true);
-			this.$.num5.setDisabled(true);
 			this.$.button1.setDisabled(true);
 			this.$.button2.setDisabled(true);
 			this.$.button3.setDisabled(true);
 			this.$.button4.setDisabled(true);
-			this.$.button5.setDisabled(true);
+			
 			
 			curCommands = this.$["num" + (curTpr + 1)].get("value").replace(/(\n)+/ig, "test").replace(/test(\+|-|\*)/ig, "$1").replace(/test\[[0-9]\]/ig, "").split("test");
 			for (i = 0; i < curCommands.length; i++) {
@@ -1761,8 +1760,10 @@ enyo.kind({
 					
 					if (!done)
 						enyo.job("j1", enyo.bind(this, "switchback"), 1506);
-					if(this.$["num" + (curTpr + 1)].get("value").indexOf(/<[^>]+>/ig) != -1 || this.$["num" + (curTpr + 1)].get("value") == "")
-						this.stop();
+					if(this.$["num" + (curTpr + 1)].get("value").indexOf(/<[^>]+>/ig) != -1 || this.$["num" + (curTpr + 1)].get("value") == "") {
+						this.finishLightOn();
+                        this.stop();
+                    }
 				}
 			},
 			switchback: function () {
@@ -1783,8 +1784,10 @@ enyo.kind({
 				this.$["num" + (curTpr + 1)].set("value", curTprStr.join("\n"));
 				if (curTprStr != "")
 					this.evaluate();
-				else
+				else {
+                    this.finishLightOn();
 					this.stop();
+                }
 			},
 			updateStores: function () {
 				console.log("updateStores!");
@@ -1817,12 +1820,11 @@ enyo.kind({
 				this.$.num2.setDisabled(false);
 				this.$.num3.setDisabled(false);
 				this.$.num4.setDisabled(false);
-				this.$.num5.setDisabled(false);
 				this.$.button1.setDisabled(false);
 				this.$.button2.setDisabled(false);
 				this.$.button3.setDisabled(false);
 				this.$.button4.setDisabled(false);
-				this.$.button5.setDisabled(false);
+				
 			},
 			sv6: function() {
 				this.evaluate();
