@@ -99,7 +99,7 @@ enyo.kind({
 										components: [
                                             
                                             {
-                                                style:"width: 40px;"
+                                                style:"width: 10px;"
                                             },
 											{
 												name: "button1",
@@ -136,11 +136,8 @@ enyo.kind({
 									},
                                     {
 										kind: "FittableColumns",
-                                        style: "height: 20px;",
+										style: "height: 20px;",
 										components: [
-                                            {
-                                                style:"width: 40px;"
-                                            },
 									       {
 									       	   classes: "highlight"
 									       }
@@ -150,7 +147,7 @@ enyo.kind({
 										style: "height:300px;",
 										components: [
                                             {
-                                                style:"width: 40px;"
+                                                style:"width: 10px;"
                                             },
 											{
 												name: "num1",
