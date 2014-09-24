@@ -63,18 +63,18 @@ enyo.kind({
 									{
 										classes: "fontsizeb",
 										content: "PROCESS LOG",
-								},
-								    {
-									  	kind: "enyo.TextArea",
-									  	classes: "dek",
-									  	name: "log",
-									  	classes: "enyo-fill",
-                                        style: "height:410px;",
-									  	disabled: true,
-									  	value: "WITCH-E v2.0.0",
-									  	fit: true,
-									  	spotlight: false
-                                    },
+									},
+									{
+										kind: "enyo.TextArea",
+										classes: "dek",
+										name: "log",
+										classes: "enyo-fill",
+										style: "height:410px; resize: none;",
+										disabled: true,
+										value: "WITCH-E v2.0.0",
+										fit: true,
+										spotlight: false,
+									},
 									{
 										tag: "br"
 									},
