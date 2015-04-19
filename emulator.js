@@ -1972,7 +1972,7 @@ enyo.kind({
                 }
                 enyo.log(tprText + " is the save file contents");
                 var theBlob = new Blob([tprText], {type: "text/plain;charset=" + document.characterSet});
-                saveAs(theBlob, prompt("Enter your file name (no extension).", "program") + ".tpr");
+                saveAs(theBlob, prompt("Enter your file name (no extension).", "program") + ".wtpr");
             },
             loadTapesFile: function() {
                 var theObjInitializer = this;
@@ -1983,7 +1983,7 @@ enyo.kind({
                 var loadedText;
                 var loadedTextArray;
                 fileSelector.setAttribute('type', 'file');
-                fileSelector.setAttribute('accept', '.tpr');
+                fileSelector.setAttribute('accept', '.wtpr');
                 fileSelector.setAttribute('multiple', 'false');
                 fileSelector.onchange = function(event) {
                     file = event.target.files[0];
