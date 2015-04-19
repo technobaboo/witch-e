@@ -188,15 +188,31 @@ enyo.kind({
 												name: "start",
 												classes: "fontsize mouseover",
 												fit: true,
-												style: "height:50px; width:128px",
+												style: "height:50px; width:111px",
 												onclick: "execCommands",
 												content: "Start"
+											},
+                                            {
+												name: "loadFile",
+												classes: "fontsize mouseover",
+												fit: true,
+												style: "height:50px; width:111px",
+												onclick: "loadTapesFile",
+												content: "Load Tapes\nFrom File"
+											},
+                                            {
+												name: "saveToFile",
+												classes: "fontsize mouseover",
+												fit: true,
+												style: "height:50px; width:111px",
+												onclick: "saveFile",
+												content: "Save Tapes\nTo File"
 											},
                                             {
 												name: "resetTapes",
 												classes: "fontsize mouseover",
 												fit: true,
-												style: "height:50px; width:128px",
+												style: "height:50px; width:111px",
 												onclick: "resetTapes",
 												content: "Reset Tapes"
 											},
@@ -204,7 +220,7 @@ enyo.kind({
 												name: "stop",
 												classes: "fontsize mouseover",
 												fit: true,
-												style: "height:50px; width:128px",
+												style: "height:50px; width:111px",
 												onclick: "stop",
 												content: "Stop"
 											}
@@ -1948,6 +1964,42 @@ enyo.kind({
                 }
                 runForTheFirstTime = false;
                 done = true;
+            },
+            saveFile: function() {
+                var tprText = "";
+                for(var x = 0; x<4; x++) {
+                    tprText = tprText + this.$["num" + (x + 1)].get("value") + "\r\n\r\n";
+                }
+                enyo.log(tprText + " is the save file contents");
+                var theBlob = new Blob([tprText], {type: "text/plain;charset=" + document.characterSet});
+                saveAs(theBlob, prompt("Enter your file name (no extension).", "program") + ".tpr");
+            },
+            loadTapesFile: function() {
+                var theObjInitializer = this;
+                var doneWithReading = false;
+                var fileSelector = document.createElement('input');
+                var file;
+                var reader;
+                var loadedText;
+                var loadedTextArray;
+                fileSelector.setAttribute('type', 'file');
+                fileSelector.setAttribute('accept', '.tpr');
+                fileSelector.setAttribute('multiple', 'false');
+                fileSelector.onchange = function(event) {
+                    file = event.target.files[0];
+                    reader = new FileReader();
+                    reader.onload = function() {
+                        loadedText = reader.result;
+                        enyo.log(loadedText);
+                        loadedTextArray = loadedText.split("\r\n\r\n");
+                        
+                        for(var x = 0; x<4; x++) {
+                            theObjInitializer.$["num" + (x + 1)].set("value", loadedTextArray[x]);
+                        }
+                    }
+                    reader.readAsText(file, "text/plain;charset=" + document.characterSet);
+                }
+                fileSelector.click();
             }
             
 });

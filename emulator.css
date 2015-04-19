@@ -48,12 +48,14 @@
 	background:none;
 	color: #a6a6a6;
 	vertical-align:middle;
+    text-align: center;
 }
 
 .mouseover:hover {
 	background:#cf0652;
 	color: #ffffff;
 	vertical-align:middle;
+    text-align: center;
 }
 
 .mouseover:active {
@@ -61,6 +63,7 @@
 	color: #a6a6a6;
 	border: 5px solid #cf0652;
 	vertical-align:middle;
+    text-align: center;
 }
 
 .center {
