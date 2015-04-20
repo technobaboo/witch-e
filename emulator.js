@@ -1972,7 +1972,10 @@ enyo.kind({
                 }
                 enyo.log(tprText + " is the save file contents");
                 var theBlob = new Blob([tprText], {type: "text/plain;charset=" + document.characterSet});
-                saveAs(theBlob, prompt("Enter your file name (no extension).", "program") + ".wtpr");
+				var fileName = prompt("Enter your file name (no extension).", "program");
+				if(fileName) {
+                	saveAs(theBlob, fileName + ".wtpr");
+				}
             },
             loadTapesFile: function() {
                 var theObjInitializer = this;
