@@ -1945,7 +1945,7 @@ enyo.kind({
             resetTapes: function() {
                 this.finishLightOff();
                 this.alarmLightOff();
-                for(var ts = 1; ts <= 5; ts++) {
+                for(var ts = 1; ts <= 4; ts++) {
                     if(tapeValues[ts-1] == undefined)
                         tapeValues[ts-1] = "";
                     this.$["num" + ts].set("value", tapeValues[ts-1]);
@@ -1959,7 +1959,7 @@ enyo.kind({
                 	}
                 }
                 enyo.log(curCommands);
-                for(var c=0; c<5; c++) {
+                for(var c=0; c<4; c++) {
                     tpr[parseInt(this.$["num" + (c+1)].name.substring(3)) - 1] = this.$["num" + (c+1)].get("value");
                 }
                 runForTheFirstTime = false;
