@@ -1968,7 +1968,7 @@ enyo.kind({
             saveFile: function() {
                 var tprText = "";
                 for(var x = 0; x<4; x++) {
-                    tprText = tprText + this.$["num" + (x + 1)].get("value") + "\r\n\r\n";
+                    tprText = tprText + (looped[x] ? "l\n":"s\n") + this.$["num" + (x + 1)].get("value") + "\n";
                 }
                 enyo.log(tprText + " is the save file contents");
                 var theBlob = new Blob([tprText], {type: "text/plain;charset=" + document.characterSet});
@@ -1982,6 +1982,7 @@ enyo.kind({
                 var reader;
                 var loadedText;
                 var loadedTextArray;
+                var loadedLoopedArray;
                 fileSelector.setAttribute('type', 'file');
                 fileSelector.setAttribute('accept', '.wtpr');
                 fileSelector.setAttribute('multiple', 'false');
@@ -1991,10 +1992,21 @@ enyo.kind({
                     reader.onload = function() {
                         loadedText = reader.result;
                         enyo.log(loadedText);
-                        loadedTextArray = loadedText.split("\r\n\r\n");
+                        loadedTextArray = loadedText.split(/[sl]\n/g);
+                        loadedLoopedArray = loadedText.split(/[^sl]+/g);
                         
                         for(var x = 0; x<4; x++) {
-                            theObjInitializer.$["num" + (x + 1)].set("value", loadedTextArray[x]);
+							if(loadedLoopedArray[x] == "s") {
+								looped[x] = false;
+								straight[x] = true;
+								theObjInitializer.$["button"+(x+1)].set("content", "Straight");
+							} else {
+								looped[x] = true;
+								straight[x] = false;
+								theObjInitializer.$["button"+(x+1)].set("content", "Looped");
+							}
+                            theObjInitializer.$["num" + (x + 1)].set("value", loadedTextArray[x + 1]);
+                            theObjInitializer.handleChange(theObjInitializer.$["num" + (x + 1)], null);
                         }
                     }
                     reader.readAsText(file, "text/plain;charset=" + document.characterSet);
