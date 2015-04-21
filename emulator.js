@@ -269,7 +269,7 @@ enyo.kind({
 							{
 								classes: "fontsizeb",
 								content: "STORES",
-								style: "padding-right: 260px;",
+								style: "padding-right: 130px;",
 							},
 							{
 								name: "AlarmLight",
@@ -282,11 +282,24 @@ enyo.kind({
 								classes: "light_off",
 								style:"width:32px;height:32px;"
 							},
-							{content: "Finish", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;"},
+							{content: "Finish", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;padding-right: 50px;"},
+							
+							{
+								name: "YesLight",
+								classes: "light_off",
+								style:"width:32px;height:32px;"
+							},
+							{content: "YES", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;padding-right: 50px;"},
+							{
+								name: "NoLight",
+								classes: "light_off",
+								style:"width:32px;height:32px;"
+							},
+							{content: "NO", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;"},
 							{
 								classes: "fontsizeb",
 								content: "ACCUMULATOR",
-								style: "padding-left: 285px; padding-right: 10px;"
+								style: "padding-left: 190px; padding-right: 10px;"
 							},
 							{
 								classes: "acc",
@@ -1408,20 +1421,23 @@ enyo.kind({
 					break;
 					case "2":
 						if (commandStr[2] == "1") {
-                            this.$.log.set("value", prevText + "\nSign: Skip");
+							this.YesLightOff();
+							this.NoLightOff();
 							curTpr = parseInt(commandStr.slice(3,5))-1;
 							this.sv6();
 						} else if (commandStr[2] == "2" && storedValue) {
                             curTpr = parseInt(commandStr.slice(3,5))-1;
+							this.YesLightOn();
+							this.NoLightOff();
 							this.sv6();
-							var prevText = this.$.log.get("value");
-                            this.$.log.set("value", prevText + "\nSign: True");
 						} else if (commandStr[2] == "2" && !storedValue) {
-							var prevText = this.$.log.get("value");
-                            if(storedValue == null)
-                                this.$.log.set("value", prevText + "\nSign: Null");
-                            else
-                                this.$.log.set("value", prevText + "\nSign: False");
+                            if(storedValue == null) {
+								this.YesLightOff();
+								this.NoLightOff();
+							} else {
+								this.YesLightOff();
+								this.NoLightOn();
+							}   
 						}
 					break;
 					case "3":
@@ -1439,13 +1455,17 @@ enyo.kind({
 						} else if (commandStr[2] == "2" && !storedValue) {
 							var prevText = this.$.log.get("value");
 							this.searchForBlkMarker();
-							this.$.log.set("value", prevText + "\nSign: True");
+							this.YesLightOn();
+							this.NoLightOff();
 						} else {
 							var prevText = this.$.log.get("value");
-							if(storedValue == null)
-								this.$.log.set("value", prevText + "\nSign: Null");
-							else
-								this.$.log.set("value", prevText + "\nSign: False");
+                            if(storedValue == null) {
+								this.YesLightOff();
+								this.NoLightOff();
+							} else {
+								this.YesLightOff();
+								this.NoLightOn();
+							}
 						}
 					break;
 					case "7": 
@@ -1928,19 +1948,35 @@ enyo.kind({
 			},
             alarmLightOn: function() {
                 this.$.AlarmLight.removeClass("light_off");
-                this.$.AlarmLight.addClass("alarm_light_on");
+                this.$.AlarmLight.addClass("red_light_on");
             },
             alarmLightOff: function() {
-                this.$.AlarmLight.removeClass("alarm_light_on");
+                this.$.AlarmLight.removeClass("red_light_on");
                 this.$.AlarmLight.addClass("light_off");
             },
             finishLightOn: function() {
                 this.$.FinishLight.removeClass("light_off");
-                this.$.FinishLight.addClass("finish_light_on");
+                this.$.FinishLight.addClass("green_light_on");
             },
             finishLightOff: function() {
-                this.$.FinishLight.removeClass("finish_light_on");
+                this.$.FinishLight.removeClass("green_light_on");
                 this.$.FinishLight.addClass("light_off");
+            },
+			YesLightOn: function() {
+                this.$.YesLight.removeClass("light_off");
+                this.$.YesLight.addClass("green_light_on");
+            },
+            YesLightOff: function() {
+                this.$.YesLight.removeClass("green_light_on");
+                this.$.YesLight.addClass("light_off");
+            },
+			NoLightOn: function() {
+                this.$.NoLight.removeClass("light_off");
+                this.$.NoLight.addClass("red_light_on");
+            },
+            NoLightOff: function() {
+                this.$.NoLight.removeClass("red_light_on");
+                this.$.NoLight.addClass("light_off");
             },
             resetTapes: function() {
                 this.finishLightOff();

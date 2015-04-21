@@ -179,12 +179,12 @@ textarea {
     background-size: 32px 32px;
 }
 
-.alarm_light_on {
-    background-image: url(images/light_on.png);
+.red_light_on {
+    background-image: url(images/red_light_on.png);
     background-size: 32px 32px;
 }
 
-.finish_light_on {
-    background-image: url(images/finish_light_on.png);
+.green_light_on {
+    background-image: url(images/green_light_on.png);
     background-size: 32px 32px;
 }
