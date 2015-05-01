@@ -38,17 +38,17 @@ String.prototype.replaceAt = function (index, character) {
 function between(x, min, max) {
   return x >= min && x <= max;
 }
+
+Math.clamp = function(a,b,c){
+	return Math.max(b,Math.min(c,a));
+}
 enyo.kind({
 	name: "emulatorMain",
 	kind: "Control",
-	classes: "moon enyo-fit enyo-fill",
+	classes: "moon",
 	pattern:"activity",
+	resized: "resizer",
 	components: [
-			{
-				kind: "moon.Scroller",
-				fit: true,
-				classes: "enyo-fill",
-				components: [
 					{
 						name: "panels",
 						kind: "FittableColumns",
@@ -58,7 +58,6 @@ enyo.kind({
 						components: [
 							{
 								name: "panel2",
-								style: "height: 572px;",
 								components: [
 									{
 										classes: "fontsizeb",
@@ -83,9 +82,9 @@ enyo.kind({
 									}
                             ]
                         },
-                                            {
-                                                style:"width: 10px;"
-                                            },
+                            {
+                                style:"width: 10px;"
+                            },
 							{
 								name: "panel4",
 								kind: "FittableRows",
@@ -97,11 +96,13 @@ enyo.kind({
 									},
 									{
 										kind: "FittableColumns",
+										fit: "true",
+										style: "width:512px;height:36px;",
 										components: [
 											{
 												name: "button1",
 												kind: "enyo.Button",
-												style: "font-size: 27px; width:128px;",
+												style: "font-size: 27px;width:128px;height:36px;",
 												content: "Straight",
 												onclick: "loopIt"
 											},
@@ -109,7 +110,7 @@ enyo.kind({
 											{
 												name: "button2",
 												kind: "enyo.Button",
-												style: "font-size: 27px; width:128px;",
+												style: "font-size: 27px;width:128px;height:36px;",
 												content: "Straight",
 												onclick: "loopIt"
 											},
@@ -117,7 +118,7 @@ enyo.kind({
 											{
 												name: "button3",
 												kind: "enyo.Button",
-												style: "font-size: 27px; width:128px;",
+												style: "font-size: 27px;width:128px;height:36px;",
 												content: "Straight",
 												onclick: "loopIt"
 											},
@@ -125,11 +126,11 @@ enyo.kind({
 											{
 												name: "button4",
 												kind: "enyo.Button",
-												style: "font-size: 27px; width:128px;",
+												style: "font-size: 27px;width:128px;height:36px;",
 												content: "Straight",
 												onclick: "loopIt"
 											}
-									]
+										]
 									},
                                     {
 										kind: "FittableColumns",
@@ -141,7 +142,7 @@ enyo.kind({
                                         ]},
 									{
 										kind: "FittableColumns",
-										style: "height:300px;",
+										style:"height: 356px;",
 										components: [
 											{
 												name: "num1",
@@ -323,43 +324,43 @@ enyo.kind({
 								kind: "FittableRows",
 								components: [
 									{
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "90",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "80",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "70",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "60",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "50",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "40",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "30",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "20",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									},
 									{
 										content: "10",
-										classes: "tblcell"
+										classes: "sidetblcell"
 									}
 
                             ]
@@ -369,15 +370,17 @@ enyo.kind({
 								components: [
 									{
 										content: "9",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "99",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -386,7 +389,8 @@ enyo.kind({
 											{
 												name: "89",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -395,7 +399,8 @@ enyo.kind({
 											{
 												name: "79",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -404,7 +409,8 @@ enyo.kind({
 											{
 												name: "69",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -413,7 +419,8 @@ enyo.kind({
 											{
 												name: "59",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -422,7 +429,8 @@ enyo.kind({
 											{
 												name: "49",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -431,7 +439,8 @@ enyo.kind({
 											{
 												name: "39",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -440,7 +449,8 @@ enyo.kind({
 											{
 												name: "29",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -450,7 +460,8 @@ enyo.kind({
 											{
 												name: "19",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -460,15 +471,17 @@ enyo.kind({
 								components: [
 									{
 										content: "8",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "98",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -477,7 +490,8 @@ enyo.kind({
 											{
 												name: "88",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -486,7 +500,8 @@ enyo.kind({
 											{
 												name: "78",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -495,7 +510,8 @@ enyo.kind({
 											{
 												name: "68",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -504,7 +520,8 @@ enyo.kind({
 											{
 												name: "58",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -513,7 +530,8 @@ enyo.kind({
 											{
 												name: "48",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -522,7 +540,8 @@ enyo.kind({
 											{
 												name: "38",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -531,7 +550,8 @@ enyo.kind({
 											{
 												name: "28",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -541,7 +561,8 @@ enyo.kind({
 											{
 												name: "18",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -551,15 +572,17 @@ enyo.kind({
 								components: [
 									{
 										content: "7",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "97",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -568,7 +591,8 @@ enyo.kind({
 											{
 												name: "87",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -577,7 +601,8 @@ enyo.kind({
 											{
 												name: "77",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -586,7 +611,8 @@ enyo.kind({
 											{
 												name: "67",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -595,7 +621,8 @@ enyo.kind({
 											{
 												name: "57",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -604,7 +631,8 @@ enyo.kind({
 											{
 												name: "47",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -613,7 +641,8 @@ enyo.kind({
 											{
 												name: "37",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -622,7 +651,8 @@ enyo.kind({
 											{
 												name: "27",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -632,7 +662,8 @@ enyo.kind({
 											{
 												name: "17",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -642,15 +673,17 @@ enyo.kind({
 								components: [
 									{
 										content: "6",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "96",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -659,7 +692,8 @@ enyo.kind({
 											{
 												name: "86",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -668,7 +702,8 @@ enyo.kind({
 											{
 												name: "76",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -677,7 +712,8 @@ enyo.kind({
 											{
 												name: "66",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -686,7 +722,8 @@ enyo.kind({
 											{
 												name: "56",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -695,7 +732,8 @@ enyo.kind({
 											{
 												name: "46",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -704,7 +742,8 @@ enyo.kind({
 											{
 												name: "36",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -713,7 +752,8 @@ enyo.kind({
 											{
 												name: "26",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -723,7 +763,8 @@ enyo.kind({
 											{
 												name: "16",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -733,15 +774,17 @@ enyo.kind({
 								components: [
 									{
 										content: "5",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "95",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -750,7 +793,8 @@ enyo.kind({
 											{
 												name: "85",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -759,7 +803,8 @@ enyo.kind({
 											{
 												name: "75",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -768,7 +813,8 @@ enyo.kind({
 											{
 												name: "65",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -777,7 +823,8 @@ enyo.kind({
 											{
 												name: "55",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -786,7 +833,8 @@ enyo.kind({
 											{
 												name: "45",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -795,7 +843,8 @@ enyo.kind({
 											{
 												name: "35",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -804,7 +853,8 @@ enyo.kind({
 											{
 												name: "25",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -814,7 +864,8 @@ enyo.kind({
 											{
 												name: "15",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -824,15 +875,17 @@ enyo.kind({
 								components: [
 									{
 										content: "4",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "94",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -841,7 +894,8 @@ enyo.kind({
 											{
 												name: "84",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -850,7 +904,8 @@ enyo.kind({
 											{
 												name: "74",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -859,7 +914,8 @@ enyo.kind({
 											{
 												name: "64",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -868,7 +924,8 @@ enyo.kind({
 											{
 												name: "54",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -877,7 +934,8 @@ enyo.kind({
 											{
 												name: "44",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -886,7 +944,8 @@ enyo.kind({
 											{
 												name: "34",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -895,7 +954,8 @@ enyo.kind({
 											{
 												name: "24",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -905,7 +965,8 @@ enyo.kind({
 											{
 												name: "14",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -915,15 +976,17 @@ enyo.kind({
 								components: [
 									{
 										content: "3",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "93",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -932,7 +995,8 @@ enyo.kind({
 											{
 												name: "83",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -941,7 +1005,8 @@ enyo.kind({
 											{
 												name: "73",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -950,7 +1015,8 @@ enyo.kind({
 											{
 												name: "63",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -959,7 +1025,8 @@ enyo.kind({
 											{
 												name: "53",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -968,7 +1035,8 @@ enyo.kind({
 											{
 												name: "43",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -977,7 +1045,8 @@ enyo.kind({
 											{
 												name: "33",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -986,7 +1055,8 @@ enyo.kind({
 											{
 												name: "23",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -996,7 +1066,8 @@ enyo.kind({
 											{
 												name: "13",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -1006,15 +1077,17 @@ enyo.kind({
 								components: [
 									{
 										content: "2",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "92",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1023,7 +1096,8 @@ enyo.kind({
 											{
 												name: "82",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1032,7 +1106,8 @@ enyo.kind({
 											{
 												name: "72",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1041,7 +1116,8 @@ enyo.kind({
 											{
 												name: "62",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1050,7 +1126,8 @@ enyo.kind({
 											{
 												name: "52",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1059,7 +1136,8 @@ enyo.kind({
 											{
 												name: "42",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1068,7 +1146,8 @@ enyo.kind({
 											{
 												name: "32",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1077,7 +1156,8 @@ enyo.kind({
 											{
 												name: "22",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -1087,7 +1167,8 @@ enyo.kind({
 											{
 												name: "12",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -1097,15 +1178,17 @@ enyo.kind({
 								components: [
 									{
 										content: "1",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "91",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1114,7 +1197,8 @@ enyo.kind({
 											{
 												name: "81",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1123,7 +1207,8 @@ enyo.kind({
 											{
 												name: "71",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1132,7 +1217,8 @@ enyo.kind({
 											{
 												name: "61",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1141,7 +1227,8 @@ enyo.kind({
 											{
 												name: "51",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1150,7 +1237,8 @@ enyo.kind({
 											{
 												name: "41",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1159,7 +1247,8 @@ enyo.kind({
 											{
 												name: "31",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1168,7 +1257,8 @@ enyo.kind({
 											{
 												name: "21",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -1178,7 +1268,8 @@ enyo.kind({
 											{
 												name: "11",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -1188,15 +1279,17 @@ enyo.kind({
 								components: [
 									{
 										content: "0",
-										classes: "tblcell"
+										classes: "toptblcell"
 									},
-									{
-										classes: "dekcell",
+									
+{										
+classes: "dekcell",
 										components: [
 											{
 												name: "90",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1205,7 +1298,8 @@ enyo.kind({
 											{
 												name: "80",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1214,7 +1308,8 @@ enyo.kind({
 											{
 												name: "70",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1223,7 +1318,8 @@ enyo.kind({
 											{
 												name: "60",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1232,7 +1328,8 @@ enyo.kind({
 											{
 												name: "50",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1241,7 +1338,8 @@ enyo.kind({
 											{
 												name: "40",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1250,7 +1348,8 @@ enyo.kind({
 											{
 												name: "30",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }, {
@@ -1259,7 +1358,8 @@ enyo.kind({
 											{
 												name: "20",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 },
@@ -1269,7 +1369,8 @@ enyo.kind({
 											{
 												name: "10",
 												content: " ",
-												classes: "dek"
+												classes: "dek",
+												style: "width:125px",
 											}
                                     ]
                                 }
@@ -1284,9 +1385,10 @@ enyo.kind({
 						style: "font-size: 10px;",
 						spotlight: false
                 }
-            ]
-        }
     ],
+		getWindowDimensions: function () {
+			return getWinDims();
+		},
 		loopIt: function (inSender, inEvent) {
 			straight[parseInt(inSender.name.slice(6)) - 1] = !straight[parseInt(inSender.name.slice(6)) - 1];
 			if (straight[parseInt(inSender.name.slice(6)) - 1])
@@ -2051,6 +2153,49 @@ enyo.kind({
                     reader.readAsText(file, "text/plain;charset=" + document.characterSet);
                 }
                 fileSelector.click();
-            }
-            
+            },
+            resizeHandler: function() {
+  				this.inherited(arguments);
+				resizeTheDivs(this.getWindowDimensions[0], this.getWindowDimensions[1]);
+	
+			}
 });
+
+var oldScale = 0;
+function resizeTheDivs() {
+	x=getWinDims()[0];
+	y=getWinDims()[1];
+	console.log("X: "+x+" Y:"+y);
+	document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
+	enyo.log("Resizing Window");
+}
+
+function getWinDims() {
+	var viewportwidth;
+	var viewportheight;
+	
+	// the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+	
+	if (typeof window.innerWidth != 'undefined')
+	{
+		viewportwidth = window.innerWidth,
+			viewportheight = window.innerHeight
+	}
+	
+	// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+	
+	else if (typeof document.documentElement != 'undefined' && typeof document.documentElement.clientWidth != 'undefined' && document.documentElement.clientWidth != 0)
+	{
+		viewportwidth = document.documentElement.clientWidth,
+		viewportheight = document.documentElement.clientHeight
+	}
+	
+	// older versions of IE
+	
+	else
+	{
+		viewportwidth = document.getElementsByTagName('body')[0].clientWidth,
+		viewportheight = document.getElementsByTagName('body')[0].clientHeight
+	}
+	return [viewportwidth, viewportheight];
+}
