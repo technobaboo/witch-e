@@ -43,6 +43,9 @@ function between(x, min, max) {
 Math.clamp = function(a,b,c){
 	return Math.max(b,Math.min(c,a));
 }
+
+document.addEventListener("resizeTheDivs", onload, true);
+
 enyo.kind({
 	name: "emulatorMain",
 	kind: "Control",
@@ -2162,13 +2165,8 @@ classes: "dekcell",
             },
             resizeHandler: function() {
   				this.inherited(arguments);
-				resizeTheDivs(this.getWindowDimensions[0], this.getWindowDimensions[1]);
+				resizeTheDivs();
 	
-			},
-            loadHandler: function() {
-  				this.inherited(arguments);
-				bodyInitDims = [getWinDims()[0],getWinDims()[1]];
-				resizeTheDivs(this.getWindowDimensions[0], this.getWindowDimensions[1]);
 			}
 });
 function resizeTheDivs() {
@@ -2176,15 +2174,14 @@ function resizeTheDivs() {
 	y=getWinDims()[1];
 	console.log("X: "+x+" Y:"+y);
 	if(x>1400 && y>880) {
-		document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
+		document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.mozTransform = document.body.style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
 	} else {
-		document.getElementById('emulatorMain_spacer').style.webkitTransform = document.getElementById('emulatorMain_spacer').style.msTransform = document.getElementById('emulatorMain_spacer').style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
+		document.getElementById('emulatorMain_spacer').style.webkitTransform = document.getElementById('emulatorMain_spacer').style.msTransform = document.getElementById('emulatorMain_spacer').style.mozTransform = document.getElementById('emulatorMain_spacer').style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
 	}
 	
 	
 	enyo.log("Resizing Window");
 }
-
 function getWinDims() {
 	var viewportwidth;
 	var viewportheight;
