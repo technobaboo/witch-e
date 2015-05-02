@@ -3,10 +3,17 @@
 }
 
 body {
-	-webkit-transform-origin: top left; 
-	-moz-transform-origin: top left; 
-	-ms-transform-origin: top left;
-	transform-origin: top left; 
+	-webkit-transform-origin: 0px 0px; 
+	-moz-transform-origin: 0px 0px; 
+	-ms-transform-origin: 0px 0px;
+	transform-origin: 0px 0px;
+}
+
+#emulatorMain_spacer {
+	-webkit-transform-origin: 0px 0px; 
+	-moz-transform-origin: 0px 0px; 
+	-ms-transform-origin: 0px 0px;
+	transform-origin: 0px 0px;
 }
 
 .panels-sample-wide {

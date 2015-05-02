@@ -32,6 +32,7 @@ var storedValue = null;
 var tprPositions = [0, 0, 0, 0, 0];
 var outcomeToBePrinted = null;
 var tapeValues = [];
+var bodyInitDims;
 String.prototype.replaceAt = function (index, character) {
 	return this.substr(0, index) + character + this.substr(index + character.length);
 }
@@ -49,6 +50,9 @@ enyo.kind({
 	pattern:"activity",
 	resized: "resizer",
 	components: [
+		{
+			name: "spacer",
+				components: [
 					{
 						name: "panels",
 						kind: "FittableColumns",
@@ -1385,6 +1389,8 @@ classes: "dekcell",
 						style: "font-size: 10px;",
 						spotlight: false
                 }
+			]
+		}
     ],
 		getWindowDimensions: function () {
 			return getWinDims();
@@ -2158,15 +2164,24 @@ classes: "dekcell",
   				this.inherited(arguments);
 				resizeTheDivs(this.getWindowDimensions[0], this.getWindowDimensions[1]);
 	
+			},
+            loadHandler: function() {
+  				this.inherited(arguments);
+				bodyInitDims = [getWinDims()[0],getWinDims()[1]];
+				resizeTheDivs(this.getWindowDimensions[0], this.getWindowDimensions[1]);
 			}
 });
-
-var oldScale = 0;
 function resizeTheDivs() {
 	x=getWinDims()[0];
 	y=getWinDims()[1];
 	console.log("X: "+x+" Y:"+y);
-	document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
+	if(x>1400 && y>880) {
+		document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
+	} else {
+		document.getElementById('emulatorMain_spacer').style.webkitTransform = document.getElementById('emulatorMain_spacer').style.msTransform = document.getElementById('emulatorMain_spacer').style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
+	}
+	
+	
 	enyo.log("Resizing Window");
 }
 
