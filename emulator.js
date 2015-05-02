@@ -2185,8 +2185,6 @@ classes: "dekcell",
                         loadedStepMode = loadedText.split(/\n/g)[0];
                         loadedTextArray = loadedText.split(/[^s][sl]\n/g);
                         loadedLoopedArray = loadedText.split(/[^sl]+/g);
-                        loadedTextArray.shift();
-                        loadedLoopedArray.shift();
                         for(var x = 0; x<4; x++) {
 							if(loadedLoopedArray[x] == "s") {
 								looped[x] = false;
