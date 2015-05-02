@@ -32,7 +32,10 @@ var storedValue = null;
 var tprPositions = [0, 0, 0, 0, 0];
 var outcomeToBePrinted = null;
 var tapeValues = [];
+var isInSingleStepMode = false;
+var singleStepped = false;
 var bodyInitDims;
+var theObjInitializer;
 String.prototype.replaceAt = function (index, character) {
 	return this.substr(0, index) + character + this.substr(index + character.length);
 }
@@ -194,7 +197,7 @@ enyo.kind({
 										components: [
 											{
 												name: "start",
-												classes: "fontsize mouseover",
+												classes: "fontsizec mouseover",
 												fit: true,
 												style: "height:50px; width:111px",
 												onclick: "execCommands",
@@ -202,7 +205,7 @@ enyo.kind({
 											},
                                             {
 												name: "loadFile",
-												classes: "fontsize mouseover",
+												classes: "fontsizec mouseover",
 												fit: true,
 												style: "height:50px; width:111px",
 												onclick: "loadTapesFile",
@@ -210,7 +213,7 @@ enyo.kind({
 											},
                                             {
 												name: "saveToFile",
-												classes: "fontsize mouseover",
+												classes: "fontsizec mouseover",
 												fit: true,
 												style: "height:50px; width:111px",
 												onclick: "saveFile",
@@ -218,7 +221,7 @@ enyo.kind({
 											},
                                             {
 												name: "resetTapes",
-												classes: "fontsize mouseover",
+												classes: "fontsizec mouseover",
 												fit: true,
 												style: "height:50px; width:111px",
 												onclick: "resetTapes",
@@ -226,7 +229,7 @@ enyo.kind({
 											},
 											{
 												name: "stop",
-												classes: "fontsize mouseover",
+												classes: "fontsizec mouseover",
 												fit: true,
 												style: "height:50px; width:111px",
 												onclick: "stop",
@@ -273,11 +276,12 @@ enyo.kind({
                         },
 					{
 						kind: "FittableColumns",
+						style: "width: 1300px;",
 						components: [
 							{
 								classes: "fontsizeb",
 								content: "STORES",
-								style: "padding-right: 130px;",
+								style: "padding-right: 19px;",
 							},
 							{
 								name: "AlarmLight",
@@ -304,10 +308,27 @@ enyo.kind({
 								style:"width:32px;height:32px;"
 							},
 							{content: "NO", classes: "fontsize", style:"padding-left: 10px; padding-top: 5px;"},
+							{style:"width: 39px;"},
+                            {
+								name: "enableSingleStep",
+								classes: "fontsizec mouseover",
+								fit: true,
+								style: "height:50px; width:111px",
+								onclick: "singleStepModeSwitch",
+								content: "Auto Step Mode"
+							},
+                            {
+								name: "singleStep",
+								classes: "fontsizec mouseover",
+								fit: true,
+								style: "height:50px; width:111px",
+								onclick: "singleStep",
+								content: "Step Once"
+							},
 							{
 								classes: "fontsizeb",
 								content: "ACCUMULATOR",
-								style: "padding-left: 190px; padding-right: 10px;"
+								style: "padding-left: 40px; padding-right: 10px;"
 							},
 							{
 								classes: "acc",
@@ -1891,13 +1912,23 @@ classes: "dekcell",
 						break;
 					}
 					
-					if (!done)
+                	theObjInitializer = this;
+					if (!done && !isInSingleStepMode)
 						enyo.job("j1", enyo.bind(this, "switchback"), 1506);
+					else if(isInSingleStepMode) 
+						(function wait() {if(singleStepped){singleStepped=false;theObjInitializer.switchback();} else {setTimeout( wait, 100 );}})();
 					if(this.$["num" + (curTpr + 1)].get("value").indexOf(/<[^>]+>/ig) != -1 || this.$["num" + (curTpr + 1)].get("value") == "") {
 						this.finishLightOn();
                         this.stop();
                     }
 				}
+			},
+			singleStepModeSwitch: function() {
+				isInSingleStepMode = !isInSingleStepMode;
+				this.$.enableSingleStep.set("content", (isInSingleStepMode) ? "Single Step Mode" : "Auto Step Mode");
+			},
+			singleStep: function() {
+				singleStepped = true;
 			},
 			switchback: function () {
 				var curTprStr = this.$["num" + (curTpr + 1)].get("value").split("\n");
@@ -2018,8 +2049,12 @@ classes: "dekcell",
 							this.$["num" + (curTpr+1)].set("value", curTprStr.join("\n"));
 						}
 						done = false;
+						theObjInitializer = this;
+						if (!isInSingleStepMode)
+							this.switchback();
+						else 
+							(function wait() {if(singleStepped){singleStepped=false;theObjInitializer.switchback();} else {setTimeout( wait, 100 );}})();
 						
-						this.switchback();
 					} else if (foundBlkMarker && this.$["num" + stbCurTpr].get("value") != "") {
 						var curTprStr = this.$["num" + (curTpr+1)].get("value").split("\n");
 						for (g = 0; g < curTprStr.length; g++) {
@@ -2043,7 +2078,11 @@ classes: "dekcell",
                         if(!runForTheFirstTime) {
 							this.$.log.set("value", prevText + "\n[1]");
 						}
-						this.evaluate();
+						
+						if (!isInSingleStepMode)
+							this.evaluate();
+						else 
+							(function wait() {if(singleStepped){singleStepped=false;theObjInitializer.evaluate();} else {setTimeout( wait, 100 );}})();
 						runForTheFirstTime = true;
 						foundBlkMarker = false;
 					} else if (!foundBlkMarker && this.$["num" + stbCurTpr].get("value") != "") {
@@ -2125,7 +2164,7 @@ classes: "dekcell",
 				}
             },
             loadTapesFile: function() {
-                var theObjInitializer = this;
+                theObjInitializer = this;
                 var doneWithReading = false;
                 var fileSelector = document.createElement('input');
                 var file;

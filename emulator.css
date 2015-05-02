@@ -27,7 +27,7 @@ body {
 	padding:15px;
 	background:url(images/tapereader.png);
 	background-size:128px 356px;
-	font-size: 13px;
+	font-size: 10px;
 	background-repeat:no-repeat;
 	border: 0px;
 	padding-left: 25px;
@@ -39,7 +39,7 @@ body {
 	padding:15px;
 	background:url(images/tapereaderhover.png);
 	background-size:128px 356px;
-	font-size: 13px;
+	font-size: 10px;
 	background-repeat:no-repeat;
 	border: 0px;
 	padding-left: 25px;
@@ -50,7 +50,7 @@ body {
 	padding:15px;
 	background:url(images/tapereader.png);
 	background-size:128px 356px;
-	font-size: 13px;
+	font-size: 10px;
 	background-repeat:no-repeat;
 	border: 0px solid #cf0652;
 	padding-left: 25px;
@@ -105,14 +105,19 @@ body {
 
 .fontsize {
 	font-size: 16px;
-	align: center;
+	text-align: center;
 	padding-left: 25px;
 }
 
 .fontsizeb {
 	font-size: 20px;
-	align: center;
+	text-align: center;
 	padding-left: 25px;
+}
+
+.fontsizec {
+	font-size: 16px;
+	text-align: center;
 }
 
 .toptblcell {
@@ -169,7 +174,7 @@ body {
 	top: 33px;
 	left: 0px;
 	width: 512px;
-	height: 21px;
+	height: 17px;
 	opacity: 0.5;
 	border: 1px solid #6F687D;
 	background: #6F687D;
