@@ -2219,7 +2219,7 @@ function resizeTheDivs() {
 	if(x>1400 && y>880) {
 		document.body.style.webkitTransform = document.body.style.msTransform = document.body.style.mozTransform = document.body.style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
 	} else {
-		document.getElementById('emulatorMain_spacer').style.webkitTransform = document.getElementById('emulatorMain_spacer').style.msTransform = document.getElementById('emulatorMain_spacer').style.mozTransform = document.getElementById('emulatorMain_spacer').style.transform="scale("+Math.min(y/880,  x/1400)+","+Math.min(y/880,  x/1350)+")";
+		document.getElementById('emulatorMain_spacer').style.webkitTransform = document.getElementById('emulatorMain_spacer').style.msTransform = document.getElementById('emulatorMain_spacer').style.mozTransform = document.getElementById('emulatorMain_spacer').style.transform="scale("+Math.min(y/880,  x/1450)+","+Math.min(y/880,  x/1450)+")";
 	}
 	
 	
