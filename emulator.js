@@ -1912,11 +1912,8 @@ classes: "dekcell",
 						break;
 					}
 					
-                	theObjInitializer = this;
-					if (!done && !isInSingleStepMode)
-						enyo.job("j1", enyo.bind(this, "switchback"), 1506);
-					else if(isInSingleStepMode) 
-						(function wait() {if(singleStepped){singleStepped=false;theObjInitializer.switchback();} else {setTimeout( wait, 100 );}})();
+					this.switchback();
+					
 					if(this.$["num" + (curTpr + 1)].get("value").indexOf(/<[^>]+>/ig) != -1 || this.$["num" + (curTpr + 1)].get("value") == "") {
 						this.finishLightOn();
                         this.stop();
@@ -1947,7 +1944,12 @@ classes: "dekcell",
 					curTprStr.push(curTprStr.shift());
 				this.$["num" + (curTpr + 1)].set("value", curTprStr.join("\n"));
 				if (curTprStr != "")
-					this.evaluate();
+					
+                	theObjInitializer = this;
+					if (!done && !isInSingleStepMode)
+						enyo.job("j1", enyo.bind(this, "evaluate"), 1506);
+					else if(isInSingleStepMode) 
+						(function wait() {if(singleStepped){singleStepped=false;theObjInitializer.evaluate();} else {setTimeout( wait, 100 );}})();
 				else {
                     this.finishLightOn();
 					this.stop();
@@ -2185,6 +2187,7 @@ classes: "dekcell",
                         loadedStepMode = loadedText.split(/\n/g)[0];
                         loadedTextArray = loadedText.split(/[^s][sl]\n/g);
                         loadedLoopedArray = loadedText.split(/[^sl]+/g);
+						loadedLoopedArray.shift();
                         for(var x = 0; x<4; x++) {
 							if(loadedLoopedArray[x] == "s") {
 								looped[x] = false;
