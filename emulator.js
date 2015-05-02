@@ -2152,7 +2152,7 @@ classes: "dekcell",
                 done = true;
             },
             saveFile: function() {
-                var tprText = "";
+                var tprText = (isInSingleStepMode) ? "ss" : "as" + "\n";
                 for(var x = 0; x<4; x++) {
                     tprText = tprText + (looped[x] ? "l\n":"s\n") + this.$["num" + (x + 1)].get("value") + "\n";
                 }
@@ -2169,6 +2169,7 @@ classes: "dekcell",
                 var fileSelector = document.createElement('input');
                 var file;
                 var reader;
+                var loadedStepMode;
                 var loadedText;
                 var loadedTextArray;
                 var loadedLoopedArray;
@@ -2181,9 +2182,11 @@ classes: "dekcell",
                     reader.onload = function() {
                         loadedText = reader.result;
                         enyo.log(loadedText);
-                        loadedTextArray = loadedText.split(/[sl]\n/g);
+                        loadedStepMode = loadedText.split(/\n/g)[0];
+                        loadedTextArray = loadedText.split(/[^s][sl]\n/g);
                         loadedLoopedArray = loadedText.split(/[^sl]+/g);
-                        
+                        loadedTextArray.shift();
+                        loadedLoopedArray.shift();
                         for(var x = 0; x<4; x++) {
 							if(loadedLoopedArray[x] == "s") {
 								looped[x] = false;
@@ -2194,6 +2197,7 @@ classes: "dekcell",
 								straight[x] = false;
 								theObjInitializer.$["button"+(x+1)].set("content", "Looped");
 							}
+							if((theObjInitializer.$.enableSingleStep.get("content")=="Single Step Mode") != (loadedStepMode == "ss")) theObjInitializer.singleStepModeSwitch();
                             theObjInitializer.$["num" + (x + 1)].set("value", loadedTextArray[x + 1]);
                             theObjInitializer.handleChange(theObjInitializer.$["num" + (x + 1)], null);
                         }
