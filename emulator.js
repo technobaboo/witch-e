@@ -28,6 +28,7 @@ var stores = [
 ];
 var looped = [false, false, false, false, false];
 var done = false;
+var storedShift = 0;
 var storedValue = null;
 var tprPositions = [0, 0, 0, 0, 0];
 var outcomeToBePrinted = null;
@@ -1604,6 +1605,11 @@ classes: "dekcell",
 						var possibleOutcomes = ["lblblblblb", "", "", "5csign8d", "5csign8dlb", "5csign8dlblb", "6csign6d", "5csign6d", "5csign6dlb", "5csign6dlblb"];
 						outcomeToBePrinted = possibleOutcomes[parseInt(commandStr.slice(2, 3))];
 					break;
+					case "8":
+						if(commandStr.slice(0, 3) != "080") {
+							storedShift = parseInt(commandStr.slice(2, 3))-2;
+						}
+					break;
 					}
 				break;
 				case "1":
@@ -1676,7 +1682,8 @@ classes: "dekcell",
 							this.$.printer.set("content", prevText);
 					} else if (this.$[commandStr.slice(1, 3)] && this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && this.$[commandStr.slice(1, 3)].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
-							var s2 = parseInt(this.$[commandStr.slice(1, 3)].get("content"));
+							var s2 = this.shiftSelect(parseInt(this.$[commandStr.slice(1, 3)].get("content")), storedShift);
+							storedShift = 0;
 							if (commandStr.slice(1,3) == "09") {
 								s2 = Math.round((s2/10000000)-0.5);
 							}
@@ -1793,7 +1800,9 @@ classes: "dekcell",
 							this.$.printer.set("content", prevText);
 					} else if (this.$[commandStr.slice(1, 3)] && this.$[commandStr.slice(3, 5)] && this.$[commandStr.slice(3, 5)].get("content") != " " && this.$[commandStr.slice(1, 3)].get("content") != " ") {
 							var s1 = parseInt(this.$[commandStr.slice(3, 5)].get("content"));
-							var s2 = (999999999 - parseInt(this.$[commandStr.slice(1, 3)].get("content")));
+							var s2 = this.shiftSelect(99999999 - parseInt(this.$[commandStr.slice(1, 3)].get("content")), storedShift);
+						
+							storedShift = 0;
 							var s3 = s1+s2;
 							if (Math.round((s3/1000000000)-0.5)) {
 								s3 = (s3 - 1000000000)+1;
@@ -2185,7 +2194,7 @@ classes: "dekcell",
                         loadedText = reader.result;
                         enyo.log(loadedText);
                         loadedStepMode = loadedText.split(/\n/g)[0];
-                        loadedTextArray = loadedText.split(/[^s][sl]\n/g);
+                        loadedTextArray = loadedText.split(/[^sa][sl]\n/g);
                         loadedLoopedArray = loadedText.split(/[^sl]+/g);
 						loadedLoopedArray.shift();
                         for(var x = 0; x<4; x++) {
@@ -2210,7 +2219,29 @@ classes: "dekcell",
             resizeHandler: function() {
   				this.inherited(arguments);
 				resizeTheDivs();
-	
+			},
+			shiftSelect: function(num, pow) {
+				console.log("num initially is: " + num);
+				console.log("pow initially is: " + pow);
+				var numStr = (num * Math.pow(10 , pow)).toString();
+				
+				console.log("numStr after pow is: " + numStr);
+				
+				while ( numStr.length < 9 )
+					numStr = "0" + numStr;
+				
+				console.log("numStr after adjustment is: " + numStr);
+				if(numStr.length > 8) {
+					if(pow >= 0) {
+						numStr = numStr.slice(pow, 9);
+					} else {
+						numStr = numStr.slice(0, pow);
+					}
+				}
+				
+				console.log("numStr after slicing is: " + numStr);
+				
+				return parseInt(numStr);
 			}
 });
 function resizeTheDivs() {
