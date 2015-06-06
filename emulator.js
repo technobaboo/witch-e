@@ -210,7 +210,7 @@ enyo.kind({
 												fit: true,
 												style: "height:50px; width:111px",
 												onclick: "loadTapesFile",
-												content: "Load Tapes\nFrom File"
+												content: "Load"
 											},
                                             {
 												name: "saveToFile",
@@ -218,7 +218,7 @@ enyo.kind({
 												fit: true,
 												style: "height:50px; width:111px",
 												onclick: "saveFile",
-												content: "Save Tapes\nTo File"
+												content: "Save"
 											},
                                             {
 												name: "resetTapes",
