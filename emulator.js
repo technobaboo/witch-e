@@ -316,7 +316,7 @@ enyo.kind({
 								fit: true,
 								style: "height:50px; width:111px",
 								onclick: "singleStepModeSwitch",
-								content: "Auto Step Mode"
+								content: "Step Mode"
 							},
                             {
 								name: "singleStep",
