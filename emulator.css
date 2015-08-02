@@ -27,7 +27,8 @@ body {
 	padding:15px;
 	background:url(images/tapereader.png);
 	background-size:128px 356px;
-	font-size: 10px;
+	font-size: 18px;
+	line-height: 100%;
 	background-repeat:no-repeat;
 	border: 0px;
 	padding-left: 25px;
@@ -39,7 +40,8 @@ body {
 	padding:15px;
 	background:url(images/tapereaderhover.png);
 	background-size:128px 356px;
-	font-size: 10px;
+	font-size: 18px;
+	line-height: 100%;
 	background-repeat:no-repeat;
 	border: 0px;
 	padding-left: 25px;
@@ -50,7 +52,8 @@ body {
 	padding:15px;
 	background:url(images/tapereader.png);
 	background-size:128px 356px;
-	font-size: 10px;
+	font-size: 18px;
+	line-height: 100%;
 	background-repeat:no-repeat;
 	border: 0px solid #cf0652;
 	padding-left: 25px;
