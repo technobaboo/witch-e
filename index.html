@@ -2,14 +2,89 @@
 <html>
 	<head>
 		<title>WITCH Emulator</title>
-        <script type="text/javascript" src="enyo/enyo.js"></script>
-        <script type="text/javascript" src="package.js"></script>
-        <script type="text/javascript" src="lib/FileSaver/FileSaver.js"></script>
+		<script src="emulator.js"></script>
+    	<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+		<link rel="import" href="bower_components/paper-card/paper-card.html">
+		<link rel="import" href="bower_components/paper-button/paper-button.html">
+		<link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
+		<link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
+		<link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+		<link rel="import" href="bower_components/paper-button/paper-button.html">
 		<link rel="icon" href="assets/favicon.ico">
+		<link rel="stylesheet" href="emulator.css">
+		<style>
+			paper-toolbar.paper-toolbar-0 {
+				background-color: white;
+				color: black;
+			}
+			
+			
+			
+			.center-toolbar-text {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		</style>
 	</head>
-	<body onload="resizeTheDivs();">
-		<script>
-			new emulatorMain().renderInto(document.body);
-		</script>
+	
+	<body>
+		<div id="topPanels" class="horizontaldistribute" style="margin-left: auto; margin-right: auto; margin-top: 20px;">
+			<paper-card id="log">
+				<paper-header-panel class="flex">	
+    				<paper-toolbar>
+    				  <div class="center-toolbar-text">Process Log</div>
+    				</paper-toolbar>
+					<div id="logText" class="textbox">
+						WITCH-E 2.0.0a<br>
+						Copyright 2015 Justin King, under the GPLv2 License
+					</div>
+				</paper-header-panel>
+			</paper-card>
+			<paper-card id="tapereaders">
+				<paper-header-panel class="flex">
+    				<paper-toolbar id="tapesheader">
+    				  <div class="center-toolbar-text">Tape Readers</div>
+    				</paper-toolbar>
+					<div id="tapereadersscrollers" class="tapescontainer">
+						<div id="looped" class="horizontaldistribute">
+							<paper-checkbox id="looped1" class="evenspaced">Looped</paper-checkbox>
+							<paper-checkbox id="looped2" class="evenspaced">Looped</paper-checkbox>
+							<paper-checkbox id="looped3" class="evenspaced">Looped</paper-checkbox>
+							<paper-checkbox id="looped4" class="evenspaced">Looped</paper-checkbox>
+							<paper-checkbox id="looped5" class="evenspaced">Looped</paper-checkbox>
+						</div>
+						<div id="tapes" class="horizontaldistribute">
+							<textarea id="tape1" class="tape"></textarea>
+							<textarea id="tape2" class="tape"></textarea>
+							<textarea id="tape3" class="tape"></textarea>
+							<textarea id="tape4" class="tape"></textarea>
+							<textarea id="tape5" class="tape"></textarea>
+						</div>
+						<div id="controls" class="horizontaldistribute">
+							<paper-button>Start</paper-button>
+						</div>
+					</div>
+					
+				</paper-header-panel>
+			</paper-card>
+			<paper-card id="printer">
+				<paper-header-panel class="flex">	
+    				<paper-toolbar>
+    				  <div class="center-toolbar-text">Printer</div>
+    				</paper-toolbar>
+					<div id="printerText" class="textbox">
+						
+					</div>
+				</paper-header-panel>
+			</paper-card>
+		</div>
+		
+		<paper-card id="stores">
+			<table>
+				<tbody id="storesTable">
+					
+				</tbody>
+			</table>
+		</paper-card>
 	</body>
 </html>
