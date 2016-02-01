@@ -1,222 +1,40 @@
-* {
-	box-sizing: border-box;
+td {
+	text-align: center !important;
 }
 
-body {
-	-webkit-transform-origin: 0px 0px; 
-	-moz-transform-origin: 0px 0px; 
-	-ms-transform-origin: 0px 0px;
-	transform-origin: 0px 0px;
+table {
+	width: 100%;
+	min-width: 112ch !important;
+	table-layout: fixed;
 }
 
-#emulatorMain_spacer {
-	-webkit-transform-origin: 0px 0px; 
-	-moz-transform-origin: 0px 0px; 
-	-ms-transform-origin: 0px 0px;
-	transform-origin: 0px 0px;
-}
-
-.panels-sample-wide {
-	width: 600px;
-}
-.max-h {
-	height:100%;
-}
-
-.samplebox {
-	padding:15px;
-	background:url(images/tapereader.png);
-	background-size:128px 356px;
-	font-size: 18px;
-	line-height: 100%;
-	background-repeat:no-repeat;
-	border: 0px;
-	padding-left: 25px;
-	color: black;
-	resize: none;
-}
-
-.samplebox:hover {
-	padding:15px;
-	background:url(images/tapereaderhover.png);
-	background-size:128px 356px;
-	font-size: 18px;
-	line-height: 100%;
-	background-repeat:no-repeat;
-	border: 0px;
-	padding-left: 25px;
-	color: black;
-	resize: none;
-}
-.samplebox:active {
-	padding:15px;
-	background:url(images/tapereader.png);
-	background-size:128px 356px;
-	font-size: 18px;
-	line-height: 100%;
-	background-repeat:no-repeat;
-	border: 0px solid #cf0652;
-	padding-left: 25px;
-	color: black;
-	resize: none;
-}
-
-.mouseover {
-	background:none;
-	color: #a6a6a6;
-	vertical-align:middle;
-    text-align: center;
-}
-
-.mouseover:hover {
-	background:#cf0652;
-	color: #ffffff;
-	vertical-align:middle;
-    text-align: center;
-}
-
-.mouseover:active {
-	background:none;
-	color: #a6a6a6;
-	border: 5px solid #cf0652;
-	vertical-align:middle;
-    text-align: center;
-}
-
-.center {
-	display:table-cell;
-}
-
-.ahundredp {
-	width:100%;
-}
-
-.tapereaderpanel {
-	width: 512px;
-	height: 572px;
-    display: block;
-}
-
-.tapereaderimage {
-	width: 128px;
-	height: 300px;
-}
-
-.closetohundred {
-	width: 97%;
-}
-
-.fontsize {
-	font-size: 16px;
-	text-align: center;
-	padding-left: 25px;
-}
-
-.fontsizeb {
-	font-size: 20px;
-	text-align: center;
-	padding-left: 25px;
-}
-
-.fontsizec {
-	font-size: 16px;
-	text-align: center;
-}
-
-.toptblcell {
-	font-size:22px;
-	height:25px;
-	width:100%;
-	border:1px solid white;
-	background: #000;
-	text-align:center;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-
-.sidetblcell {
-	font-size:22px;
-	height:25px;
-	width:26px;
-	border:1px solid white;
-	background: #000;
-	text-align:center;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-
-.dekcell {
-	font-size:22px;
-	height:25px;
-	border:1px solid white;
-	background: #000;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-.acc {
-	height:25px;
-	width:230px;
-	top: 841;
-	left: 1065;
-	border:1px solid white;
-	background: #000;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-size:22px;
-}
-.space {
-	width: 834px;
-	height: 25px;
-}
-
-.dek {
-	height:20px;
-	width:14px;
-	display:table-cell;
-	vertical-align:middle;
-	text-align: center;
-}
-.highlight {
-	position: absolute;
-	top: 33px;
-	left: 0px;
-	width: 512px;
-	height: 17px;
-	opacity: 0.5;
-	border: 1px solid #6F687D;
-	background: #6F687D;
-	z-index: 2;
-	pointer-events:none;
-}
-.chkbox {
-	font-size: 30px;
-	width: 114px!important;
-	display: table-cell;
-}
-.printer {
-	width: 520px;
-	height: 412px;
-	font-size: 8px;
-	font-family: "Courier New", Courier, monospace;
-	white-space: nowrap;
-}
 textarea {
-	font-family: "Courier New", Courier, monospace, bold;
+	resize: none;
 }
 
-.headers {
-	font-family: 'Moonstone Miso';
-	font-size: 37.5px !important;
-	height: 60px !important;
+.full-width {
+	width: 100%;
 }
 
-.light_off {
-    background-image: url(images/light_off.png);
-    background-size: 32px 32px;
+.full-height {
+	height: 100%;
 }
 
-.red_light_on {
-    background-image: url(images/red_light_on.png);
-    background-size: 32px 32px;
+.align-right {
+	text-align: right;
 }
 
-.green_light_on {
-    background-image: url(images/green_light_on.png);
-    background-size: 32px 32px;
+.float-right {
+	float: right !important;
+}
+
+.tblcell {
+	display: inline-block !important;
+	padding: 1ch 6px;
+	border: 1px solid black !important;
+}
+
+.text-fit {
+	width: 1px;
+	white-space: no-wrap;
 }
