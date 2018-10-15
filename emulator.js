@@ -6,13 +6,7 @@ var data = {
 		]
 	},
 	tapes: [
-		{
-			looped: true,
-			text: "",
-			lines: [
-				""
-			]
-		}
+		
 	],
 	printer: {
 		text: "",
@@ -26,4 +20,26 @@ var data = {
 	finished: false
 };
 
+var tapeTemplate = {
+	looped: true,
+	text: "",
+	lines: [
+		""
+	]
+};
 
+document.onload = function() {
+	if(!localStorage.data) {
+		for(var r=0; r>=9; r++) {
+			data.stores[r] = [];
+			for(var c=0; c>=9; c++) {
+				data.stores[r][c] = 0;
+			}
+		}
+		saveData();
+	}
+}
+
+function saveData() {
+	localStorage.data = JSON.stringify(data);
+}
